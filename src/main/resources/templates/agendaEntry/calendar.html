@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Mandato Administrativo | Agenda de Eventos</title>
+<!-- JQuery-ui -->
+<link th:href="@{/plugins/jquery-ui/jquery-ui.min.js}" rel='stylesheet' />
+<!-- ./JQuery-ui -->
+<!-- Fullcalendar -->
+<link th:href="@{/plugins/fullcalendar/fullcalendar.min.css}"
+	rel='stylesheet' />
+<link th:href="@{/plugins/fullcalendar/fullcalendar.print.min.css}"
+	rel='stylesheet' media='print' />
+<!-- ./FullCalendar -->
+<!-- Data Tables -->
+<link rel="stylesheet"
+	th:href="@{/plugins/datatables/media/css/dataTables.bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/plugins/datatables/extensions/Responsive/css/responsive.bootstrap.min.css}">
+</head>
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title">Agenda de Eventos</h1>
+	</th:block>
+
+	<th:block layout:fragment="innerContent">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content card white">
+					<div class="instructions">
+						<a class="collapsed" data-toggle="collapse"
+							href="#instructionsCollapse" role="button" aria-expanded="false"
+							aria-controls="instructionsCollapse"><span
+							class="if-collapsed">Clique aqui para EXIBIR as instruções</span>
+							<span class="if-not-collapsed">Clique aqui para ESCONDER
+								as instruções</span> </a>
+						<div class="collapse" id="instructionsCollapse">
+							<div class="card card-body">
+								<strong>INSTRUÇÕES:</strong>
+								<ul>
+									<li>Eventos são reuniões, sessões da câmara legislativa,
+										entre outros.</li>
+									<li>Para adicionar um novo evento, informe o título do
+										evento na caixa "Eventos a Alocar" e selecione a opção '+'.</li>
+									<li>Caso exista algum evento ainda não alocado, ele será
+										exibido na caixa "Eventos a Alocar". Para alocá-lo, clique e
+										arraste o evento até uma data do calendário.</li>
+									<li>Para editar os dados de um evento, clique sobre o
+										evento no calendário.</li>
+									<li>Você também pode arrastar e redimensionar eventos
+										diretamente no calendário.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /.box-title -->
+
+					<div class="card-content">
+						<!-- message -->
+						<div class="alert alert-dismissible" role="alert"
+							th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+							th:if="${not #strings.isEmpty(message)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span
+								th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A operação foi realizada com sucesso.'}"></span>
+						</div>
+						<!-- ./message -->
+						<div class="row small-spacing">
+							<div class="col-xs-4">
+								<div class="box-content card white">
+									<div class="box-title">Eventos a Alocar</div>
+									<div class="card-content">
+										<div id="external-events"
+											class="p-3 bg-blue-grey lighten-5 rounded mb-4">
+											<div class="input-group margin-bottom-20">
+												<input type="text" class="form-control" id="newEvent"
+													placeholder="Qual é o título do evento?">
+												<div class="input-group-btn">
+													<button type="button" id="addNewEvent"
+														class="btn btn-primary no-border waves-effect waves-light">
+														<i class="fa fa-plus text-white"></i>
+													</button>
+												</div>
+												<!-- /.input-group-btn -->
+											</div>
+											<div id="event-container">
+												<div class='fc-event my-event'
+													th:each="unallocatedEvent : ${unallocatedEvents}"
+													th:attr="data-serverhash=${unallocatedEvent.hashString}"
+													th:text="${unallocatedEvent.title}">Event Title</div>
+											</div>
+										</div>
+										<!-- ./external-events -->
+									</div>
+									<!-- ./card-content -->
+								</div>
+								<!-- ./box-content -->
+							</div>
+							<!-- ./col -->
+							<div id='calendar' class="col-xs-8"></div>
+						</div>
+						<hr />
+						<div class="row small-spacing">
+							<div class="col-md-12">
+								<table id="list-event"
+									class="table-hover table table-striped table-bordered display"
+									style="width: 100%">
+									<thead>
+										<tr>
+											<th>Editar</th>
+											<th>Gerar Repetições</th>
+											<th>Nome</th>
+											<th>Data Inicial</th>
+											<th>Hora Inicial</th>
+											<th>Data Final</th>
+											<th>Hora Final</th>
+											<th>Excluir</th>
+										</tr>
+									</thead>
+									<tfoot>
+										<tr>
+											<th>Editar</th>
+											<th>Gerar Repetições</th>
+											<th>Nome</th>
+											<th>Data Inicial</th>
+											<th>Hora Inicial</th>
+											<th>Data Final</th>
+											<th>Hora Final</th>
+											<th>Excluir</th>
+										</tr>
+									</tfoot>
+									<tbody>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</th:block>
+
+	<th:block layout:fragment="modals">
+		<!-- confirm-deletion -->
+		<div id="confirmDeletion" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<form th:action="@{/agenda/events/delete/redirect}">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+
+						<div class="modal-body">
+							<p>Você realmente deseja apagar o evento selecionado?</p>
+							<input type="checkbox" id="deleteCopiesAfter"
+								name="deleteCopiesAfter" value="true" /> <label
+								for="deleteCopiesAfter">As repetições subsequentes deste
+								evento devem ser apagadas também<a href="#" aria-hidden="true"
+								data-toggle="tooltip"
+								title="Informe se as repetições deste evento que vierem depois dele devem ser apagadas também"><i
+									class="fa fa-question-circle"></i></a>
+							</label>
+						</div>
+
+						<div class="modal-footer">
+
+							<input type="hidden" name="hash" value="-1" id="hashToDelete" />
+							<button id="btnYes" class="btn btn-danger pull-right"
+								type="submit">
+								<span class="mdi mdi-delete"></span> Sim, desejo
+							</button>
+
+							<a href="#" data-dismiss="modal" aria-hidden="true"
+								class="btn btn-default pull-left"><span class="mdi mdi-undo"></span>
+								Cancelar</a>
+						</div>
+					</form>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./confirm-deletion -->
+	</th:block>
+
+	<th:block layout:fragment="js">
+		<!-- JQuery-ui -->
+		<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
+		<!--Moment JQuery-->
+		<script th:src="@{/plugins/moment/moment.js}"></script>
+		<script th:src="@{/plugins/fullcalendar/fullcalendar.min.js}"></script>
+		<script th:src="@{/plugins/fullcalendar/pt-br.js}"></script>
+		<!-- Datatable -->
+		<script
+			th:src="@{/plugins/datatables/media/js/jquery.dataTables.min.js}"></script>
+		<script
+			th:src="@{/plugins/datatables/media/js/dataTables.bootstrap.min.js}"></script>
+		<script
+			th:src="@{/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js}"></script>
+		<script
+			th:src="@{/plugins/datatables/extensions/Responsive/js/responsive.bootstrap.min.js}"></script>
+		<!--Custom JQuery-->
+		<script th:src="@{/scripts/agendaEntry/agendaEntry-calendar.js}"></script>
+	</th:block>
+</body>
+</html>

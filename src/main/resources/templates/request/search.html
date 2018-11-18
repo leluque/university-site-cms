@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Fatec Mogi das Cruzes | Solicitações</title>
+
+<!-- Data Tables -->
+<link rel="stylesheet"
+	th:href="@{/plugins/datatables/media/css/dataTables.bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/plugins/datatables/extensions/Responsive/css/responsive.bootstrap.min.css}">
+
+</head>
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title">Solicitações</h1>
+	</th:block>
+
+	<th:block layout:fragment="innerContent">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Listagem de Solicitações</h4>
+					<!-- /.box-title -->
+
+					<!-- message -->
+					<div class="alert alert-dismissible" role="alert"
+						th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+						th:if="${not #strings.isEmpty(message)}">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<span
+							th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A operação foi realizada com sucesso.'}"></span>
+					</div>
+					<!-- ./message -->
+
+					<p>
+						<a th:href="@{/admin/requests/new}"
+							class="btn btn-success table-button" style="margin-top: 30px">
+							<i class="fa fa-plus-circle"></i> <span>Nova Solicitação</span>
+						</a>
+					</p>
+					<table id="list"
+						class="table-hover table table-striped table-bordered display"
+						style="width: 100%">
+						<thead>
+							<tr>
+								<th>Editar</th>
+								<th>Protocolo</th>
+								<th>RA</th>
+								<th>Nome</th>
+								<th>Curso</th>
+								<th>Situação</th>
+								<th>Excluir</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>Editar</th>
+								<th>Protocolo</th>
+								<th>RA</th>
+								<th>Nome</th>
+								<th>Curso</th>
+								<th>Situação</th>
+								<th>Excluir</th>
+							</tr>
+						</tfoot>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-xs-12 -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="modals">
+		<!-- confirm-deletion -->
+		<div id="confirmDeletion" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Confirmação</h4>
+					</div>
+
+					<div class="modal-body">
+						<p>Você realmente deseja apagar a solicitação selecionado?</p>
+					</div>
+
+					<div class="modal-footer">
+						<form th:action="@{/admin/requests/delete}">
+							<input type="hidden" name="hash" value="-1" id="hashToDelete" />
+							<button id="btnYes" class="btn btn-danger pull-right"
+								type="submit">
+								<span class="mdi mdi-delete"></span> Sim, desejo
+							</button>
+						</form>
+						<a href="#" data-dismiss="modal" aria-hidden="true"
+							class="btn btn-default pull-left"><span class="mdi mdi-undo"></span>
+							Cancelar</a>
+					</div>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./confirm-deletion -->
+	</th:block>
+
+	<th:block layout:fragment="js">
+		<!-- Datatable -->
+		<script
+			th:src="@{/plugins/datatables/media/js/jquery.dataTables.min.js}"></script>
+		<script
+			th:src="@{/plugins/datatables/media/js/dataTables.bootstrap.min.js}"></script>
+		<script
+			th:src="@{/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js}"></script>
+		<script
+			th:src="@{/plugins/datatables/extensions/Responsive/js/responsive.bootstrap.min.js}"></script>
+		<script th:src="@{/scripts/request/request-search.js}"></script>
+	</th:block>
+</body>
+</html>

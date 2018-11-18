@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html th:with="lang=${#locale.language}" th:lang="${lang}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fatec Mogi das Cruzes - Acesso Negado</title>
+<!-- Google font -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" media="screen">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+	rel="stylesheet">
+<!-- Custom stylesheet -->
+<link type="text/css" rel="stylesheet"
+	th:href="@{/styles/error-style.css}" />
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+<body>
+	<div id="error">
+		<div class="error">
+			<div class="error-x">
+				<h1>
+					4<span>0</span>3
+				</h1>
+			</div>
+			<h2>Você não tem acesso ao recurso solicitado</h2>
+			<a class="btn btn-primary" href="javascript:history.go(-1);">Voltar</a>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

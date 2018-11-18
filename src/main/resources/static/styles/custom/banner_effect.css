@@ -1,0 +1,20 @@
+/**
+ * Banner.
+ */
+.banner-effect {
+	height: 390px;
+	overflow: hidden;
+	position: relative;
+	width: 750px;
+}
+
+.banner-image {
+	z-index: -1;
+}
+
+.banner-image img {
+	position: absolute;
+	opacity: 0.45;
+	margin: auto;
+	width: 100%;
+}

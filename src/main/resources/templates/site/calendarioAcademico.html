@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Como chegar</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-year-calendar/1.1.1/css/bootstrap-year-calendar.min.css" />
+<!-- <link rel="stylesheet"
+	th:href="@{/css/bootstrap-theme.min.css}" /> -->
+<link rel="stylesheet"
+	th:href="@{/styles/custom/calendario_academico.css}" />
+<style>
+</style>
+
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">CALENDÁRIO ACADÊMICO</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<p class="text-center">
+						<a th:href="@{/pdf/calendario_2018_2.pdf}" target="_blank" class="highlight-link">Clique
+							aqui</a> para copiar a versão PDF detalhada do calendário acadêmico
+						ou passe o mouse sobre os eventos na calendário apresentado a
+						seguir.
+					</p>
+					<p>
+					<a href="#" class="highlight-link">ATENÇÃO:</a> A seguir, você encontrará uma versão interativa
+					do calendário. Para visualizar os eventos, passe o mouse sobre uma data marcada com alguma cor.
+					No caso de dispositivos móveis, clique sobre uma data. Você verá detalhes sobre os eventos desta
+					data.  
+					</p>
+					<div id="calendar" class="calendar-content"></div>
+				</div>
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script type="text/javascript"
+			src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-year-calendar/1.1.1/js/bootstrap-year-calendar.min.js"></script>
+		<script type="text/javascript"
+			th:src="@{/scripts/custom/calendario_academico.js}"></script>
+	</th:block>
+</body>
+</html>

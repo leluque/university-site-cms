@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Fatec Mogi das Cruzes | Edição de Funcionários</title>
+</head>
+
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title" th:if="${null == isUpdate}">Novo
+			Funcionário</h1>
+		<h1 class="page-title" th:if="${null != isUpdate}">Editar
+			Funcionário</h1>
+	</th:block>
+
+	<th:block layout:fragment="innerContent">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content card white">
+					<div class="instructions">
+						<a class="collapsed" data-toggle="collapse"
+							href="#instructionsCollapse" role="button" aria-expanded="false"
+							aria-controls="instructionsCollapse"><span
+							class="if-collapsed">Clique aqui para EXIBIR as instruções</span>
+							<span class="if-not-collapsed">Clique aqui para ESCONDER
+								as instruções</span> </a>
+						<div class="collapse" id="instructionsCollapse">
+							<div class="card card-body">
+								<strong>INSTRUÇÕES:</strong>
+								<ul>
+									<li th:if="${null == isUpdate}">Preencha os dados do
+										formulário seguinte e selecione o botão 'Salvar', exibido após
+										o formulário, para salvar o funcionário.</li>
+									<li th:if="${null != isUpdate}">Preencha os dados do
+										formulário seguinte e selecione o botão 'Atualizar', exibido
+										após o formulário, para atualizar o funcionário.</li>
+									<li>Os campos marcados com um asterisco <sup
+										class="field-details">*</sup> são obrigatórios e devem ser
+										preenchidos.
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /.box-title -->
+					<div class="card-content">
+						<a th:if="${null != isUpdate}" href="#" data-toggle="modal"
+							data-target="#confirmRemoval"
+							class="btn btn-danger btn-sm waves-effect waves-light pull-right"><span
+							class="fa fa-trash"></span> <span>Apagar</span> </a>
+						<div class="clearfix"></div>
+						<!-- message -->
+						<div class="alert alert-dismissible" role="alert"
+							th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+							th:if="${not #strings.isEmpty(message)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span
+								th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A operação foi realizada com sucesso.'}"></span>
+						</div>
+						<!-- ./message -->
+						<form autocomplete="off" th:action="@{/admin/employees/save}"
+							th:object="${employee}" method="post"
+							enctype="multipart/form-data">
+							<input type="hidden" id="hashString" th:field="*{hashString}" />
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('name')} ? has-error">
+									<label for="name">Nome do Funcionário*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o nome completo do funcionário com as iniciais dos nomes em maiúsculas. Ex: Leandro Luque"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="nameRemainingLength" class="remaining-length"></span> <span
+										class="remaining-length">caracter(es) restante(s)</span> <input
+										maxlength="100" tabindex="1" type="text" class="form-control"
+										required="required" id="name" th:field="*{name}"
+										placeholder="Qual é o nome do funcionário"> <span
+										th:each="error : ${#fields.errors('name')}" class="help-block">
+										<i class="fa fa-exclamation-circle"></i> <span
+										th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('curriculum')} ?
+									has-error">
+									<label for="curriculum">Currículo: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o mini currículo do funcionário"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="curriculumRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<textarea class="form-control" id="curriculum" tabindex="2"
+										th:field="*{curriculum}" maxlength="500"
+										placeholder="Qual é o mini currículo do funcionário"></textarea>
+									<span th:each="error : ${#fields.errors('curriculum')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-4 form-group"
+									th:classappend="${#fields.hasErrors('selectionType')} ? has-error">
+									<label for="selectionType">Tipo de Contratação*: <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="De que forma o candidato foi contratado? "><i
+											class="fa fa-question-circle"></i></a></label> <select tabindex="3"
+										class="
+										form-control" th:field="*{selectionType}">
+										<option
+											th:each="selectionType : ${T(br.com.fatecmogidascruzes.employee.Employee.SelectionType).values()}"
+											th:value="${selectionType}" th:text="${selectionType.name}"></option>
+									</select> <span th:each="error : ${#fields.errors('selectionType')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-5 form-group"
+									th:classappend="${#fields.hasErrors('allocation')} ? has-error">
+									<label for="allocation">Função Atual*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Em que função o funcionário está alocado atualmente? "><i
+											class="fa fa-question-circle"></i></a></label> <select tabindex="4"
+										class="
+										form-control" th:field="*{allocation}">
+										<option
+											th:each="allocation : ${T(br.com.fatecmogidascruzes.employee.Employee.Allocation).values()}"
+											th:value="${allocation}" th:text="${allocation.name}"></option>
+									</select> <span th:each="error : ${#fields.errors('allocation')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-3">
+									<br /> <br /> <input type="checkbox" id="proTempore"
+										th:field="*{proTempore}" tabindex="5" /><label
+										for="proTempore">&nbsp;&nbsp;Pro Tempore na Função <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="O funcionário está exercendo a função pro tempore?"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <span th:each="erro : ${#fields.errors('proTempore')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-4 form-group"
+									th:classappend="${#fields.hasErrors('educationLevel')} ? has-error">
+									<label for="educationLevel">Maior Nível Educational Completo*: <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Qual é o maior nível educacional completo do funcionário? "><i
+											class="fa fa-question-circle"></i></a></label> <select tabindex="6"
+										class="
+										form-control" th:field="*{educationLevel}">
+										<option
+											th:each="educationLevel : ${T(br.com.fatecmogidascruzes.employee.Employee.EducationLevel).values()}"
+											th:value="${educationLevel}" th:text="${educationLevel.name}"></option>
+									</select> <span th:each="error : ${#fields.errors('educationLevel')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-4 form-group"
+									th:classappend="${#fields.hasErrors('lattes')} ? has-error">
+									<label for="lattes">Currículo Lattes: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o endereço do currículo Lattes do funcionário. Ex: http://lattes.cnpq.br/2934800737668564"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <span id="lattesRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<input maxlength="100" tabindex="7" type="text"
+										class="form-control" required="required" id="lattes"
+										th:field="*{lattes}"
+										placeholder="Qual é o endereço do currículo Lattes do funcionário?">
+									<span th:each="error : ${#fields.errors('lattes')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-4 form-group"
+									th:classappend="${#fields.hasErrors('homepage')} ? has-error">
+									<label for="homepage">Página Pessoal: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o endereço da página pessoal do funcionário. Ex: http://leandroluque.com"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <span id="homepageRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<input maxlength="100" tabindex="8" type="text"
+										class="form-control" id="homepage"
+										th:field="*{homepage}"
+										placeholder="Qual é o endereço da página pessoal do funcionário?">
+									<span th:each="error : ${#fields.errors('homepage')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-12 col-md-4 form-group"
+									th:classappend="${#fields.hasErrors('image')} ? has-error">
+									<a href="#" data-toggle="modal" th:if="${null != isUpdate}"
+										data-target="#viewCurrentImage" class="viewImage">Clique
+										aqui para ver a foto atual</a> <br /> <label for="image">
+										<span th:if="${null != isUpdate}">Nova</span> Foto*: <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Uma foto quadrada"><i class="fa fa-question-circle"></i></a>
+									</label> <input type="file" id="image" th:field="*{image}" tabindex="9"
+										th:required="${null == isUpdate}"> <span
+										class="help-block">Envie uma imagem quadrada, com
+										resolução mínima de 400x400, por favor.</span> <span
+										th:each="error : ${#fields.errors('image')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-12 col-md-8 form-group"
+									th:classappend="${#fields.hasErrors('imageAlternativeDescription')} ? has-error">
+									<label for="imageAlternativeDescription">Texto
+										Alternativo para a Imagem*: <a href="#" aria-hidden="true"
+										data-toggle="tooltip"
+										title="Uma descrição alternativa é um texto que explica o conteúdo da imagem para pessoas com deficiência visual"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <span id="imageAlternativeDescriptionRemainingLength"
+										class="remaining-length"></span> <span
+										class="remaining-length">caracter(es) restante(s)</span> <input
+										maxlength="100" type="text" class="form-control" tabindex="10"
+										id="imageAlternativeDescription" required="required"
+										th:field="*{imageAlternativeDescription}"
+										placeholder="Como você poderia descrever essa imagem para pessoas com deficiência visual?">
+									<span
+										th:each="error : ${#fields.errors('imageAlternativeDescription')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing"
+								th:classappend="${#fields.hasErrors('ads') or #fields.hasErrors('agro') or
+								#fields.hasErrors('gestao') or #fields.hasErrors('log') or
+								#fields.hasErrors('rh')} ? has-error">
+								<div class="col-xs-12 form-group">
+									<label>Cursos em que trabalha (para coordenadores e
+										professores):</label><br /> <input type="checkbox" id="ads"
+										tabindex="11" th:field="*{ads}" /><label for="ads">&nbsp;&nbsp;ADS</label>
+									&nbsp;&nbsp;&nbsp;&nbsp;<input tabindex="12" type="checkbox"
+										id="agro" th:field="*{agro}" /><label for="agro">&nbsp;&nbsp;Agro</label>
+									&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" tabindex="13"
+										id="gestao" th:field="*{gestao}" /><label for="gestao">&nbsp;&nbsp;Gestão</label>
+									&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="log"
+										th:field="*{log}" tabindex="14" /><label for="log">&nbsp;&nbsp;Logística</label>
+									&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" tabindex="15"
+										id="rh" th:field="*{rh}" /><label for="rh">&nbsp;&nbsp;RH</label>
+									<span th:each="error : ${#fields.errors('ads')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span> <span th:each="error : ${#fields.errors('agro')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span></span> <span
+										th:each="error : ${#fields.errors('gestao')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span></span> <span
+										th:each="error : ${#fields.errors('log')}" class="help-block">
+										<i class="fa fa-exclamation-circle"></i> <span
+										th:text="${error}"></span>
+									</span> <span th:each="error : ${#fields.errors('rh')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span></span>
+								</div>
+							</div>
+							<button type="submit" th:if="${null == isUpdate}" tabindex="16"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-content-save"></span> Salvar
+							</button>
+							<button type="submit" th:if="${null != isUpdate}" tabindex="16"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-sync"></span> Atualizar
+							</button>
+							<a class="btn waves-effect waves-light" type="submit"
+								tabindex="17" th:href="@{/admin/employees}"> <span
+								class="mdi mdi-undo"></span> Descartar
+							</a>
+						</form>
+					</div>
+					<!-- /.card-content -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-xs-12 -->
+		</div>
+		<!-- /.row -->
+	</th:block>
+
+	<th:block layout:fragment="modals">
+		<!-- view-current-image -->
+		<div id="viewCurrentImage" class="modal fade modal-image"
+			role="dialog" th:if="${null != isUpdate}">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Imagem Atual</h4>
+					</div>
+					<div class="modal-body text-center">
+						<img
+							th:src="@{/admin/employees/} + ${employee.hashString + '/image'}"
+							th:attr="alt=${employee.imageAlternativeDescription}"
+							class="image-thumbnail" />
+					</div>
+
+					<div class="modal-footer">
+						<a href="#" data-dismiss="modal" aria-hidden="true"
+							class="btn btn-default pull-right">OK</a>
+					</div>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./view-current-image -->
+		<!-- confirm-removal -->
+		<div th:if="${null != isUpdate}" id="confirmRemoval"
+			class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Confirmação</h4>
+					</div>
+					<div class="modal-body">
+						<p>Você realmente deseja apagar este funcionário?</p>
+					</div>
+					<div class="modal-footer">
+						<form th:action="@{/admin/employees/delete}">
+							<input type="hidden" name="hash"
+								th:value="${employee.hashString}" id="hashToDelete" />
+							<button id="btnYes" class="btn btn-danger pull-right"
+								type="submit">
+								<span class="mdi mdi-delete"></span> <span>Sim, desejo</span>
+							</button>
+							<a href="#" data-dismiss="modal" aria-hidden="true"
+								class="btn btn-default pull-left"><span class="mdi mdi-undo"></span>
+								<span>Cancelar</span></a>
+						</form>
+					</div>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./confirm-removal -->
+	</th:block>
+
+	<th:block layout:fragment="js">
+		<script th:src="@{/scripts/form-field-length-counter.js}"></script>
+		<script th:src="@{/scripts/employee/employee-edit.js}"></script>
+	</th:block>
+</body>
+</html>

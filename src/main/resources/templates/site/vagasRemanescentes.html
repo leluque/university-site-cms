@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Vagas Remanescentes</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">VAGAS REMANESCENTES</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<!-- Here begin Main Content -->
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="blog-post-container">
+								<div class="blog-post-image">
+									<img th:src="@{/images/banner_vagas_remanescentes.jpg}" alt="">
+								</div>
+								<!-- /.blog-post-image -->
+								<div class="blog-post-inner">
+									<h3 class="blog-post-title" id="sobre">Sobre Vagas
+										Remanescentes na Fatec Mogi das Cruzes</h3>
+									<p>Para participação no processo de preenchimento de vagas
+										remanescentes para os cursos ministrados na Fatec Mogi das
+										Cruzes, publicamos periodicamente editais nesta página.</p>
+									<ul id="editais">
+										<!-- <li><a th:href="@{/pdf/vagas_remanescentes.pdf}">2o
+												semestre de 2017</a></li> -->
+										<li>Não existem editais abertos no momento</li>
+									</ul>
+								</div>
+							</div>
+							<!-- /.blog-post-container -->
+						</div>
+						<!-- /.col-md-12 -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.col-md-8 -->
+
+				<!-- Here begin Sidebar -->
+				<div class="col-md-4">
+
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">Acesso Rápido</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="blog-categories">
+								<div class="row">
+									<ul class="col-md-12">
+										<li><a href="#editais">Editais</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- /.blog-categories -->
+						</div>
+						<!-- /.widget-inner -->
+					</div>
+					<!-- /.widget-main -->
+
+				</div>
+				<!-- /.col-md-4 -->
+
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script type="text/javascript" th:src="@{/scripts/biblioteca.js}"></script>
+	</th:block>
+</body>
+</html>

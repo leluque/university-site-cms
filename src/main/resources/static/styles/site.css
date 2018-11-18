@@ -1,0 +1,126 @@
+@import "site-main.css";
+
+@import "site-color-scheme.css";
+
+@import "site-responsive.css";
+
+/**
+ * Banner.
+ */
+.banner-image {
+	max-width: 1140px !important;
+	max-height: 350px !important;
+}
+
+/**
+ * Home images.
+ */
+.home-news-image {
+	max-width: 435px !important;
+	width: 100% !important;
+}
+
+.home-event-image {
+	max-width: 435px !important;
+	width: 100% !important;
+}
+
+/**
+ * Flex-slider.
+ */
+.flex-prev, .flex-next {
+	font-size: 0;
+}
+
+/**
+ * Links.
+ */
+.highlight-link {
+	font-weight: bold;
+	font-size: 130%;
+}
+
+/**
+ * News and events descriptions.
+ */
+/* styles for '...' */
+.block-with-text-long {
+	/* hide text if it more than N lines  */
+	overflow: hidden;
+	/* for set '...' in absolute position */
+	position: relative;
+	/* use this value to count block height */
+	line-height: 1.2em;
+	/* max-height = line-height (1.2) * lines max number (3) */
+	max-height: 2.4em;
+	/* fix problem when last visible word doesn't adjoin right side  */
+	text-align: justify;
+	/* place for '...' */
+	margin-right: 1em;
+	padding-right: 1em;
+}
+.block-with-text-short {
+	/* hide text if it more than N lines  */
+	overflow: hidden;
+	/* for set '...' in absolute position */
+	position: relative;
+	/* use this value to count block height */
+	line-height: 1.2em;
+	/* max-height = line-height (1.2) * lines max number (3) */
+	max-height: 1.2em;
+	/* fix problem when last visible word doesn't adjoin right side  */
+	text-align: justify;
+	/* place for '...' */
+	margin-right: 1em;
+	padding-right: 1em;
+}
+/* create the ... */
+.block-with-text-long:before {
+	/* points in the end */
+	content: '...';
+	/* absolute position */
+	position: absolute;
+	/* set position to right bottom corner of block */
+	right: 0;
+	bottom: 0;
+}
+/* hide ... if we have text, which is less than or equal to max lines */
+.block-with-text-long:after {
+	/* points in the end */
+	content: '';
+	/* absolute position */
+	position: absolute;
+	/* set position to right bottom corner of text */
+	right: 0;
+	/* set width and height */
+	width: 1em;
+	height: 1em;
+	margin-top: 0.2em;
+	/* bg color = bg color under block */
+	background: white;
+}
+/* create the ... */
+.block-with-text-short:before {
+	/* points in the end */
+	content: '...';
+	/* absolute position */
+	position: absolute;
+	/* set position to right bottom corner of block */
+	right: 0;
+	bottom: 0;
+}
+/* hide ... if we have text, which is less than or equal to max lines */
+.block-with-text-short:after {
+	/* points in the end */
+	content: '';
+	/* absolute position */
+	position: absolute;
+	/* set position to right bottom corner of text */
+	right: 0;
+	/* set width and height */
+	width: 1em;
+	height: 1em;
+	margin-top: 0.2em;
+	/* bg color = bg color under block */
+	background: white;
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Contato</title>
+<!-- CSS Personalizado -->
+<link rel="stylesheet" th:href="@{/styles/custom.css}" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">CONTATO</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="contact-page-content" th:if="${not #strings.isEmpty(message) or not #strings.isEmpty(captchaMessage)}">
+				<div class="row small-spacing">
+					<div class="col-xs-12" style="padding: 1em 3em 1em 3em;">
+						<!-- message -->
+						<div class="alert alert-dismissible alert-danger" role="alert"
+							th:if="${not #strings.isEmpty(captchaMessage) and 'error' == captchaMessage}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span>Você não selecionou a opção 'Não sou um robô' ou não selecionou corretamente as imagens exibidas pelo validador ReCAPTCHA.</span>
+						</div>
+						<!-- ./message -->
+						<!-- message -->
+						<div class="alert alert-dismissible" role="alert" id="formMessage"
+							th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+							th:if="${not #strings.isEmpty(message) and #strings.isEmpty(captchaMessage)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span
+								th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A sua mensagem foi enviada com sucesso!'}"></span>
+						</div>
+						<!-- ./message -->
+					</div>
+				</div>
+			</div>
+			<div class="contact-page-content">
+				<div class="row small-spacing">
+					<div class="col-xs-12">
+						<div class="card-content">
+							<div class="instructions">
+								<h1>Fale Conosco</h1>
+								<p>Tem alguma dúvida sobre cursos ou deseja alguma outra
+									informação? Use o formulário seguinte para nos contatar</p>
+							</div>
+							<div class="form-site">
+								<br />
+								<form autocomplete="off" th:action="@{/contact/send}"
+									th:object="${contact}" method="post">
+									<div class="row small-spacing">
+										<div class="col-xs-12 form-group"
+											th:classappend="${#fields.hasErrors('name')} ? has-error">
+											<label for="name">Nome*: <a href="#"
+												aria-hidden="true" data-toggle="tooltip"
+												title="Informe o seu nome completo"><i
+													class="fa fa-question-circle"></i></a></label> <span
+												id="nameRemainingLength" class="remaining-length"></span> <span
+												class="remaining-length">caracter(es) restante(s)</span> <input
+												maxlength="100" tabindex="1" type="text"
+												class="form-control" required="required" id="name"
+												th:field="*{name}" placeholder="Qual é o seu nome completo?">
+											<span th:each="error : ${#fields.errors('name')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+									</div>
+									<!-- ./row -->
+									<div class="row small-spacing">
+										<div class="col-xs-6 form-group"
+											th:classappend="${#fields.hasErrors('email')} ? has-error">
+											<label for="email">E-mail*: <a href="#"
+												aria-hidden="true" data-toggle="tooltip"
+												title="Informe o seu e-mail"><i
+													class="fa fa-question-circle"></i></a></label> <span
+												id="emailRemainingLength" class="remaining-length"></span> <span
+												class="remaining-length">caracter(es) restante(s)</span> <input
+												maxlength="50" tabindex="2" type="email"
+												class="form-control" required="required" id="email"
+												th:field="*{email}" placeholder="Qual é o seu e-mail?">
+											<span th:each="error : ${#fields.errors('email')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+										<div class="col-xs-6 form-group"
+											th:classappend="${#fields.hasErrors('phone')} ? has-error">
+											<label for="phone">Telefone de Contato: <a href="#"
+												aria-hidden="true" data-toggle="tooltip"
+												title="Informe um telefone de contato"><i
+													class="fa fa-question-circle"></i></a></label> <span
+												id="phoneRemainingLength" class="remaining-length"></span> <span
+												class="remaining-length">caracter(es) restante(s)</span> <input
+												maxlength="50" tabindex="3" type="text" class="form-control"
+												id="phone" th:field="*{phone}"
+												placeholder="Qual é o seu telefone?"> <span
+												th:each="error : ${#fields.errors('phone')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+									</div>
+									<!-- ./row -->
+									<div class="row small-spacing">
+										<div class="col-xs-12 form-group"
+											th:classappend="${#fields.hasErrors('message')} ? has-error">
+											<label for="message">Mensagem*: <a href="#"
+												aria-hidden="true" data-toggle="tooltip"
+												title="Informe a sua mensagem"><i
+													class="fa fa-question-circle"></i></a></label> <span
+												id="messageRemainingLength" class="remaining-length"></span>
+											<span class="remaining-length">caracter(es)
+												restante(s)</span>
+											<textarea maxlength="2000" tabindex="4" class="form-control"
+												id="message" th:field="*{message}"
+												placeholder="Qual é a mensagem de contato?"></textarea>
+											<span th:each="error : ${#fields.errors('message')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+									</div>
+									<!-- ./row -->
+									<div class="row small-spacing">
+										<div class="g-recaptcha col-sm-5"
+											th:attr="data-sitekey=${@captchaSettings.getSite()}"></div>
+									</div>
+									<br />
+									<button type="submit" tabindex="5"
+										class="btn btn-warning btn-sm waves-effect waves-light pull-right">
+										<span class="mdi mdi-content-save"></span> Enviar
+									</button>
+									<div class="clearfix"></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.col-md-12 -->
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script th:src="@{/scripts/form-field-length-counter.js}"></script>
+		<!-- jQuery Mask Plugin -->
+		<script th:src="@{/plugins/jquery-mask/jquery.mask.min.js}"></script>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<script th:src="@{/scripts/custom/contact.js}"></script>
+	</th:block>
+</body>
+</html>

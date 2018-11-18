@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Como chegar</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">COMO CHEGAR</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5">
+					<div class="contact-map">
+						<div class="google-map-canvas" id="map-canvas"
+							style="height: 542px;"></div>
+					</div>
+				</div>
+				<!-- /.col-md-5 -->
+				<div class="col-md-7">
+					<div class="contact-page-content">
+						<div class="contact-heading">
+							<h3>Como chegar a Fatec?</h3>
+							<p>
+								A Faculdade de Tecnologia de Mogi das Cruzes fica localizada na
+								<strong>Rua Carlos Barattino, n. 908</strong>, na Vila Nova
+								Mogilar, em Mogi das Cruzes-SP. Mogi das Cruzes tem ligação com
+								as principais rodovias do Estado de São Paulo e conta com
+								estações ferroviárias e terminais rodoviários que ampliam as
+								opções de transporte, garantindo acesso à capital, litoral e
+								regiões do Vale do Paraíba e ABC. Ainda, a cidade está
+								localizada a apenas 40 minutos do Aeroporto Internacional de
+								Guarulhos. Veja, a seguir, como chegar a Mogi das Cruzes com
+								diferentes meios de transporte:
+							</p>
+						</div>
+						<div class="clearfix">
+							<ul>
+								<li><p>
+										<strong>Como chegar de carro?</strong>
+									</p>
+									<p>Três das principais rodovias do Estado dão acesso a Mogi
+										das Cruzes. A principal delas é a Rodovia Ayrton Senna
+										(SP-70), que passa pelo município, onde há um trevo de ligação
+										com a Mogi-Dutra (SP-88). Outra opção para quem vem de São
+										Paulo, Vale do Paraíba ou Rio de Janeiro é a Rodovia
+										Presidente Dutra (BR- 116), que passa pela cidade vizinha de
+										Arujá e oferece acesso direto também pela Mogi-Dutra. Outra
+										opção é a Rodovia Rio-Santos (SP-55). Neste caso, o acesso à
+										cidade é feito em Bertioga, por meio da Mogi-Bertioga (SP-98).
+									</p></li>
+								<li><p>
+										<strong>Como chegar de ônibus?</strong>
+									</p>
+									<p>Mogi das Cruzes é parte da Região Metropolitana de São
+										Paulo, sendo servida pelas linhas intermunicipais da Empresa
+										Metropolitana de Transportes Urbanos. Além disso, linhas
+										diretas de ônibus intermunicipais que partem do Terminal
+										Rodoviário Geraldo Scavone ligam a cidade a municípios
+										importantes como São Paulo, Belo Horizonte, Rio de Janeiro,
+										São José dos Campos e Santos. Existem ainda várias outras
+										opções de linhas partindo da Região Metropolitana, ABC, Vale
+										do Paraíba, litoral e estados de Minas Gerais e Rio de
+										Janeiro. Quem vem de outros estados tem como opção o Terminal
+										Rodoviário do Tietê, em São Paulo, que tem linha direta para
+										Mogi com mais de 40 saídas diárias. Por meio da malha
+										integrada de transportes, é possível chegar a Mogi vindo de
+										cidades como Jundiaí, Itapevi e Osasco, além de toda a região
+										do ABC. O sistema permite ainda integração gratuita com o
+										metrô.</p></li>
+								<li><p>
+										<strong>Como chegar de trem?</strong>
+									</p>
+									<p>
+										Mogi das Cruzes é servida pelos trens da linha 11 Coral da
+										Companhia Paulista de Trens Metropolitanos (CPTM) e conta com
+										quatro estações ferroviárias: (i) Estudantes; (ii) Mogi das
+										Cruzes; (iii) Braz Cubas e (iv) Jundiapeba. A Fatec Mogi das
+										Cruzes fica a 16 minutos de caminhada da estação <strong>Estudantes</strong>.
+
+									</p></li>
+								<li><p>
+										<strong>Como chegar de avião?</strong>
+									</p>
+									<p>Mogi das Cruzes fica localizada a apenas 40 minutos do
+										Aeroporto Internacional de Guarulhos. Existe uma linha direta
+										de ônibus que liga o aeroporto ao município de Mogi das
+										Cruzes.</p></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /.col-md-7 -->
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script type="text/javascript" th:src="@{/scripts/custom/como_chegar.js}"></script>
+	</th:block>
+</body>
+</html>

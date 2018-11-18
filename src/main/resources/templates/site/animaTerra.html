@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Revista Anima Terra</title>
+<link th:href="@{/styles/curso.css}" type="text/stylesheet" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">A Fatec</a>
+						</h6>
+						<h6>
+							<span class="page-active">REVISTA ANIMA TERRA</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<!-- Here begin Main Content -->
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="blog-post-container">
+								<div class="blog-post-inner" id="reconhecimentoAvaliacao">
+									<h3 class="blog-post-title">Revista Anima Terra</h3>
+									<article>
+										<div class="page-row box box-border">
+											<p>
+												<strong>Esclarecimentos e Submissão de Artigos:</strong><br />
+												<em>revista.animaterra@fatec.sp.gov.br</em>
+											</p>
+											<strong>Datas Importantes - 2o Semestre de 2018</strong>
+											<ul class="list-unstyled no-margin-bottom">
+												<li><strong>Até 31/08/2018</strong>: Envio de artigos
+													completos para avaliação da Editoria Executiva;</li>
+												<li><strong>Até 28/09/2018</strong>: Notificação da
+													aceitação com as correções da primeira versão revisada;</li>
+												<li><strong>Até 31/10/2018</strong>: Envio da versão
+													final após correções para avaliação do Conselho Editorial;</li>
+												<li><strong>Até 16/11/2018</strong>: Notificação da
+													aceitação da versão final para publicação;</li>
+												<li><strong>Até 30/11/2018</strong>: Publicação da
+													revista.</li>
+											</ul>
+										</div>
+										<div class="page-row">
+											<br />
+											<h5 id="sobre">Sobre a Revista</h5>
+											<p>A Revista Eletrônica Anima Terra - ISSN 2526-1940, em
+												versão exclusivamente eletrônica é uma publicação semestral
+												da Faculdade de Tecnologia de Mogi das Cruzes (Fatec-MC) do
+												Centro Estadual de Educação Tecnologia Paula Souza do Estado
+												de São Paulo (CPS).</p>
+											<p>Foi criada com os seguintes objetivos:</p>
+											<ul>
+												<li>Divulgar a produção científica que se avoluma, na
+													área, nas universidades brasileiras, permitindo que esta
+													circule e seja discutida de forma crítica e referenciada;</li>
+												<li>Estimular o debate acadêmico sobre a temática de
+													Tecnologia e Cultura em suas diferentes dimensões,
+													valorizando, sobretudo, os diálogos interdisciplinares;</li>
+												<li>Contribuir de forma decisiva, para a crítica e
+													proposição de modelos de intervenção, pública ou privada.</li>
+											</ul>
+											<p>A revista possui orientação pluralista e pública
+												trabalhos científicos de colaboradores nacionais e
+												internacionais que apresentem contribuições originais,
+												teóricas ou empíricas, relacionadas às áreas de Agronegócio,
+												Análise e Desenvolvimento de Sistemas, Recursos Humanos,
+												Logística, Gestão Empresarial e áreas correlatas. Estando
+												vinculada a uma faculdade de tecnologia multidisciplinar,
+												valorizando o diálogo interdisciplinar, abrindo espaços para
+												contribuições de outras áreas do conhecimento.</p>
+											<h5 id="documentos">Documentos</h5>
+											<ul>
+												<li><a id="apresentacao" target="_blank"
+													th:href="@{/pdf/animaTerra/apresentacao.pdf}">Apresentação
+														da Revista</a></li>
+												<li><a id="creditos" target="_blank"
+													th:href="@{/pdf/animaTerra/creditos.pdf}">Créditos</a></li>
+												<li><a id="enderecoContato" target="_blank"
+													th:href="@{/pdf/animaTerra/enderecoContato.pdf}">Endereço
+														e Contato</a></li>
+												<li><a id="expediente" target="_blank"
+													th:href="@{/pdf/animaTerra/expediente.pdf}">Expediente</a></li>
+												<li><a id="normasPublicacao" target="_blank"
+													th:href="@{/pdf/animaTerra/normasPublicacao.pdf}">Normas
+														para Publicação</a></li>
+											</ul>
+											<hr />
+											<h5 id="edicoesArtigos">Edições e Artigos</h5>
+											<div class="panel-group" id="accordion">
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a data-toggle="collapse" data-parent="#accordion"
+																href="#collapse1"> Número 6 - 1o Semestre de 2018</a>
+														</h4>
+													</div>
+													<div id="collapse1" class="panel-collapse collapse in">
+														<div class="panel-body">
+															<ul>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/sumario6.pdf}"> Sumário</a><br />
+																	<hr /></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao6/artigo1.pdf}">Um
+																		estudo sobre a relevância da liderança nas
+																		organizações</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao6/artigo2.pdf}">Levantamento
+																		dos paradigmas sobre o uso de hormônios na produção
+																		dos frangos de corte - visão acadêmica</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao6/artigo3.pdf}">A
+																		raça Senepol como alternativa para o melhoramento
+																		genético em bovinos de corte</a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a data-toggle="collapse" data-parent="#accordion"
+																href="#collapse2"> Número 5 - 2o Semestre de 2017</a>
+														</h4>
+													</div>
+													<div id="collapse2" class="panel-collapse collapse">
+														<div class="panel-body">
+															<ul>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/sumario5.pdf}"> Sumário</a><br />
+																	<hr /></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao5/artigo1.pdf}">Efeito
+																		da pressão de trabalho sobre a eficiência de
+																		diferentes pontas de pulverização no manejo químico de
+																		Papuã (Brachiaria plantaginea) em soja</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao5/artigo2.pdf}">Simulação
+																		e avaliação no processo de um caixa de supermercado
+																		através do software arena</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao5/artigo3.pdf}">Determinação
+																		da atividade antimicrobiana de extratos de plantas de
+																		Smallanthus sonchifolius (Yacon) e Helianthus
+																		tuberosus Linn (Jerusalem Artichoke)</a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<!-- ./panel -->
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a data-toggle="collapse" data-parent="#accordion"
+																href="#collapse3"> Número 4 - 1o Semestre de 2017</a>
+														</h4>
+													</div>
+													<div id="collapse3" class="panel-collapse collapse">
+														<div class="panel-body">
+															<ul>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/sumario4.pdf}"> Sumário</a><br />
+																	<hr /></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao4/artigo1.pdf}">A
+																		motivação de pessoas nas organizações e suas
+																		aplicações dentro do ambiente organizacional</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao4/artigo2.pdf}">Turismo
+																		rural pedagógico em Biritiba Ussú – Mogi das Cruzes</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao4/artigo3.pdf}">Energia
+																		e memória na região do Alto Tietê: A história da usina
+																		parque de Salesópolis</a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<!-- ./panel -->
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a data-toggle="collapse" data-parent="#accordion"
+																href="#collapse4"> Número 3 - 2o Semestre de 2016</a>
+														</h4>
+													</div>
+													<div id="collapse4" class="panel-collapse collapse">
+														<div class="panel-body">
+															<ul>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/sumario3.pdf}"> Sumário</a><br />
+																	<hr /></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao3/artigo1.pdf}">Exportação
+																		de polpas de frutas: “como uma pequena empresa pode
+																		participar no comércio internacional”</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao3/artigo2.pdf}">Caracterização
+																		de sistemas silvipatoris como melhorador de índices de
+																		produção animal e como renda extra ao produtor rural</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao3/artigo3.pdf}">Efeito
+																		da pressão de trabalho sobre a eficiência das
+																		diferentes pontas de pulverização no manejo químico de
+																		Picão-preto (Bidens spp.) na soja</a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<!-- ./panel -->
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a data-toggle="collapse" data-parent="#accordion"
+																href="#collapse5"> Número 2 - 1o Semestre de 2016</a>
+														</h4>
+													</div>
+													<div id="collapse5" class="panel-collapse collapse">
+														<div class="panel-body">
+															<ul>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/sumario2.pdf}"> Sumário</a><br />
+																	<hr /></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao2/artigo1.pdf}">Caracterização
+																		do consumo de carnes e hortaliças no município de Mogi
+																		das Cruzes</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao2/artigo2.pdf}">Estudo
+																		da comunicação Lanchonete e Choperia Estrela: uma
+																		proposta de criação site institucional</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao2/artigo3.pdf}">Estudo
+																		da comunicação da Trator Agro Implementos Agrícolas:
+																		uma abordagem da comunicação interna</a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<!-- ./panel -->
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h4 class="panel-title">
+															<a data-toggle="collapse" data-parent="#accordion"
+																href="#collapse6"> Número 1 - 2o Semestre de 2015</a>
+														</h4>
+													</div>
+													<div id="collapse6" class="panel-collapse collapse">
+														<div class="panel-body">
+															<ul>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/sumario1.pdf}"> Sumário</a><br />
+																	<hr /></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao1/artigo1.pdf}">SysNavSailBoat
+																		– Sistema de Navegação Marítima, com inteligência
+																		artificial, utilizando otimização de múltiplos
+																		objetivos e algoritmos genéticos</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao1/artigo2.pdf}">Rastreabilidade
+																		na cadeia produtiva de fruticultura (Manga Ubá)</a></li>
+																<li><a target="_blank"
+																	th:href="@{/pdf/animaTerra/edicao1/artigo3.pdf}">Máquinas
+																		de busca na web e o novo paradigma da web semântica</a></li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<!-- ./panel -->
+											</div>
+										</div>
+										<!--//page-row-->
+									</article>
+									<!--//course-item-->
+								</div>
+							</div>
+							<!-- /.blog-post-container -->
+						</div>
+						<!-- /.col-md-12 -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.col-md-8 -->
+
+				<!-- Here begin Sidebar -->
+				<div class="col-md-4">
+
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">Acesso Rápido</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="blog-categories">
+								<div class="row">
+									<ul class="col-md-12">
+										<li><a href="#sobre">Sobre a Revista</a></li>
+										<li><a href="#documentos">Documentos</a></li>
+										<li><a href="#edicoesArtigos">Edições e Artigos</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- /.blog-categories -->
+						</div>
+						<!-- /.widget-inner -->
+					</div>
+					<!-- /.widget-main -->
+
+				</div>
+				<!-- /.col-md-4 -->
+
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+	</th:block>
+</body>
+</html>

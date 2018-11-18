@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Congregação</title>
+<link rel="stylesheet" th:href="@{/styles/custom/banner_effect.css}" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">A Fatec</span> <span
+								class="page-active">CONGREGAÇÃO</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- Here begin Main Content -->
+				<div class="col-md-8">
+					<div class="blog-post-container">
+						<div class="blog-post-image">
+							<div class="banner-effect">
+								<div class="banner-image" id="banner-image-a">
+									<img th:src="@{/images/banner_congregacao.jpg}"
+										alt="Algumas pessoas em uma reunião em torno de uma mesa" />
+								</div>
+								<div class="banner-image" id="banner-image-b">
+									<img th:src="@{/images/banner_congregacao.jpg}"
+										alt="Algumas pessoas em uma reunião em torno de uma mesa" />
+								</div>
+								<div class="banner-image" id="banner-image-c">
+									<img th:src="@{/images/banner_congregacao.jpg}"
+										alt="Algumas pessoas em uma reunião em torno de uma mesa" />
+								</div>
+							</div>
+						</div>
+						<!-- /.blog-post-image -->
+						<div class="blog-post-inner">
+							<h3 class="blog-post-title">Congregação</h3>
+							<h4 id="oQueE">O que é a congregação?</h4>
+							<p>A Congregação da Fatec Mogi das Cruzes é o órgão
+								supervisão de ensino, da pesquisa e da extensão de serviços à
+								comunidade. É composta por um grupo de pessoas que se reúnem a
+								cada dois meses e sempre que necessário com o intuito de criar,
+								propor, avaliar e aprovar medidas que visem o contínuo
+								aperfeiçoamento, obedecendo as diretrizes gerais da política
+								educacional do CPS. A composição do grupo é feita através de
+								eleição e os representantes são escolhidos pelos seus pares.</p>
+							<h4 id="membros">Membros</h4>
+							<p>Além do diretor da unidade e dos coordenadores de curso, a
+								congregação é composta por membros eleitos pelos pares, além de
+								um representante da unidade. A composição atual da congregação
+								é:</p>
+							<strong>Ensino Superior III</strong>
+							<ul>
+								<li>Prof. Dr. Elias Ribeiro de Castro - Agro</li>
+								<li>Prof. Dr. Pedro Luiz Frare Junior - ADS</li>
+								<li>Profa. Dra. Neusa Haruka Sezaki Gritti (suplente) - ADS</li>
+							</ul>
+							<strong>Ensino Superior II</strong>
+							<ul>
+								<li>Profa. Me. Carla Branca Alessandra Ramos Silva Aguiar -
+									RH</li>
+								<li>Prof. Me. Leandro Luque - ADS</li>
+								<li>Profa. Me. Adriana Natividad Lopez Valverde (suplente)
+									- ADS</li>
+								<li>Profa. Me. Maria Helena Pinedo - Logística</li>
+								<li>Prof. Me. Marcos Machry (suplente) - Logística</li>
+							</ul>
+							<strong>Ensino Superior I</strong>
+							<ul>
+								<li>Profa. Esp. Liana Aparecida Spaolonzi - RH</li>
+								<li>Prof. Esp. Luciano Gonçalves de Carvalho - ADS</li>
+							</ul>
+							<strong>Representante da Comunidade</strong>
+							<ul>
+								<li>Auclésio Ranieri</li>
+							</ul>
+							<strong>Representantes do corpo Administrativo</strong>
+							<ul>
+								<li>Emilene Alice Camillo</li>
+								<li>Douglas Medeiros Gualberto Constantino</li>
+							</ul>
+							<h4 id="regimento">Regimento</h4>
+							<a th:href="@{/pdf/regimento_congregacao.pdf}" target="_blank">Clique
+								aqui para baixar o regimento da congregação</a>
+						</div>
+					</div>
+					<!-- /.blog-post-container -->
+				</div>
+				<!-- /.col-md-8 -->
+
+				<!-- Here begin Sidebar -->
+				<div class="col-md-4">
+
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">Acesso Rápido</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="blog-categories">
+								<div class="row">
+									<ul class="col-md-12">
+										<li><a href="#oQueE">O que é a congregação?</a></li>
+										<li><a href="#membros">Membros</a></li>
+										<li><a href="#regimento">Regimento</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- /.blog-categories -->
+						</div>
+						<!-- /.widget-inner -->
+					</div>
+					<!-- /.widget-main -->
+
+				</div>
+				<!-- /.col-md-4 -->
+
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script type="text/javascript"
+			th:src="@{/plugins/tweenmax/tweenmax.min.js}"></script>
+		<script type="text/javascript"
+			th:src="@{/scripts/custom/banner_effect.js}"></script>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,9 @@
+.month-container {
+	display: block !important;
+	height: auto !important;
+	margin-bottom: 2em;
+}
+
+.year-title, .month-title, .day-header, .day-content {
+	font-family: Helvetica !important;
+}

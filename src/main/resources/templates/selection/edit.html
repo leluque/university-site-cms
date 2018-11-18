@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Mandato Administrativo | Edição de Seleções e Concursos
+	Públicos</title>
+</head>
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title" th:if="${null == isUpdate}">Nova
+			Seleção/Concurso Público</h1>
+		<h1 class="page-title" th:if="${null != isUpdate}">Editar
+			Seleção/Concurso Público</h1>
+	</th:block>
+
+	<th:block layout:fragment="innerContent">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content card white">
+					<div class="instructions">
+						<a class="collapsed" data-toggle="collapse"
+							href="#instructionsCollapse" role="button" aria-expanded="false"
+							aria-controls="instructionsCollapse"><span
+							class="if-collapsed">Clique aqui para EXIBIR as instruções</span>
+							<span class="if-not-collapsed">Clique aqui para ESCONDER
+								as instruções</span> </a>
+						<div class="collapse" id="instructionsCollapse">
+							<div class="card card-body">
+								<strong>INSTRUÇÕES:</strong>
+								<ul>
+									<li th:if="${null == isUpdate}">Preencha os dados do
+										formulário seguinte e selecione o botão 'Salvar', exibido após
+										o formulário, para salvar a seleção/concurso público.</li>
+									<li th:if="${null != isUpdate}">Preencha os dados do
+										formulário seguinte e selecione o botão 'Atualizar', exibido
+										após o formulário, para atualizar a seleção/concurso público.</li>
+									<li>Os campos marcados com um asterisco <sup
+										class="field-details">*</sup> são obrigatórios e devem ser
+										preenchidos.
+									</li>
+								</ul>
+
+							</div>
+						</div>
+					</div>
+					<!-- /.box-title -->
+					<div class="card-content">
+						<div class="row small-spacing" th:if="${null != isUpdate}">
+							<div class="col-xs-12">
+								<a href="#" data-toggle="modal" data-target="#confirmDeletion"
+									class="btn btn-danger btn-sm waves-effect waves-light pull-right"><span
+									class="fa fa-trash"></span> <span>Apagar</span> </a>
+							</div>
+						</div>
+						<!-- message -->
+						<div class="
+						alert alert-dismissible" role="alert"
+							th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+							th:if="${not #strings.isEmpty(message)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span
+								th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A operação foi realizada com sucesso.'}"></span>
+						</div>
+						<!-- ./message -->
+						<form autocomplete="off" th:action="@{/admin/selections/save}"
+							th:object="${selection}" method="post"
+							enctype="multipart/form-data">
+							<input type="hidden" id="hashString" th:field="*{hashString}" />
+
+							<div class="row small-spacing">
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('type')} ? has-error">
+									<label for="type">Tipo*: <a href="#" aria-hidden="true"
+										data-toggle="tooltip"
+										title="Qual é o tipo do processo seletivo? "><i
+											class="fa fa-question-circle"></i></a></label> <select tabindex="1"
+										class="form-control" th:field="*{type}" required="required">
+										<option value="">Qual é o tipo de processo seletivo?</option>
+										<option
+											th:each="type : ${T(br.com.fatecmogidascruzes.selection.SelectionType).values()}"
+											th:value="${type}" th:text="${type.name}"></option>
+									</select> <span th:each="error : ${#fields.errors('type')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('number')} ? has-error">
+									<label for="number">Número*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o número da seleção/concurso público"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="numberRemainingLength" class="remaining-length"></span> <span
+										class="remaining-length">caracter(es) restante(s)</span> <input
+										maxlength="50" tabindex="1" type="text" class="form-control"
+										required="required" id="number" th:field="*{number}"
+										placeholder="Qual é o número da seleção/concurso público">
+									<span th:each="error : ${#fields.errors('number')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('description')} ? has-error">
+									<label for="description">Descrição*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe uma descrição breve sobre a seleção/concurso público"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="descriptionRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<input type="text" class="form-control" id="description"
+										required="required" tabindex="3" th:field="*{description}"
+										maxlength="200"
+										placeholder="Qual é a descrição da seleção/concurso público?" />
+									<span th:each="error : ${#fields.errors('description')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('course')} ? has-error">
+									<label for="course">Curso*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Para qual curso é o processo seletivo? "><i
+											class="fa fa-question-circle"></i></a></label> <select tabindex="4"
+										class="form-control" th:field="*{course}" required="required">
+										<option value="">Para qual curso é o processo
+											seletivo?</option>
+										<option
+											th:each="course : ${T(br.com.fatecmogidascruzes.selection.Course).values()}"
+											th:value="${course}" th:text="${course.name}"></option>
+									</select> <span th:each="error : ${#fields.errors('course')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('discipline')} ? has-error">
+									<label for="discipline">Disciplina*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe a disciplina do processo seletivo"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="disciplineRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<input maxlength="100" tabindex="5" type="text"
+										class="form-control" required="required" id="discipline"
+										th:field="*{discipline}"
+										placeholder="Qual é a disciplina da seleção/concurso público">
+									<span th:each="error : ${#fields.errors('discipline')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+
+							<div class="row small-spacing">
+								<div class="col-xs-4 form-group"
+									th:classappend="${#fields.hasErrors('howManyMorningHours')} ? has-error">
+									<label for="howManyMorningHours">Quantas Horas
+										(Matutino): <a href="#" aria-hidden="true"
+										data-toggle="tooltip"
+										title="Informe a quantidade de horas para o período matutino"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <input tabindex="6" type="number" class="form-control"
+										required="required" id="howManyMorningHours"
+										th:field="*{howManyMorningHours}"
+										placeholder="Quantas horas no período matutino são ofertadas neste processo seletivo?">
+									<span
+										th:each="error : ${#fields.errors('howManyMorningHours')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-4 form-group"
+									th:classappend="${#fields.hasErrors('howManyAfternoonHours')} ? has-error">
+									<label for="howManyAfternoonHours">Quantas Horas
+										(Vespertino): <a href="#" aria-hidden="true"
+										data-toggle="tooltip"
+										title="Informe a quantidade de horas para o período vespertino"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <input tabindex="6" type="number" class="form-control"
+										required="required" id="howManyAfternoonHours"
+										th:field="*{howManyAfternoonHours}"
+										placeholder="Quantas horas no período vespertino são ofertadas neste processo seletivo?">
+									<span
+										th:each="error : ${#fields.errors('howManyAfternoonHours')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-4 form-group"
+									th:classappend="${#fields.hasErrors('howManyEveningHours')} ? has-error">
+									<label for="howManyEveningHours">Quantas Horas
+										(Noturno): <a href="#" aria-hidden="true"
+										data-toggle="tooltip"
+										title="Informe a quantidade de horas para o período noturno"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <input tabindex="6" type="number" class="form-control"
+										required="required" id="howManyEveningHours"
+										th:field="*{howManyEveningHours}"
+										placeholder="Quantas horas no período noturno são ofertadas neste processo seletivo?">
+									<span
+										th:each="error : ${#fields.errors('howManyEveningHours')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+
+							<div class="row small-spacing">
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('startDateTime')} ? has-error">
+									<label for="startDateTime">Data/Hora de Abertura das
+										Inscrições*: <a href="#" aria-hidden="true"
+										data-toggle="tooltip"
+										title="Informe a data/hora de abertura das inscrições"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <input type="datetime" class="form-control" id="startDateTime"
+										tabindex="6" th:field="*{startDateTime}" required="required"
+										placeholder="Qual é a data/hora de abertura das inscrições?">
+									<span th:each="error : ${#fields.errors('startDateTime')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('endDateTime')} ? has-error">
+									<label for="endDateTime">Data/Hora de Término das
+										Inscrições*: <a href="#" aria-hidden="true"
+										data-toggle="tooltip"
+										title="Informe a data/hora de abertura das inscrições"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <input type="datetime" class="form-control" id="endDateTime"
+										tabindex="7" th:field="*{endDateTime}" required="required"
+										placeholder="Qual é a data/hora de abertura das inscrições?">
+									<span th:each="error : ${#fields.errors('endDateTime')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+
+							<div class="row small-spacing">
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('status')} ? has-error">
+									<label for="status">Situação*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Qual é a situação do processo seletivo? "><i
+											class="fa fa-question-circle"></i></a></label> <select tabindex="4"
+										class="
+										form-control" th:field="*{status}">
+										<option
+											th:each="status : ${T(br.com.fatecmogidascruzes.selection.SelectionStatus).values()}"
+											th:value="${status}" th:text="${status.name}"></option>
+									</select> <span th:each="error : ${#fields.errors('status')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+
+							<br />
+							<hr />
+							<h2>Documentos</h2>
+
+							<a href="#addNewDocument" id="addNewDocument"
+								class="btn btn-success btn-sm"> <span class="fa fa-new"></span>
+								<span>Adicionar Novo Documento</span>
+							</a> <br /> <br />
+							<div id="documentsContainer">
+								<div class="row small-spacing" id="documentModel">
+									<div class="col-xs-12 col-md-4 form-group">
+										<label for="newDocuments" class="documentLabel">Documento:
+											<a href="#" aria-hidden="true" data-toggle="tooltip"
+											title="Selecione um documento"><i
+												class="fa fa-question-circle"></i></a>
+										</label><input type="file" id="newDocuments"
+											th:field="*{newDocuments}" tabindex="15">
+									</div>
+									<!-- ./col -->
+									<div class="col-xs-11 col-md-7 form-group"
+										th:classappend="${#fields.hasErrors('newDocumentsDescriptions')} ? has-error">
+										<label for="newDocumentsDescriptions"
+											class="documentDescriptionLabel">Título do Documento:
+											<a href="#" aria-hidden="true" data-toggle="tooltip"
+											title="Informe um título para o documento"><i
+												class="fa fa-question-circle"></i></a>
+										</label> <span id="newDocumentsDescriptionsRemainingLength"
+											class="remaining-length"></span> <span
+											class="remaining-length">caracter(es) restante(s)</span> <input
+											maxlength="100" type="text" class="form-control"
+											tabindex="16" id="newDocumentsDescriptions"
+											th:field="*{newDocumentsDescriptions}"
+											placeholder="Qual é o título deste documento?">
+									</div>
+									<!-- ./col -->
+									<div class="col-xs-1 col-md-1 form-group">
+										<br /> <br /> <a href="#"
+											class="remove-current-document invisible"
+											onclick="$(this).parent().parent().remove()"><span
+											class="fa fa-trash text-danger"></span></a>
+									</div>
+								</div>
+								<!-- ./row -->
+							</div>
+							<br /> <br />
+							<table id="currentStatus"
+								class="table table-striped table-bordered table-hover"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th>Título</th>
+										<th>Apagar</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Título</th>
+										<th>Apagar</th>
+									</tr>
+								</tfoot>
+								<tbody id="documentContainer">
+									<tr th:each="documentEntry: *{currentDocuments}"
+										th:if="${documentEntry.enabled}">
+										<td><a
+											th:href="@{/admin/selections/} + ${selection.hashString + '/documents/' + documentEntry.hashString}"
+											target="_blank"
+											th:text="${null != documentEntry.title ? documentEntry.title : 'Sem título'}">Title</a></td>
+										<td><a href="#"
+											th:id="'id' + ${documentEntry.hashString}"
+											th:onclick="${'setDocumentHashToDelete(''id' + documentEntry.hashString + ''');'}"
+											data-toggle="modal" data-target="#documentRemoval"
+											class="remove-current"
+											th:attr="data-hash = ${documentEntry.hashString}"><span
+												class="fa fa-trash text-danger
+																	"></span></a></td>
+									</tr>
+								</tbody>
+							</table>
+							<br />
+
+							<button type="submit" th:if="${null == isUpdate}" id="save"
+								tabindex="8"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-content-save"></span> Salvar
+							</button>
+							<button type="submit" th:if="${null != isUpdate}" tabindex="8"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-sync"></span> Atualizar
+							</button>
+							<a class="btn waves-effect waves-light" type="submit"
+								tabindex="9" th:href="@{/admin/selections}"> <span
+								class="mdi mdi-undo"></span> Descartar
+							</a>
+						</form>
+					</div>
+					<!-- /.card-content -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-xs-12 -->
+		</div>
+		<!-- /.row -->
+	</th:block>
+
+	<th:block layout:fragment="modals">
+		<!-- confirm-deletion -->
+		<div id="confirmDeletion" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<form th:action="@{/admin/selections/delete}">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+
+						<div class="modal-body">
+							<p>Você realmente deseja apagar a seleção/concurso público
+								selecionado?</p>
+							<input type="hidden" name="hash"
+								th:value="${selection.hashString}" />
+						</div>
+
+						<div class="modal-footer">
+							<button id="btnYes" class="btn btn-danger pull-right"
+								type="submit">
+								<span class="mdi mdi-delete"></span> Sim, desejo
+							</button>
+
+							<a href="#" data-dismiss="modal" aria-hidden="true"
+								class="btn btn-default pull-left"><span class="mdi mdi-undo"></span>
+								Cancelar</a>
+						</div>
+					</form>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./confirm-deletion -->
+		<!-- document-change-removal -->
+		<div id="documentRemoval" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Confirmação</h4>
+					</div>
+					<div class="modal-body">
+						<p>Você realmente deseja apagar o documento selecionado?</p>
+					</div>
+					<div class="modal-footer">
+						<a href="#" data-dismiss="modal" aria-hidden="true"
+							class="btn btn-default"><span class="mdi mdi-undo"></span> <span>Cancelar</span></a>
+						<a href="#" id="btnConfirmDocumentDeletion" class="btn btn-danger"
+							type="button"> <span class="mdi mdi-delete"></span> <span>Sim,
+								desejo</span>
+						</a>
+					</div>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./document-change-removal -->
+	</th:block>
+
+	<th:block layout:fragment="js">
+		<script th:src="@{/scripts/form-field-length-counter.js}"></script>
+		<!-- jQuery Mask Plugin -->
+		<script th:src="@{/plugins/jquery-mask/jquery.mask.min.js}"></script>
+		<script th:src="@{/scripts/selection/selection-edit.js}"></script>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Detalhe do Evento</title>
+<link rel="stylesheet"
+	th:href="@{/plugins/fancybox/jquery.fancybox.css}" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">DETALHE DO EVENTO</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+
+				<!-- Here begin Main Content -->
+				<div class="col-md-8">
+					<div class="blog-post-container">
+						<div class="blog-post-inner">
+							<h3 class="blog-post-title" th:text="${event.name}"
+								style="margin-bottom: 0em;">Title</h3>
+						</div>
+						<div class="blog-post-image" th:if=${event.hasBigImage}>
+							<img th:src="@{/event/__${event.hashString}__/bigImage}"
+								th:alt="${event.imageAlternativeDescription}">
+						</div>
+						<!-- /.blog-post-image -->
+						<div class="blog-post-inner">
+							<th:block th:utext="${event.longDescription}"></th:block>
+						</div>
+					</div>
+					<!-- /.blog-post-container -->
+				</div>
+				<!-- /.col-md-12 -->
+
+				<!-- Here begin Sidebar -->
+				<div class="col-md-4">
+
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">Galeria de Imagens</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="gallery-small-thumbs clearfix">
+								<div class="thumb-small-gallery"
+									th:each="image : ${event.images}">
+									<a class="fancybox" rel="gallery1" target="_blank"
+										th:href="@{/events/} + ${event.hashString + '/album/' + image.hashString}"
+										th:title="${image.hashString}"> <img
+										th:src="@{/events/} + ${event.hashString + '/album/' + image.hashString + '?width=200&height=200'}"
+										alt="" />
+									</a>
+								</div>
+							</div>
+							<!-- /.gallery-small-thumbs -->
+						</div>
+						<!-- /.widget-inner -->
+					</div>
+					<!-- /.widget-main -->
+
+				</div>
+				<!-- /.col-md-4 -->
+
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script type="text/javascript"
+			th:src="@{/plugins/tweenmax/tweenmax.min.js}"></script>
+		<script th:src="@{/plugins/fancybox/jquery.fancybox.js}"></script>
+		<script th:src="@{/plugins/fancybox/jquery.fancybox.pack.js}"></script>
+		<script type="text/javascript"
+			th:src="@{/scripts/custom/event-details.js}"></script>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Mandato Administrativo | Upload de Imagens de Álbuns</title>
+
+<link rel="stylesheet"
+	th:href="@{/plugins/dropzone/min/dropzone.min.css}">
+
+</head>
+
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title">Novas Imagens do Álbum</h1>
+	</th:block>
+
+	<th:block layout:fragment="innerContent">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content card white">
+					<div class="instructions">
+						<a class="collapsed" data-toggle="collapse"
+							href="#instructionsCollapse" role="button" aria-expanded="false"
+							aria-controls="instructionsCollapse"><span
+							class="if-collapsed">Clique aqui para EXIBIR as instruções</span>
+							<span class="if-not-collapsed">Clique aqui para ESCONDER
+								as instruções</span> </a>
+						<div class="collapse" id="instructionsCollapse">
+							<div class="card card-body">
+								<strong>INSTRUÇÕES:</strong>
+								<ul>
+									<li>Arraste arquivos ou clique sobre a área de upload para
+										enviar novas imagens.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /.box-title -->
+					<div class="card-content">
+						<!-- message -->
+						<div class="alert alert-dismissible" role="alert"
+							th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+							th:if="${not #strings.isEmpty(message)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span
+								th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A operação foi realizada com sucesso.'}"></span>
+						</div>
+						<!-- ./message -->
+						<form autocomplete="off" th:action="@{/admin/gallery/albums/upload}"
+							class="dropzone" id="myDropzone" th:object="${album}"
+							method="post" enctype="multipart/form-data">
+							<input type="hidden" id="hashString" th:field="*{hashString}" />
+							<div class="row small-spacing dropzone-previews dz-square"
+								id="imageContainer">
+								<div class="col-xs-12">
+									<div class="dz-message">Arraste novas fotos aqui ou
+										clique para fazer o upload...</div>
+								</div>
+							</div>
+						</form>
+						<br />
+						<button type="submit" id="upload"
+							class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+							<span class="mdi mdi-upload"></span> Upload
+						</button>
+						<a class="btn waves-effect waves-light" type="submit" tabindex="3"
+							th:href="@{/admin/gallery/albums}"> <span class="mdi mdi-undo"></span>
+							Descartar
+						</a>
+					</div>
+					<!-- /.card-content -->
+				</div>
+				<!-- /.box-content -->
+				<div class="clearfix"></div>
+			</div>
+			<!-- /.col-xs-12 -->
+		</div>
+		<!-- /.row -->
+	</th:block>
+
+	<th:block layout:fragment="modals">
+	</th:block>
+
+	<th:block layout:fragment="js">
+		<!-- Dropify -->
+		<script th:src="@{/plugins/dropzone/min/dropzone.min.js}"></script>
+		<script th:src="@{/scripts/gallery/gallery-upload.js}"></script>
+	</th:block>
+</body>
+</html>

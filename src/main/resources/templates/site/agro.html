@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Agronegócio</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Cursos</a>
+						</h6>
+						<h6>
+							<span class="page-active">AGRONEGÓCIO</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<!-- Here begin Main Content -->
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="blog-post-container">
+								<div class="blog-post-image">
+									<img th:src="@{/images/banner_agro.jpg}" alt="">
+								</div>
+								<!-- /.blog-post-image -->
+								<div class="blog-post-inner">
+									<h3 class="blog-post-title" id="reconhecimentoAvaliacao">Agronegócio</h3>
+									<article>
+										<div class="page-row box box-border">
+											<ul class="list-unstyled no-margin-bottom">
+												<li><strong>Início do funcionamento:</strong> <em>15
+														de setembro de 2008</em></li>
+												<li><strong>Carga-horária: </strong> <em>2800
+														horas (3 anos)</em></li>
+												<li><strong>Períodos: </strong> <em>Vespertino
+														(tarde)</em> e <em>Noturno</em></li>
+												<li><strong>Vagas: </strong> <em>40 (vespertino) e
+														40 (noite)</em></li>
+												<li><strong>Tipo: </strong> <em>Presencial</em></li>
+											</ul>
+										</div>
+										<!--//page-row-->
+										<div class="page-row">
+											<br />
+											<h5>Reconhecimento e Avaliação</h5>
+											<p>
+												O curso Superior de Tecnologia em Agronegócio da Fatec Mogi
+												das Cruzes é reconhecido pelo <a
+													href="http://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MTU1NzY=/c1b85ea4d704f246bcced664fdaeddb6/QUdST05FR9NDSU8="
+													target="_blank">Ministério da Educação (MEC)</a> e possui
+												avaliação 4 (MUITO BOM, em uma escala de 1 a 5) no ENADE -
+												Exame Nacional de Desempenho de Estudantes.
+											</p>
+
+											<h5 id="sobre">Sobre o Curso</h5>
+											<p>O curso de Tecnologia em Agronegócio preconiza a
+												formação de profissionais capazes de prospectar, operar e
+												gerenciar mercados agroindustriais diversos, além de
+												identificar e aplicar racionalmente os recursos naturais e
+												preservação do meio ambiente.</p>
+											<p>
+												A <em>expertise</em> do Tecnólogo em Agronegócio, o
+												qualifica a planejar, implantar e tomar decisões sobre
+												custos e lucratividade das empresas. O curso está em total
+												consonância com a economia global. Contudo, o país contará
+												com profissionais atentos às inovações tecnológicas e as
+												regiões que apresentarem potencialidades relacionadas a
+												cadeia produtiva agrícola e da pecuária receberão
+												atendimento especializado, graças ao conhecimento
+												multidisciplinar recebido durante a formação
+											</p>
+
+											<h5 id="omercado">O Mercado</h5>
+											<p>O agronegócio responde por grande parcela das
+												exportações brasileiras e, apesar de o setor enfrentar
+												desafios em infraestrutura, como problemas com transporte e
+												armazenamento, as perspectivas são otimistas. A chegada ao
+												Brasil de empresas e investimentos estrangeiros nos últimos
+												anos mantém a área aquecida – nesse caso, a demanda recai
+												sobre profissionais bem qualificados</p>
+
+											<p>O uso da tecnologia na agricultura (agricultura de
+												precisão) ganha importância e abre novas frentes de
+												trabalho. Procura-se o gerente agrícola, responsável pela
+												gestão das unidades de produção e que cuide de orçamentos,
+												administração de pessoal e logística.</p>
+
+											<p>
+												Um Administrador Rural, de acordo com a Tabela, ganha entre
+												R$ 2.150,00 e R$ 8.800,00, segundo o <a
+													href="https://www.sine.com.br/media-salarial-para-administrador-rural"
+													target="_blank">Sine</a>.
+											</p>
+											<hr />
+										</div>
+										<!--//page-row-->
+										<div class="tabbed-info page-row" id="matrizHorarioDocentes">
+											<ul class="nav nav-tabs">
+												<li class="active"><a href="#tab1" data-toggle="tab">Matriz
+														Curricular</a></li>
+												<li><a href="#tab2" data-toggle="tab">Horário</a></li>
+												<li><a href="#tab3" data-toggle="tab">Corpo Docente</a></li>
+											</ul>
+											<div class="tab-content">
+												<div class="tab-pane active" id="tab1">
+													<p>
+														A seguir, são apresentadas as disciplinas da matriz
+														curricular do curso para cada um dos 6 semestres.
+														Se preferir, uma versão PDF da matriz curricular pode ser
+														encontrada <a th:href="@{/pdf/matriz_curricular_agro.pdf}"
+															target="_blank">aqui.</a>
+													</p>
+													<span>Disciplinas</span>
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered">
+															<thead>
+																<tr>
+																	<th width="33%">1o semestre</th>
+																	<th width="33%">2o semestre</th>
+																	<th width="33%">3o semestre</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>Tecnologia de Produção Animal I</td>
+																	<td>Tecnologia de Produção Animal II</td>
+																	<td>Produção Agroindustrial I</td>
+																</tr>
+																<tr>
+																	<td>Tecnologia de Produção Vegetal I</td>
+																	<td>Tecnologia de Produção Vegetal II</td>
+																	<td>Defesa Sanitária e Fitossanitária</td>
+																</tr>
+																<tr>
+																	<td>Fundamentos do Agronegócio</td>
+																	<td>Economia e Políticas Agrícolas</td>
+																	<td>Agricultura de Precisão</td>
+																</tr>
+																<tr>
+																	<td>Administração Geral</td>
+																	<td>Associativismo e Cooperativismo</td>
+																	<td>Infraestrutura do Agronegócio</td>
+																</tr>
+																<tr>
+																	<td>Cálculo</td>
+																	<td>Gestão da Qualidade e Certificação</td>
+																	<td>Marketing</td>
+																</tr>
+																<tr>
+																	<td>Informática Aplicada ao Agronegócio</td>
+																	<td>Estatística Básica</td>
+																	<td>Contabilidade</td>
+																</tr>
+																<tr>
+																	<td>Português</td>
+																	<td>Metodologia da Pesquisa Científico-Tecnológica</td>
+																	<td>Matemática Financeira</td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td>Saúde e Segurança Ocupacional</td>
+																</tr>
+																<tr>
+																	<td>Inglês I</td>
+																	<td>Inglês II</td>
+																	<td>Inglês III</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<!--//table-responsive-->
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered">
+															<thead>
+																<tr>
+																	<th width="33%">4o semestre</th>
+																	<th width="33%">5o semestre</th>
+																	<th width="33%">6o semestre</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>Projeto de Agronegócio I</td>
+																	<td>Projeto de Agronegócio II</td>
+																	<td>Projeto de Agronegócio III</td>
+																</tr>
+																<tr>
+																	<td>Produção Agroindustrial II</td>
+																	<td>Agricultura Orgânica</td>
+																	<td>Biocombustíveis</td>
+																</tr>
+																<tr>
+																	<td>AAP de Agronegócio I</td>
+																	<td>AAP de Agronegócio II</td>
+																	<td>AAP de Agronegócio III</td>
+																</tr>
+																<tr>
+																	<td>Planejamento Estratégico</td>
+																	<td>Comercialização</td>
+																	<td>Agroturismo</td>
+																</tr>
+																<tr>
+																	<td>Análise Financeira</td>
+																	<td>Fundamentos de Gestão de Pessoas</td>
+																	<td>Tópicos Avançados no Agronegócio</td>
+																</tr>
+																<tr>
+																	<td>Custos e Orçamentos no Agronegócio</td>
+																	<td>Logística no Agronegócio</td>
+																	<td>Arranjos Produtivos</td>
+																</tr>
+																<tr>
+																	<td>Pesquisa Operacional</td>
+																	<td>Gestão Ambiental</td>
+																	<td>Comércio Internacional</td>
+																</tr>
+																<tr>
+																	<td>Noções de Direito</td>
+																	<td>Sistemas de Informação no Agronegócio</td>
+																	<td>Espanhol</td>
+																</tr>
+																<tr>
+																	<td>Inglês IV</td>
+																	<td>Inglês V</td>
+																	<td>Inglês VI</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												<div class="tab-pane" id="tab2">
+													<p>
+														O horário do curso para o 2o semestre de 2018 está
+														disponível em PDF <a
+															th:href="@{/pdf/horario_agro_2018_2.pdf}" target="_blank">vespertino</a>.
+													</p>
+												</div>
+												<div class="tab-pane" id="tab3">
+													<p>O corpo docente do curso de Agronegócio é formado
+														por professores mestres, doutores e especialistas de
+														altíssima qualidade.</p>
+													<div id="blog-author" class="clearfix"
+														th:each="employee : ${professors}">
+														<a href="#" class="blog-author-img"> <img
+															th:src="@{/employees/} + ${employee.hashString + '/image'}"
+															alt="Foto do professor">
+														</a>
+														<div class="blog-author-info">
+															<span th:text="${employee.titulation}">Titulation
+															</span>
+															<h4 class="author-name" th:text="${employee.name}">Name
+															</h4>
+															<p th:text="${employee.curriculum}">Curriculum</p>
+															<p>
+																<a th:href="${employee.lattes}" target="_blank">Clique
+																	para visitar o currículo Lattes do professor</a>
+															</p>
+															<p th:if="${null != employee.homepage}">
+																<a th:href="${employee.homepage}" target="_blank">Clique
+																	para visitar o site pessoal do professor</a>
+															</p>
+														</div>
+													</div>
+													<!-- /.blog-author -->
+												</div>
+											</div>
+										</div>
+										<!--//tabbed-info-->
+									</article>
+									<!--//course-item-->
+								</div>
+							</div>
+							<!-- /.blog-post-container -->
+						</div>
+						<!-- /.col-md-12 -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.col-md-8 -->
+
+				<!-- Here begin Sidebar -->
+				<div class="col-md-4">
+
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">Acesso Rápido</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="blog-categories">
+								<div class="row">
+									<ul class="col-md-12">
+										<li><a href="#reconhecimentoAvaliacao">Reconhecimento
+												e avaliação</a></li>
+										<li><a href="#sobre">Sobre o curso</a></li>
+										<li><a href="#omercado">O mercado</a></li>
+										<li><a href="#matrizHorarioDocentes">Matriz
+												curricular, horário e corpo docente</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- /.blog-categories -->
+						</div>
+						<!-- /.widget-inner -->
+					</div>
+					<!-- /.widget-main -->
+
+				</div>
+				<!-- /.col-md-4 -->
+
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+	</th:block>
+</body>
+</html>

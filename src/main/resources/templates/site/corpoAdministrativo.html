@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Corpo Administrativo</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">CORPO ADMINISTRATIVO</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<!-- Here begin Main Content -->
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="col-md-12">
+									<div id="blog-author" class="clearfix">
+										<a href="#" class="blog-author-img"> <img
+											th:src="@{/}"
+											alt="Foto do professor">
+										</a>
+										<div class="blog-author-info">
+											<span th:text="${employee.titulation}">Titulation </span>
+											<h4 class="author-name" th:text="${employee.name}">Name
+											</h4>
+											<p th:text="${employee.curriculum}">Curriculum</p>
+										</div>
+									</div>
+									<!-- /.blog-author -->
+								</div>
+								<!-- /.col-md-12 -->
+							</div>
+							<!-- /.row -->
+						</div>
+						<!-- /.col-md-12 -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.col-md-8 -->
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+	</th:block>
+</body>
+</html>

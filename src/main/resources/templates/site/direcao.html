@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Direção</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">DIREÇÃO</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<!-- Here begin Main Content -->
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="blog-post-container">
+								<div class="blog-post-inner">
+									<h3 class="blog-post-title">Direção da Fatec Mogi das
+										Cruzes</h3>
+									<p>A Fatec Mogi das Cruzes já teve quatro (4) diretores
+										desde sua fundação.</p>
+
+									<strong id="bruno">Prof. Dr. Bruno Marques Panccioni</strong> - (2018 até
+									o presente)
+									<p>O Prof. Dr. Bruno Marques Panccioni iniciou sua gestão
+										em fevereiro de 2018 e é o atual diretor da unidade.</p>
+									<p>Ingressou na Fatec na unidade de Itaquaquecetuba-SP, em
+										2008, por meio de concurso público para as disciplinas Redes
+										de Computadores e Programação Web. Em meados de 2009, foi
+										convidado para assumir a coordenação do curso de Análise e
+										Desenvolvimento de Sistemas da Fatec Mogi das Cruzes.
+										Participou da autorização do curso para receber o Conselho
+										Estadual da Educação. Ainda no segundo semestre de 2009, atuou
+										como docente no curso de Análise e Desenvolvimento de
+										Sistemas, ministrando as matérias de Programação em
+										Microinformática e Redes de Computadores. Em 2010, foi
+										aprovado no concurso da disciplina Sistemas Operacionais. No
+										final de 2012, deixou a coordenação do curso para trabalhar na
+										agência de inovação Inova Paula Souza, onde atuou até 2016. No
+										final de 2016, retornou à coordenação do curso de Análise e
+										Desenvolvimento de Sistemas.</p>
+
+									<strong id="fernando">Prof. Dr. Fernando Juabre Muçouçah</strong>
+									<p>O Prof. Dr. Fernando Juabre Muçouçah foi designado
+										diretor da Fatec Mogi das Cruzes em janeiro de 2009. Deixou a
+										gestão em janeiro de 2018.</p>
+									<p>Possui graduação em Engenharia Agronômica pela
+										Universidade Estadual Paulista Júlio de Mesquita Filho (1993),
+										mestrado em Agronomia (Horticultura) pela Universidade
+										Estadual Paulista Júlio de Mesquita Filho (1997) e doutorado
+										em Agronomia (Irrigação e Drenagem) pela Universidade Estadual
+										Paulista Júlio de Mesquita Filho (2003). Em 2013, conclui uma
+										MBA em Gerenciamento de Projetos pela FGV. Foi professor
+										substituto da Unesp-Campus Experimental de Registro para as
+										disciplinas de Fruticultura e Floricultura e Paisagismo. Tem
+										experiência na área de Agronomia, com ênfase em Horticultura e
+										Fruticultura, já foi produtor de hortaliças, flores e plantas
+										ornamentais, trabalhou como consultor na área de plantas
+										ornamentais e produção de flores, na área agrícola com
+										citricultura, plantio direto na empresa Companhia Agrícola de
+										Botucatu. Atualmente é professor universitário concursado do
+										curso de Tecnologia em Agronegócio, responsável pelas
+										disciplinas de Tecnologia de Produção Vegetal I e II,
+										Agricultura Orgânica e Logística no Agronegócio.</p>
+
+									<strong id="marcelo">Prof. Dr. Marcelo Neublum Capuano</strong>
+									<p>O Prof. Dr. Marcelo Neublum Capuano foi diretor da Fatec
+										Mogi das Cruzes no ano de 2008, durante sua implantação</p>
+									<p>Possui graduação em Tecnologia Mecânica-Modalidade
+										Processos de Produção pela Faculdade de Tecnologia de São
+										Paulo (1990), mestrado em Engenharia Mecânica pela Escola
+										Politécnica da Universidade de São Paulo (1999) e Doutorado em
+										Engenharia Mecânica também pela Universidade de São Paulo
+										(2004). Atualmente é professor III-M da Faculdade de
+										Tecnologia de São Paulo e foi Professor Adjunto II da Fundação
+										de Educação Inaciana "Pe. Saboia de Medeiros" FEI-SP. Tem
+										experiência na área de Engenharia Mecânica, com ênfase em
+										Máquinas de Usinagem e Conformação, atuando principalmente nos
+										seguintes temas: eletroerosão, usinagem, monitoração e
+										melhoria de processos produtivos e desenvolvimento de novos
+										produtos. Além das atividades didáticas desenvolve trabalho
+										junto a administração do CEETEPS na implantação de mecanismos
+										para incentivar, com apoio das FATECs, a inovação tecnológica
+										junto ao parque fabril do Estado de São Paulo</p>
+
+								</div>
+							</div>
+							<!-- /.blog-post-container -->
+						</div>
+						<!-- /.col-md-12 -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.col-md-8 -->
+
+				<!-- Here begin Sidebar -->
+				<div class="col-md-4">
+
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">Acesso Rápido</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="blog-categories">
+								<div class="row">
+									<ul class="col-md-12">
+										<li><a href="#bruno">Prof. Dr. Bruno Marques Panccioni
+												(ATUAL)</a></li>
+										<li><a href="#fernando">Prof. Dr. Fernando Juabre Muçouçah</a></li>
+										<li><a href="#marcelo">Prof. Dr. Marcelo Neublum Capuano</a></li>
+										<li><a href="#ronaldo">Prof. Dr. Ronaldo tavano palaia</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- /.blog-categories -->
+						</div>
+						<!-- /.widget-inner -->
+					</div>
+					<!-- /.widget-main -->
+
+				</div>
+				<!-- /.col-md-4 -->
+
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script type="text/javascript" th:src="@{/js/biblioteca.js}"></script>
+	</th:block>
+</body>
+</html>

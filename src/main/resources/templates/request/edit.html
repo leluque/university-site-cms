@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Mandato Administrativo | Edição de Solicitações</title>
+</head>
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title" th:if="${null == isUpdate}">Nova
+			Solicitação</h1>
+		<h1 class="page-title" th:if="${null != isUpdate}">Editar
+			Solicitação</h1>
+	</th:block>
+
+	<th:block layout:fragment="innerContent">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content card white">
+					<div class="instructions">
+						<a class="collapsed" data-toggle="collapse"
+							href="#instructionsCollapse" role="button" aria-expanded="false"
+							aria-controls="instructionsCollapse"><span
+							class="if-collapsed">Clique aqui para EXIBIR as instruções</span>
+							<span class="if-not-collapsed">Clique aqui para ESCONDER
+								as instruções</span> </a>
+						<div class="collapse" id="instructionsCollapse">
+							<div class="card card-body">
+								<strong>INSTRUÇÕES:</strong>
+								<ul>
+									<li th:if="${null == isUpdate}">Preencha os dados do
+										formulário seguinte e selecione o botão 'Salvar', exibido após
+										o formulário, para salvar a solicitação.</li>
+									<li th:if="${null != isUpdate}">Preencha os dados do
+										formulário seguinte e selecione o botão 'Atualizar', exibido
+										após o formulário, para atualizar a solicitação.</li>
+									<li>Os campos marcados com um asterisco <sup
+										class="field-details">*</sup> são obrigatórios e devem ser
+										preenchidos.
+									</li>
+								</ul>
+
+							</div>
+						</div>
+					</div>
+					<!-- /.box-title -->
+					<div class="card-content">
+						<div class="row small-spacing" th:if="${null != isUpdate}">
+							<div class="col-xs-12">
+								<a href="#" data-toggle="modal" data-target="#confirmDeletion"
+									class="btn btn-danger btn-sm waves-effect waves-light pull-right"><span
+									class="fa fa-trash"></span> <span>Apagar</span> </a>
+							</div>
+						</div>
+						<!-- message -->
+						<div class="
+						alert alert-dismissible" role="alert"
+							th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+							th:if="${not #strings.isEmpty(message)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span
+								th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A operação foi realizada com sucesso.'}"></span>
+						</div>
+						<!-- ./message -->
+						<form autocomplete="off" th:action="@{/admin/requests/save}"
+							th:object="${request}" method="post">
+							<input type="hidden" id="hashString" th:field="*{hashString}" />
+							<div class="row small-spacing">
+								<div class="col-xs-4 form-group"
+									th:classappend="${#fields.hasErrors('registry')} ? has-error">
+									<label for="registry">RA do Aluno*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o RA do aluno requerente"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="registryRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<input maxlength="30" tabindex="3" type="text"
+										class="form-control" required="required" id="registry"
+										th:field="*{registry}"
+										placeholder="Qual é o RA do aluno requerente?"> <span
+										th:each="error : ${#fields.errors('registry')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-8 form-group"
+									th:classappend="${#fields.hasErrors('name')} ? has-error">
+									<label for="name">Nome do Aluno*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o nome completo do aluno requerente"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="nameRemainingLength" class="remaining-length"></span> <span
+										class="remaining-length">caracter(es) restante(s)</span> <input
+										maxlength="100" tabindex="4" type="text" class="form-control"
+										required="required" id="name" th:field="*{name}"
+										placeholder="Qual é o nome do aluno requerente?"> <span
+										th:each="error : ${#fields.errors('name')}" class="help-block">
+										<i class="fa fa-exclamation-circle"></i> <span
+										th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('email')} ? has-error">
+									<label for="email">E-mail do Aluno*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o e-mail do aluno requerente"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="emailRemainingLength" class="remaining-length"></span> <span
+										class="remaining-length">caracter(es) restante(s)</span> <input
+										maxlength="50" tabindex="5" type="email" class="form-control"
+										required="required" id="email" th:field="*{email}"
+										placeholder="Qual é o e-mail do aluno requerente?"> <span
+										th:each="error : ${#fields.errors('email')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('phone')} ? has-error">
+									<label for="phone">Telefone de Contato do Aluno*: <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Informe um telefone de contato com o aluno requerente"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="phoneRemainingLength" class="remaining-length"></span> <span
+										class="remaining-length">caracter(es) restante(s)</span> <input
+										maxlength="50" tabindex="6" type="text" class="form-control"
+										required="required" id="phone" th:field="*{phone}"
+										placeholder="Qual é o telefone de contato do aluno requerente?">
+									<span th:each="error : ${#fields.errors('phone')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('course')} ? has-error">
+									<label for="course">Curso*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Qual é o curso do aluno? "><i
+											class="fa fa-question-circle"></i></a></label> <select tabindex="7"
+										class="
+										form-control" th:field="*{course}">
+										<option
+											th:each="course : ${T(br.com.fatecmogidascruzes.course.Course).values()}"
+											th:value="${course}" th:text="${course.name}"></option>
+									</select> <span th:each="error : ${#fields.errors('course')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('learnerSituation')} ? has-error">
+									<label for="learnerSituation">Tipo de Requerente*: <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Qual é o tipo de requerente? "><i
+											class="fa fa-question-circle"></i></a></label> <select tabindex="8"
+										class="
+										form-control"
+										th:field="*{learnerSituation}">
+										<option
+											th:each="learnerSituation : ${T(br.com.fatecmogidascruzes.request.Request.LearnerSituation).values()}"
+											th:value="${learnerSituation}"
+											th:text="${learnerSituation.name}"></option>
+									</select> <span th:each="error : ${#fields.errors('learnerSituation')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('documentType')} ? has-error">
+									<label for="documentType">Tipo de Documento*: <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Qual é o tipo de documento? "><i
+											class="fa fa-question-circle"></i></a></label> <select tabindex="9"
+										class="
+										form-control" th:field="*{documentType}">
+										<option
+											th:each="documentType : ${T(br.com.fatecmogidascruzes.request.Request.DocumentType).values()}"
+											th:value="${documentType}" th:text="${documentType.name}"></option>
+									</select> <span th:each="error : ${#fields.errors('documentType')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('requestSituation')} ? has-error">
+									<label for="requestSituation">Situação da Requisição*:
+										<a href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Qual é a situação da requisição? "><i
+											class="fa fa-question-circle"></i></a>
+									</label> <select tabindex="10" class="
+										form-control"
+										th:field="*{requestSituation}">
+										<option
+											th:each="requestSituation : ${T(br.com.fatecmogidascruzes.request.Request.RequestSituation).values()}"
+											th:value="${requestSituation}"
+											th:text="${requestSituation.name}"></option>
+									</select> <span th:each="error : ${#fields.errors('requestSituation')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('comments')} ? has-error">
+									<label for="comments">Comentários*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe algum comentário sobre o documento"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="commentsRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<input maxlength="400" tabindex="11" type="text"
+										class="form-control" id="comments" th:field="*{comments}"
+										placeholder="Existe algum comentário sobre o documento?">
+									<span th:each="error : ${#fields.errors('comments')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<br />
+							<button type="submit" th:if="${null == isUpdate}" id="save"
+								tabindex="12"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-content-save"></span> Salvar
+							</button>
+							<button type="submit" th:if="${null != isUpdate}" tabindex="12"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-sync"></span> Atualizar
+							</button>
+							<a class="btn waves-effect waves-light" type="submit"
+								tabindex="13" th:href="@{/admin/requests}"> <span
+								class="mdi mdi-undo"></span> Descartar
+							</a>
+						</form>
+					</div>
+					<!-- /.card-content -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-xs-12 -->
+		</div>
+		<!-- /.row -->
+	</th:block>
+
+	<th:block layout:fragment="modals">
+		<!-- confirm-deletion -->
+		<div id="confirmDeletion" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<form th:action="@{/admin/requests/delete}">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+
+						<div class="modal-body">
+							<p>Você realmente deseja apagar a solicitação selecionada?</p>
+							<input type="hidden" name="hash" th:value="${request.hashString}" />
+						</div>
+
+						<div class="modal-footer">
+							<button id="btnYes" class="btn btn-danger pull-right"
+								type="submit">
+								<span class="mdi mdi-delete"></span> Sim, desejo
+							</button>
+
+							<a href="#" data-dismiss="modal" aria-hidden="true"
+								class="btn btn-default pull-left"><span class="mdi mdi-undo"></span>
+								Cancelar</a>
+						</div>
+					</form>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./confirm-deletion -->
+	</th:block>
+
+	<th:block layout:fragment="js">
+		<script th:src="@{/scripts/form-field-length-counter.js}"></script>
+		<!-- jQuery Mask Plugin -->
+		<script th:src="@{/plugins/jquery-mask/jquery.mask.min.js}"></script>
+		<script th:src="@{/scripts/request/request-edit.js}"></script>
+	</th:block>
+</body>
+</html>

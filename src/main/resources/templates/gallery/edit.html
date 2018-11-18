@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Mandato Administrativo | Edição de Álbuns</title>
+
+<!-- Lightview -->
+<link rel="stylesheet"
+	th:href="@{/plugins/lightview/css/lightview/lightview.css}" />
+<link rel="stylesheet" th:href="@{/styles/gallery/album/album.css}">
+
+</head>
+
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title" th:if="${null == isUpdate}">Novo Álbum</h1>
+		<h1 class="page-title" th:if="${null != isUpdate}">Editar Álbum</h1>
+	</th:block>
+
+	<th:block layout:fragment="innerContent">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content card white">
+					<div class="instructions">
+						<a class="collapsed" data-toggle="collapse"
+							href="#instructionsCollapse" role="button" aria-expanded="false"
+							aria-controls="instructionsCollapse"><span
+							class="if-collapsed">Clique aqui para EXIBIR as instruções</span>
+							<span class="if-not-collapsed">Clique aqui para ESCONDER
+								as instruções</span> </a>
+						<div class="collapse" id="instructionsCollapse">
+							<div class="card card-body">
+								<strong>INSTRUÇÕES:</strong>
+								<ul>
+									<li th:if="${null == isUpdate}">Preencha os dados do
+										formulário seguinte e selecione o botão 'Salvar', exibido após
+										o formulário, para salvar o álbum.</li>
+									<li th:if="${null != isUpdate}">Preencha os dados do
+										formulário seguinte e selecione o botão 'Atualizar', exibido
+										após o formulário, para atualizar o álbum.</li>
+									<li>Os campos marcados com um asterisco <sup
+										class="field-details">*</sup> são obrigatórios e devem ser
+										preenchidos.
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /.box-title -->
+					<div class="card-content">
+						<div class="row small-spacing" th:if="${null != isUpdate}">
+							<div class="col-xs-12">
+								<a th:href="@{/admin/gallery/albums/} + ${album.hashString + '/upload'}"
+									class="btn btn-info btn-sm waves-effect waves-light pull-left"><span
+									class="fa fa-upload"></span> <span>Upload de Imagens</span> </a> <a href="#"
+									data-toggle="modal" data-target="#confirmRemoval"
+									class="btn btn-danger btn-sm waves-effect waves-light pull-right"><span
+									class="fa fa-trash"></span> <span>Apagar</span> </a> <br /> <br />
+								<br />
+							</div>
+						</div>
+						<!-- message -->
+						<div class="alert alert-dismissible" role="alert"
+							th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+							th:if="${not #strings.isEmpty(message)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span
+								th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A operação foi realizada com sucesso.'}"></span>
+						</div>
+						<!-- ./message -->
+						<form autocomplete="off" th:action="@{/admin/gallery/albums/save}"
+							th:object="${album}" method="post" enctype="multipart/form-data">
+							<input type="hidden" id="hashString" th:field="*{hashString}" />
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('name')} ? has-error">
+									<label for="name">Nome*: <a href="#" aria-hidden="true"
+										data-toggle="tooltip" title="Informe o título do álbum"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="nameRemainingLength" class="remaining-length"></span> <span
+										class="remaining-length">caracter(es) restante(s)</span> <input
+										maxlength="100" tabindex="1" type="text" class="form-control"
+										required="required" id="name" th:field="*{name}"
+										placeholder="Qual é o título do álbum?"> <span
+										th:each="error : ${#fields.errors('name')}" class="help-block">
+										<i class="fa fa-exclamation-circle"></i> <span
+										th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('description')} ?
+									has-error">
+									<label for="description">Descrição: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe uma descrição para o álbum"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="descriptionRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<textarea class="form-control" id="description" tabindex="2"
+										th:field="*{description}" maxlength="200"
+										placeholder="Qual é a descrição da álbum?"></textarea>
+									<span th:each="error : ${#fields.errors('description')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('event')} ? has-error">
+									<label for="event">Evento: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Selecione o evento ao qual este álbum está associado"><i
+											class="fa fa-question-circle"></i></a></label> <select
+										class="form-control" id="event" th:field="*{event}"
+										tabindex="3">
+										<option value="">O álbum está associado a algum
+											evento?</option>
+										<option th:each="eventEntry : ${events}"
+											th:selected="*{event} == ${eventEntry.hash}"
+											th:text="${eventEntry.name}" th:value="${eventEntry.hash}"></option>
+									</select> <span th:each="error : ${#fields.errors('event')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<div class="row small-spacing">
+								<div class="col-xs-12 col-md-4 form-group"
+									th:classappend="${#fields.hasErrors('cover')} ? has-error">
+									<a href="#" data-toggle="modal" th:if="${null != isUpdate}"
+										data-target="#viewCurrentImage" class="viewImage">Clique
+										aqui para ver a capa atual</a> <br /> <label for="cover">
+										Capa*: <a href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Uma foto com a capa do álbum"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <input type="file" id="cover" th:field="*{cover}" tabindex="4"
+										th:required="${null == isUpdate}"> <span
+										class="help-block">Envie uma capa quadrada, por favor.</span>
+									<span th:each="error : ${#fields.errors('cover')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-12 col-md-8 form-group"
+									th:classappend="${#fields.hasErrors('coverAlternativeDescription')} ? has-error">
+									<label for="coverAlternativeDescription">Texto
+										Alternativo para a Capa*: <a href="#" aria-hidden="true"
+										data-toggle="tooltip"
+										title="Uma descrição alternativa é um texto que explica o conteúdo da coverm para pessoas com deficiência visual"><i
+											class="fa fa-question-circle"></i></a>
+									</label> <span id="coverAlternativeDescriptionRemainingLength"
+										class="remaining-length"></span> <span
+										class="remaining-length">caracter(es) restante(s)</span> <input
+										maxlength="100" type="text" class="form-control" tabindex="5"
+										id="coverAlternativeDescription"
+										th:field="*{coverAlternativeDescription}" required="required"
+										placeholder="Como você poderia descrever essa coverm para pessoas com deficiência visual?">
+									<span
+										th:each="error : ${#fields.errors('coverAlternativeDescription')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<hr />
+							<div class="row small-spacing" id="galleryImages">
+								<div
+									class="col-md-3 col-sm-6 col-tb-6 col-xs-12 js__isotope_item beauty"
+									th:each="image : ${album.images}" th:id="${'id' + image}">
+									<div class="dropdown js__drop_down">
+										<a href="#"
+											class="dropdown-icon glyphicon glyphicon-option-vertical js__drop_down_button album-gallery-dropdown"></a>
+										<ul class="sub-menu">
+											<li><a href="#galleryImages"
+												th:onclick="${'removeImage(''' + image + ''')'}">Apagar</a></li>
+										</ul>
+										<!-- /.sub-menu -->
+									</div>
+									<a
+										th:href="@{/admin/gallery/albums/} + ${album.hashString + '/photos/' + image}"
+										class="item-gallery lightview" data-lightview-group="group">
+										<img class="album-gallery-image"
+										th:src="@{/admin/gallery/albums/} + ${album.hashString + '/photos/' + image}"
+										alt="">
+									</a>
+									<!-- /.title -->
+								</div>
+							</div>
+							<div class="clearfix"></div>
+							<button type="submit" th:if="${null == isUpdate}" tabindex="4"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-content-save"></span> Salvar
+							</button>
+							<button type="submit" th:if="${null != isUpdate}" tabindex="4"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-sync"></span> Atualizar
+							</button>
+							<a class="btn waves-effect waves-light" type="submit"
+								tabindex="6" th:href="@{/admin/gallery/albums}"> <span
+								class="mdi mdi-undo"></span> Descartar
+							</a>
+						</form>
+					</div>
+					<!-- /.card-content -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-xs-12 -->
+		</div>
+		<!-- /.row -->
+	</th:block>
+
+	<th:block layout:fragment="modals">
+		<!-- view-current-image -->
+		<div id="viewCurrentImage" class="modal fade modal-image"
+			role="dialog" th:if="${null != isUpdate}">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Capa Atual</h4>
+					</div>
+					<div class="modal-body text-center">
+						<img
+							th:src="@{/admin/gallery/albums/} + ${album.hashString + '/cover'}"
+							th:attr="alt=${album.coverAlternativeDescription}"
+							class="image-thumbnail" />
+					</div>
+
+					<div class="modal-footer">
+						<a href="#" data-dismiss="modal" aria-hidden="true"
+							class="btn btn-default pull-right">OK</a>
+					</div>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./view-current-image -->
+		<!-- confirm-removal -->
+		<div th:if="${null != isUpdate}" id="confirmRemoval"
+			class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Confirmação</h4>
+					</div>
+					<div class="modal-body">
+						<p>Você realmente deseja apagar este álbum e suas imagens?</p>
+					</div>
+					<div class="modal-footer">
+						<form th:action="@{/admin/gallery/albums/delete}">
+							<input type="hidden" name="hash" th:value="${album.hashString}"
+								id="hashToDelete" />
+							<button id="btnYes" class="btn btn-danger pull-right"
+								type="submit">
+								<span class="mdi mdi-delete"></span> <span>Sim, desejo</span>
+							</button>
+							<a href="#" data-dismiss="modal" aria-hidden="true"
+								class="btn btn-default pull-left"><span class="mdi mdi-undo"></span>
+								<span>Cancelar</span></a>
+						</form>
+					</div>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./confirm-removal -->
+	</th:block>
+
+	<th:block layout:fragment="js">
+		<!-- Lightview -->
+		<script th:src="@{/plugins/lightview/js/lightview/lightview.js}"></script>
+
+		<script th:src="@{/scripts/form-field-length-counter.js}"></script>
+		<script th:src="@{/scripts/gallery/album-edit.js}"></script>
+	</th:block>
+</body>
+</html>

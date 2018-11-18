@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Fatec Mogi das Cruzes | Dashboard</title>
+
+<!-- Fontello Icon -->
+<link rel="stylesheet" th:href="@{/fonts/fontello/fontello.css}">
+</head>
+
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title">Dashboard</h1>
+	</th:block>
+
+	<th:block layout:fragment="content">
+		<div id="wrapper">
+			<div class="main-content">
+				<div class="row">
+				<div class="col-xs-12">
+					Seja bem-vindo(a) ao painel administrativo da site da Fatec Mogi das Cruzes 
+				</div>
+				</div>
+				<!-- /.row -->
+				<footer class="footer">
+					<ul class="list-inline">
+						<li>2018 © Fatec Mogi das Cruzes | Leandro Luque</li>
+					</ul>
+				</footer>
+			</div>
+			<!-- /.main-content -->
+		</div>
+		<!--/#wrapper -->
+	</th:block>
+
+	<th:block layout:fragment="js">
+	</th:block>
+</body>
+</html>

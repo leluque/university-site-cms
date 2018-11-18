@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html th:with="lang=${#locale.language}" th:lang="${lang}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="_context_path" th:content="@{/}" />
+
+<meta name="description"
+	content="Faculdade de Tecnologia de Mogi das Cruzes">
+<meta name="author" content="Leandro Luque (leandro.luque@gmail.com)">
+
+<title>Fatec Mogi das Cruzes</title>
+
+<!-- Main Styles -->
+<link rel="stylesheet" th:href="@{/styles/style.min.css}" />
+
+<!-- Material Design Icon -->
+<link rel="stylesheet"
+	th:href="@{/fonts/material-design/css/materialdesignicons.css}" />
+
+<!-- Material Design Iconic Font -->
+<link rel="stylesheet"
+	th:href="@{/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css}" />
+
+<!-- Font-awesome -->
+<link rel="stylesheet"
+	th:href="@{/fonts/font-awesome/css/font-awesome.min.css}" />
+
+<!-- mCustomScrollbar -->
+<link rel="stylesheet"
+	th:href="@{/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css}" />
+
+<!-- Waves Effect -->
+<link rel="stylesheet" th:href="@{/plugins/waves/waves.min.css}" />
+
+<!-- Sweet Alert -->
+<link rel="stylesheet" th:href="@{/plugins/sweet-alert/sweetalert.css}" />
+
+<!-- Dark Themes -->
+<link rel="stylesheet" th:href="@{/styles/style-dark.min.css}" />
+
+<!-- CSS Personalizado -->
+<link rel="stylesheet" th:href="@{/styles/custom.css}" />
+</head>
+<body>
+	<div class="main-menu">
+		<header class="header">
+			<a th:href="@{/}" class="logo">Administração</a>
+			<div class="text-center" th:if="${null != loggedUser}">
+				<span th:text="${loggedUser.fullName}"></span>
+			</div>
+			<!-- /.user -->
+		</header>
+		<!-- /.header -->
+		<div class="content">
+			<div class="navigation">
+				<ul class="menu js__accordion">
+					<li class="current"><a class="waves-effect" th:href="@{/}"><i
+							class="menu-icon mdi mdi-view-dashboard"></i><span>Site</span></a></li>
+				</ul>
+				<h5 class="title" sec:authorize="hasRole('ROLE_ACADEMIC')">Calendário
+					Acadêmico</h5>
+				<!-- /.title -->
+				<ul class="menu js__accordion"
+					sec:authorize="hasRole('ROLE_ACADEMIC')">
+					<li><a class="waves-effect"
+						th:href="@{/admin/agenda/agendaEntries}"> <i
+							class="menu-icon mdi mdi-calendar"></i><span>Calendário
+								Acadêmico</span>
+					</a></li>
+				</ul>
+				<!-- /.menu js__accordion -->
+				<h5 class="title" sec:authorize="hasRole('ROLE_MULTIMIDIA')">Multimídia</h5>
+				<!-- /.title -->
+				<ul class="menu js__accordion"
+					sec:authorize="hasRole('ROLE_MULTIMIDIA')">
+					<li><a class="waves-effect" th:href="@{/admin/gallery/albums}"><i
+							class="menu-icon mdi mdi-folder-multiple-image"></i><span>Álbuns
+								de Imagens</span></a></li>
+				</ul>
+				<!-- /.menu js__accordion -->
+				<h5 class="title" sec:authorize="hasRole('ROLE_ACADEMIC')">Publicações</h5>
+				<!-- /.title -->
+				<ul class="menu js__accordion" sec:authorize="hasRole('ROLE_ACADEMIC')">
+					<li><a class="waves-effect" th:href="@{/admin/testimonials}"><i
+							class="menu-icon mdi mdi-message"></i><span>Depoimentos</span></a></li>
+					<li><a class="waves-effect" th:href="@{/admin/events}"><i
+							class="menu-icon mdi mdi-calendar-plus"></i><span>Eventos</span></a></li>
+					<li><a class="waves-effect" th:href="@{/admin/news}"><i
+							class="menu-icon mdi mdi-newspaper"></i><span>Notícias</span></a></li>
+				</ul>
+				<!-- /.menu js__accordion -->
+				<h5 class="title" sec:authorize="hasRole('ROLE_ADMINISTRATIVE')">Recursos-Humanos</h5>
+				<!-- /.title -->
+				<ul class="menu js__accordion" sec:authorize="hasRole('ROLE_ADMINISTRATIVE')">
+					<li><a class="waves-effect" th:href="@{/admin/employees}"><i
+							class="menu-icon mdi mdi-account-box"></i><span>Funcionários</span></a></li>
+				</ul>
+				<!-- /.menu js__accordion -->
+				<h5 class="title" sec:authorize="hasRole('ROLE_REQUEST')">Requisições</h5>
+				<!-- /.title -->
+				<ul class="menu js__accordion" sec:authorize="hasRole('ROLE_REQUEST')">
+					<li><a class="waves-effect" th:href="@{/admin/requests}"><i
+							class="menu-icon mdi mdi-file-document"></i><span>Requisições via Site</span></a></li>
+				</ul>
+				<!-- /.menu js__accordion -->
+				<h5 class="title" sec:authorize="hasRole('ROLE_ADMINISTRATIVE')">Concursos e Seleções</h5>
+				<!-- /.title -->
+				<ul class="menu js__accordion" sec:authorize="hasRole('ROLE_ADMINISTRATIVE')">
+					<li><a class="waves-effect" th:href="@{/admin/selections}"><i
+							class="menu-icon mdi mdi-file-document"></i><span>Concursos
+								e Seleções</span></a></li>
+				</ul>
+				<!-- /.menu js__accordion -->
+			</div>
+			<!-- /.navigation -->
+		</div>
+		<!-- /.content -->
+	</div>
+	<!-- /.main-menu -->
+
+	<div class="fixed-navbar">
+		<div class="pull-left">
+			<button type="button"
+				class="menu-mobile-button glyphicon glyphicon-menu-hamburger js__menu_mobile visible-xs visible-sm"></button>
+			<!-- Specific Manu of page -->
+			<th:block layout:fragment="page-title" />
+			<!-- /.page-title -->
+		</div>
+		<!-- /.pull-left -->
+		<div class="pull-right">
+			<!-- Opção de pesquisa -->
+			<!--/* 
+			<div class="ico-item">
+				<a th:href="@{'/'+${template}}"
+					class="ico-item mdi mdi-magnify js__toggle_open"
+					data-target="#searchform-header"></a>
+				<form action="#" id="searchform-header"
+					class="searchform js__toggle">
+					<input type="search" placeholder="Search..." class="input-search">
+					<button class="mdi mdi-magnify button-search" type="submit"></button>
+				</form>
+			</div> */-->
+			<!-- /.ico-item -->
+			<!-- Opção de configuração de layout -->
+			<!--/* 
+			<div class="ico-item">
+				<span class="dropdown-toggle" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> <span
+					class="ico-item mdi mdi-tshirt-crew"></span>
+				</span>
+				<ul class="dropdown-menu">
+					<li><a th:href="@{/light}">Light</a></li>
+					<li><a th:href="@{/dark}">Dark</a></li>
+					<li><a th:href="@{/black}">Black</a></li>
+					<li><a th:href="@{/horizontal}">Horizontal</a></li>
+				</ul>
+			</div>
+			*/-->
+			<!-- Opção de mensagem -->
+			<!--/* 
+			<a th:href="@{'/'+${template}}"
+				class="ico-item mdi mdi-email notice-alarm js__toggle_open"
+				data-target="#message-popup"></a>
+				*/-->
+			<!-- <a th:href="@{'/'+${template}}" class="ico-item pulse"><span
+				class="ico-item mdi mdi-bell notice-alarm js__toggle_open"
+				data-target="#notification-popup"></span></a> -->
+			<a th:href="@{/signOut}" class="ico-item mdi mdi-logout js__logout"></a>
+
+		</div>
+		<!-- /.pull-right -->
+	</div>
+	<!-- /.fixed-navbar -->
+
+	<div id="notification-popup" class="notice-popup js__toggle"
+		data-space="75">
+		<h2 class="popup-title">Suas notificações</h2>
+		<!-- /.popup-title -->
+		<div class="content">
+			<ul class="notice-list">
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-sm-1.jpg}" alt=""></span> <span
+						class="name">John Doe</span> <span class="desc">Like your
+							post: “Contact Form 7 Multi-Step”</span> <span class="time">10
+							min</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-sm-2.jpg}" alt=""></span> <span
+						class="name">Anna William</span> <span class="desc">Like
+							your post: “Facebook Messenger”</span> <span class="time">15 min</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar bg-warning"><i
+							class="fa fa-warning"></i></span> <span class="name">Update
+							Status</span> <span class="desc">Failed to get available update
+							data. To ensure the please contact us.</span> <span class="time">30
+							min</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-1.jpg}" alt=""></span> <span class="name">Jennifer</span>
+						<span class="desc">Like your post: “Contact Form 7
+							Multi-Step”</span> <span class="time">45 min</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-sm-6.jpg}" alt=""></span> <span
+						class="name">Michael Zenaty</span> <span class="desc">Like
+							your post: “Contact Form 7 Multi-Step”</span> <span class="time">50
+							min</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-sm-4.jpg}" alt=""></span> <span
+						class="name">Simon</span> <span class="desc">Like your
+							post: “Facebook Messenger”</span> <span class="time">1 hour</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar bg-violet"><i
+							class="fa fa-flag"></i></span> <span class="name">Account Contact
+							Change</span> <span class="desc">A contact detail associated with
+							your account has been changed.</span> <span class="time">2 hours</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-sm-7.jpg}" alt=""></span> <span
+						class="name">Helen 987</span> <span class="desc">Like your
+							post: “Facebook Messenger”</span> <span class="time">Yesterday</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-2.jpg}" alt=""></span> <span class="name">Denise
+							Jenny</span> <span class="desc">Like your post: “Contact Form 7
+							Multi-Step”</span> <span class="time">Oct, 28</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-sm-8.jpg}" alt=""></span> <span
+						class="name">Thomas William</span> <span class="desc">Like
+							your post: “Facebook Messenger”</span> <span class="time">Oct, 27</span>
+				</a></li>
+			</ul>
+			<!-- /.notice-list -->
+			<a th:href="@{/dark}" class="notice-read-more">See more messages
+				<i class="fa fa-angle-down"></i>
+			</a>
+		</div>
+		<!-- /.content -->
+	</div>
+	<!-- /#notification-popup -->
+
+	<!--/*
+	<div id="message-popup" class="notice-popup js__toggle" data-space="75">
+		<h2 class="popup-title">
+			Recent Messages<a th:href="@{/dark}" class="pull-right text-danger">New
+				message</a>
+		</h2>
+		<div class="content">
+			<ul class="notice-list">
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-sm-1.jpg}" alt=""></span> <span
+						class="name">John Doe</span> <span class="desc">Amet odio
+							neque nobis consequuntur consequatur a quae, impedit facere
+							repellat voluptates.</span> <span class="time">10 min</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-sm-3.jpg}" alt=""></span> <span
+						class="name">Harry Halen</span> <span class="desc">Amet
+							odio neque nobis consequuntur consequatur a quae, impedit facere
+							repellat voluptates.</span> <span class="time">15 min</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-sm-4.jpg}" alt=""></span> <span
+						class="name">Thomas Taylor</span> <span class="desc">Amet
+							odio neque nobis consequuntur consequatur a quae, impedit facere
+							repellat voluptates.</span> <span class="time">30 min</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-1.jpg}" alt=""></span> <span class="name">Jennifer</span>
+						<span class="desc">Amet odio neque nobis consequuntur
+							consequatur a quae, impedit facere repellat voluptates.</span> <span
+						class="time">45 min</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-sm-5.jpg}" alt=""></span> <span
+						class="name">Helen Candy</span> <span class="desc">Amet
+							odio neque nobis consequuntur consequatur a quae, impedit facere
+							repellat voluptates.</span> <span class="time">45 min</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-2.jpg}" alt=""></span> <span class="name">Anna
+							Cavan</span> <span class="desc">Amet odio neque nobis
+							consequuntur consequatur a quae, impedit facere repellat
+							voluptates.</span> <span class="time">1 hour ago</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar bg-success"><i
+							class="fa fa-user"></i></span> <span class="name">Jenny Betty</span> <span
+						class="desc">Amet odio neque nobis consequuntur consequatur
+							a quae, impedit facere repellat voluptates.</span> <span class="time">1
+							day ago</span>
+				</a></li>
+				<li><a th:href="@{/dark}"> <span class="avatar"><img
+							th:src="@{/images/avatar-5.jpg}" alt=""></span> <span class="name">Denise
+							Peterson</span> <span class="desc">Amet odio neque nobis
+							consequuntur consequatur a quae, impedit facere repellat
+							voluptates.</span> <span class="time">1 year ago</span>
+				</a></li>
+			</ul>
+			<a th:href="@{/dark}" class="notice-read-more">See more messages
+				<i class="fa fa-angle-down"></i>
+			</a>
+		</div>
+	</div>
+	*/-->
+	<!-- /#message-popup -->
+
+	<!-- Specific Content of page -->
+	<th:block layout:fragment="content">
+		<div id="wrapper">
+			<div class="main-content">
+				<th:block layout:fragment="innerContent" />
+				<footer class="footer">
+					<ul class="list-inline">
+						<li>2018 © Fatec Mogi das Cruzes | Todos os direitos
+							reservados a Leandro Luque</li>
+					</ul>
+				</footer>
+			</div>
+		</div>
+	</th:block>
+	<th:block layout:fragment="modals" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script th:src="@{/script/html5shiv.min.js}"></script>
+		<script th:src="@{/script/respond.min.js}"></script>
+	<![endif]-->
+	<!-- 
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script th:src="@{/scripts/jquery.min.js}"></script>
+	<script th:src="@{/scripts/modernizr.min.js}"></script>
+	<script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
+	<script
+		th:src="@{/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+	<script th:src="@{/plugins/nprogress/nprogress.js}"></script>
+	<script th:src="@{/plugins/sweet-alert/sweetalert.min.js}"></script>
+	<script th:src="@{/plugins/waves/waves.min.js}"></script>
+	<script th:src="@{/scripts/main.js}"></script>
+
+	<!-- Specific template JS of page -->
+	<th:block layout:fragment="js" />
+</body>
+</html>

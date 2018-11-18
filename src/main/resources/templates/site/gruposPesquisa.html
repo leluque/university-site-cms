@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Grupos de Pesquisa e Estudos</title>
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">A Fatec</span> <span
+								class="page-active">GRUPOS DE PESQUISA E ESTUDOS</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- Here begin Main Content -->
+				<div class="col-md-8">
+					<div class="blog-post-container">
+						<div class="blog-post-inner">
+							<h3 class="blog-post-title">Grupos de Pesquisa e Estudos</h3>
+							<h4 id="geppa">GEPPA - Grupo de Ensino e Pesquisa em
+								Produção Animal</h4>
+							<p>O grupo tem por finalidade desenvolver pesquisas e estudos
+								ligados ao agronegócio animal. Atuante nas Áreas de gestão,
+								legislação, sanidade, nutrição e produção animal; atendendo a
+								demanda técnica regional e fomentado estudantes, profissionais e
+								produtores rurais através de informativos técnicos, pesquisas de
+								campo e desenvolvimento de tecnologias personalizadas. O grupo
+								tem sede na Faculdade de Tecnologia do Estado de São Paulo no
+								município de Mogi das Cruzes, Rua Carlos Barattino, 908 - Vila
+								Nova Mogilar - Mogi das Cruzes.</p>
+							<ul>
+								<li><a th:href="@{/pdf/boletim_GEPPA_2018_126.pdf}"
+									target="_blank">Boletim Informativo - N° 126/2018 - Novembro
+										2018 </a></li>
+								<li><a th:href="@{/pdf/boletim_GEPPA_2018_125.pdf}"
+									target="_blank">Boletim Informativo - N° 125/2018 - Outubro
+										2018 </a></li>
+								<li><a th:href="@{/pdf/boletim_GEPPA_2018_124.pdf}"
+									target="_blank">Boletim Informativo - N° 124/2018 -
+										Setembro 2018 </a></li>
+							</ul>
+							<h4 id="gepar">GEPAR - Grupo de Ensino e Pesquisa em
+								Agroinformática e Rastreabilidade</h4>
+							<p>O grupo tem por finalidade desenvolver pesquisas e estudos
+								ligados à utilização da Tecnologia da Informação e Comunicação
+								como suporte ao Agronegócio e à Rastreabilidade de seus
+								produtos. Atuante nas Áreas de: Modelagem de Sistemas
+								Agroindustriais (SAG); Engenharia de Software; Sistemas de
+								Controle; Melhoria de Processos;</p>
+							<h4 id="geplico">GEPLICO - Grupo de Ensino e Pesquisa em
+								Liderança e Coaching</h4>
+							<p>
+								Grupo de Ensino e Pesquisa em Liderança e Coaching-GEPLICO da
+								Fatec de Mogi das Cruzes, propõe caracterizar a liderança e o
+								Coaching, ao pesquisar e descrever o processo de liderança e de
+								Coaching, bem como aferir os seus resultados. Desta maneira
+								busca sistematizar e divulgar o processo de liderança e Coaching
+								e seus impactos sociais e organizacionais, por meio seu blog <a
+									href="http://geplico.blogspot.com.br" target="_blank">(http://geplico.blogspot.com.br)</a>
+								, socializa ciência com uma linguagem simples e acessível para
+								contexto virtual de modo contemporâneo, bem como produz
+								pesquisas e materiais científicos que subsidiem as teorias,
+								técnicas, práticas, metodologias relacionadas a Liderança,
+								Coaching e a Liderança Coaching.
+							</p>
+							<h4 id="gprh">GPRH - Grupo de Estudos e Pesquisa em Recursos
+								Humanos</h4>
+							<p>O grupo tem por objetivo desenvolver estudos e pesquisas
+								na área de Gestão de Pessoas, visando disseminar informações
+								relevantes que contribuirão nos estudos acadêmicos, estimulando
+								debates e multiplicação de conhecimetos sobre o tema.</p>
+							<h4 id="nuppa">NUPPA - Núcleo de Pesquisas em Preços
+								Agrícolas</h4>
+							<p>Grupo criado para troca de informações e desenvolvimento
+								dos alunos participantes do projeto de iniciação científica,
+								tendo como base de estudo o Mercado do Produtor de Mogi das
+								Cruzes-SP. Orientado pelo corpo docente da Faculdade de
+								Tecnologia de Mogi das Cruzes (Fatec-MC) por meio da unidade de
+								ensino, visando desenvolver profissionais qualificados,
+								prestando contas a sociedade e devolvendo em forma de
+								ferramentas facilitadoras e serviços o investimento aplicado na
+								instituição pública.</p>
+						</div>
+					</div>
+					<!-- /.blog-post-container -->
+				</div>
+				<!-- /.col-md-8 -->
+
+				<!-- Here begin Sidebar -->
+				<div class="col-md-4">
+
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">Acesso Rápido</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="blog-categories">
+								<div class="row">
+									<ul class="col-md-12">
+										<li><a href="#geppa">GEPPA</a></li>
+										<li><a href="#gepar">GEPAR</a></li>
+										<li><a href="#geplico">GEPLICO</a></li>
+										<li><a href="#gprh">GPRH</a></li>
+										<li><a href="#nuppa">NUPPA</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- /.blog-categories -->
+						</div>
+						<!-- /.widget-inner -->
+					</div>
+					<!-- /.widget-main -->
+
+				</div>
+				<!-- /.col-md-4 -->
+
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script type="text/javascript"
+			th:src="@{/plugins/tweenmax/tweenmax.min.js}"></script>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Mandato Administrativo | Alterar Senha</title>
+</head>
+
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title">Alteração de Senha</h1>
+	</th:block>
+
+	<th:block layout:fragment="innerContent">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content card white">
+					<div class="instructions">
+						<a class="collapsed" data-toggle="collapse"
+							href="#instructionsCollapse" role="button" aria-expanded="false"
+							aria-controls="instructionsCollapse"><span
+							class="if-collapsed">Clique aqui para EXIBIR as instruções</span>
+							<span class="if-not-collapsed">Clique aqui para ESCONDER
+								as instruções</span> </a>
+						<div class="collapse" id="instructionsCollapse">
+							<div class="card card-body">
+								<strong>INSTRUÇÕES:</strong>
+								<ul>
+									<li>Preencha os dados do formulário seguinte e selecione o
+										botão 'Atualizar', exibido após o formulário, para atualizar
+										os seus dados.</li>
+									<li>Os campos marcados com um asterisco <sup
+										class="field-details">*</sup> são obrigatórios e devem ser
+										preenchidos.
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /.box-title -->
+					<div class="card-content">
+						<!-- message -->
+						<div class="alert alert-dismissible" role="alert"
+							th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+							th:if="${not #strings.isEmpty(message)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span
+								th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A operação foi realizada com sucesso.'}"></span>
+						</div>
+						<!-- ./message -->
+						<form autocomplete="off" th:action="@{/myself/save}"
+							th:object="${user}" method="post">
+							<input type="hidden" id="hashString" th:field="*{hashString}" />
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('firstName')} ? has-error">
+									<label for="firstName">Nome*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o nome completo do político"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="firstNameRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<input maxlength="50" tabindex="1" type="text"
+										class="form-control" id="firstName" th:field="*{firstName}"
+										placeholder="Qual é o nome completo do usuário?"> <span
+										th:each="error : ${#fields.errors('firstName')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('lastName')} ? has-error">
+									<label for="lastName">Sobrenome*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o nome completo do político"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="lastNameRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<input maxlength="50" tabindex="2" type="text"
+										class="form-control" id="lastName" th:field="*{lastName}"
+										placeholder="Qual é o nome completo do usuário?"> <span
+										th:each="error : ${#fields.errors('lastName')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('name')} ? has-error">
+									<label for="username">E-mail (nome de usuário)*: </label> <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Informe o e-mail do usuário"> <i
+										class="fa fa-question-circle"></i>
+									</a> <input type="text" class="form-control" id="username"
+										th:field="*{name}" tabindex="3" autocomplete="new-password"
+										placeholder="Qual é o e-mail do usuário?" /> <span
+										th:each="error : ${#fields.errors('name')}" class="help-block">
+										<i class="fa fa-exclamation-circle"></i> <span
+										th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<div class="row small-spacing">
+								<div class="col-md-6 form-group"
+									th:classappend="${#fields.hasErrors('password')} ? has-error">
+									<label for="password">Senha*: </label> <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe a senha do usuário"> <i
+										class="fa fa-question-circle"></i>
+									</a> <input type="password" class="form-control" id="password"
+										th:field="*{password}" tabindex="4"
+										autocomplete="new-password"
+										placeholder="Qual é a senha do usuário?" /> <span
+										th:each="error : ${#fields.errors('password')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span></span>
+								</div>
+								<!-- ./col -->
+								<div class="col-md-6 form-group"
+									th:classappend="${#fields.hasErrors('repeatPassword')} ? has-error">
+									<label for="repeatPassword">Repita a senha*: </label> <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Informe novamente a senha do usuário"> <i
+										class="fa fa-question-circle"></i>
+									</a> <input type="password" class="form-control" tabindex="5"
+										id="repeatPassword" th:field="*{repeatPassword}"
+										autocomplete="new-password"
+										placeholder="Qual é a senha do usuário?" /> <span
+										th:each="error : ${#fields.errors('repeatPassword')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span></span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('description')} ? has-error">
+									<label for="description">Observações: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe alguma observação necessário sobre o usuário"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="descriptionRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<input type="text" class="form-control" id="description"
+										tabindex="6" th:field="*{description}" maxlength="200"
+										placeholder="Existe alguma outra informação importante sobre o usuário?" />
+									<span th:each="error : ${#fields.errors('description')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+
+							<button type="submit" tabindex="7"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-sync"></span> Atualizar
+							</button>
+							<a class="btn waves-effect waves-light" type="submit"
+								tabindex="8" th:href="@{/users}"> <span class="mdi mdi-undo"></span>
+								Descartar
+							</a>
+						</form>
+					</div>
+					<!-- /.card-content -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-xs-12 -->
+		</div>
+		<!-- /.row -->
+	</th:block>
+
+	<th:block layout:fragment="modals">
+	</th:block>
+
+	<th:block layout:fragment="js">
+		<!-- jQuery Mask Plugin -->
+		<script th:src="@{/plugins/jquery-mask/jquery.mask.min.js}"></script>
+
+		<script th:src="@{/scripts/form-field-length-counter.js}"></script>
+		<script th:src="@{/scripts/user/user-edit.js}"></script>
+	</th:block>
+</body>
+</html>

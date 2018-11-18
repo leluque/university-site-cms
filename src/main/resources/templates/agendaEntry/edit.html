@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Mandato Administrativo | Edição de Entrada de Calendário</title>
+</head>
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title">
+			<span>Editar Entrada de Calendário</span>
+		</h1>
+	</th:block>
+
+	<th:block layout:fragment="innerContent">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content card white">
+					<div class="instructions">
+						<a class="collapsed" data-toggle="collapse"
+							href="#instructionsCollapse" role="button" aria-expanded="false"
+							aria-controls="instructionsCollapse"><span
+							class="if-collapsed">Clique aqui para EXIBIR as instruções</span>
+							<span class="if-not-collapsed">Clique aqui para ESCONDER
+								as instruções</span> </a>
+						<div class="collapse" id="instructionsCollapse">
+							<div class="card card-body">
+								<strong>INSTRUÇÕES:</strong>
+								<ul>
+									<li th:if="${null == isUpdate}">Preencha os dados do
+										formulário seguinte e selecione o botão 'Salvar', exibido após
+										o formulário, para salvar a entrada de calendário.</li>
+									<li th:if="${null != isUpdate}">Preencha os dados do
+										formulário seguinte e selecione o botão 'Atualizar', exibido
+										após o formulário, para atualizar a entrada de calendário.</li>
+									<li>Os campos marcados com um asterisco <sup
+										class="field-details">*</sup> são obrigatórios e devem ser
+										preenchidos.
+									</li>
+								</ul>
+
+							</div>
+						</div>
+					</div>
+					<!-- /.box-title -->
+					<div class="card-content">
+						<a th:if="${null != isUpdate}" href="#" data-toggle="modal"
+							data-target="#confirmDeletion"
+							class="btn btn-danger btn-sm waves-effect waves-light pull-right"><span
+							class="fa fa-trash"></span> <span>Apagar</span> </a>
+						<!-- message -->
+						<div class="alert alert-dismissible" role="alert"
+							th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+							th:if="${not #strings.isEmpty(message)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span
+								th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A operação foi realizada com sucesso.'}"></span>
+						</div>
+						<!-- ./message -->
+						<form autocomplete="off" th:action="@{/admin/agenda/agendaEntries/save}"
+							th:object="${agendaEntry}" method="post" enctype="multipart/form-data">
+							<input type="hidden" id="hashString" th:field="*{hashString}" />
+
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('name')} ? has-error">
+									<label for="name">Título*: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o título do evento"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="nameRemainingLength" class="remaining-length"></span> <span
+										class="remaining-length">caracter(es) restante(s)</span> <input
+										maxlength="100" tabindex="1" type="text" class="form-control"
+										required="required" id="name" th:field="*{name}"
+										placeholder="Qual é o título do evento?"> <span
+										th:each="error : ${#fields.errors('name')}" class="help-block">
+										<i class="fa fa-exclamation-circle"></i> <span
+										th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('shortDescription')} ? has-error">
+									<label for="shortDescription">Descrição breve*: <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Informe uma descrição breve sobre o evento"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="shortDescriptionRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<input type="text" class="form-control" id="shortDescription"
+										required="required" tabindex="2"
+										th:field="*{shortDescription}" maxlength="100"
+										placeholder="Qual é a descrição breve do evento?" /> <span
+										th:each="error : ${#fields.errors('shortDescription')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('longDescription')} ? has-error">
+									<label for="longDescription">Descrição: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe uma descrição detalhada sobre o evento"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="longDescriptionRemainingLength" class="remaining-length"></span>
+									<span class="remaining-length">caracter(es) restante(s)</span>
+									<textarea class="form-control" id="longDescription"
+										tabindex="3" th:field="*{longDescription}" maxlength="8192"
+										placeholder="Qual é a descrição detalhada do evento?"></textarea>
+									<span th:each="error : ${#fields.errors('longDescription')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<!-- ./row -->
+
+							<div class="row small-spacing">
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('startDateTime')} ? has-error">
+									<label for="startDateTime">Data/Hora de Início*: <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Informe a data/hora de início do evento"><i
+											class="fa fa-question-circle"></i></a></label> <input type="datetime"
+										class="form-control" id="startDateTime" tabindex="4"
+										th:field="*{startDateTime}" required="required"
+										placeholder="Qual é a data/hora de início do evento?">
+									<span th:each="error : ${#fields.errors('startDateTime')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<div class="col-xs-6 form-group"
+									th:classappend="${#fields.hasErrors('endDateTime')} ? has-error">
+									<label for="endDateTime">Data/Hora de Término*: <a
+										href="#" aria-hidden="true" data-toggle="tooltip"
+										title="Informe a data/hora de término do evento"><i
+											class="fa fa-question-circle"></i></a></label> <input type="datetime"
+										class="form-control" id="endDateTime" tabindex="5"
+										th:field="*{endDateTime}" required="required"
+										placeholder="Qual é a data/hora de término do evento?">
+									<span th:each="error : ${#fields.errors('endDateTime')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+							</div>
+							<div class="row small-spacing">
+								<div class="col-xs-12 form-group"
+									th:classappend="${#fields.hasErrors('place')} ? has-error">
+									<label for="place">Local: <a href="#"
+										aria-hidden="true" data-toggle="tooltip"
+										title="Informe o local exato ou de referência do evento"><i
+											class="fa fa-question-circle"></i></a></label> <span
+										id="placeRemainingLength" class="remaining-length"></span> <span
+										class="remaining-length">caracter(es) restante(s)</span> <input
+										type="text" class="form-control" id="place" tabindex="6"
+										th:field="*{place}" maxlength="100"
+										placeholder="Qual é o local exato ou de referência do evento?">
+									<span th:each="error : ${#fields.errors('place')}"
+										class="help-block"> <i class="fa fa-exclamation-circle"></i>
+										<span th:text="${error}"></span>
+									</span>
+								</div>
+								<!-- ./col -->
+								<input type="hidden" th:field="*{latitude}" id="latitude" /> <input
+									type="hidden" th:field="*{longitude}" id="longitude" />
+							</div>
+							<!-- ./row -->
+
+							<br />
+
+							<button type="submit" th:if="${null == isUpdate}" id="save"
+								tabindex="7"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-content-save"></span> Salvar
+							</button>
+							<button type="submit" th:if="${null != isUpdate}" tabindex="7"
+								class="btn btn-primary btn-sm waves-effect waves-light pull-right">
+								<span class="mdi mdi-sync"></span> Atualizar
+							</button>
+							<a class="btn waves-effect waves-light" type="submit"
+								tabindex="8" th:href="@{/admin/agenda/agendaEntries}"> <span
+								class="mdi mdi-undo"></span> Descartar
+							</a>
+						</form>
+					</div>
+					<!-- /.card-content -->
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-xs-12 -->
+		</div>
+		<!-- /.row -->
+	</th:block>
+
+	<th:block layout:fragment="modals">
+		<!-- confirm-deletion -->
+		<div id="confirmDeletion" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<form th:action="@{/admin/agenda/agendaEntries/delete/redirect}">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Confirmação</h4>
+						</div>
+
+						<div class="modal-body">
+							<p>Você realmente deseja apagar a entrada de calendário
+								selecionada?</p>
+							<input type="hidden" name="hash" th:value="${agendaEntry.hashString}" />
+							<input type="checkbox" id="deleteCopiesAfter"
+								name="deleteCopiesAfter" value="true" /><label
+								for="deleteCopiesAfter">As repetições subsequentes desta
+								entrada devem ser apagadas também <a href="#" aria-hidden="true"
+								data-toggle="tooltip"
+								title="Informe se as repetições desta entrada de calendário que vierem depois dele devem ser apagadas também"><i
+									class="fa fa-question-circle"></i></a>
+							</label>
+						</div>
+
+						<div class="modal-footer">
+							<button id="btnYes" class="btn btn-danger pull-right"
+								type="submit">
+								<span class="mdi mdi-delete"></span> Sim, desejo
+							</button>
+
+							<a href="#" data-dismiss="modal" aria-hidden="true"
+								class="btn btn-default pull-left"><span class="mdi mdi-undo"></span>
+								Cancelar</a>
+						</div>
+					</form>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./confirm-deletion -->
+	</th:block>
+
+	<th:block layout:fragment="js">
+		<script th:src="@{/scripts/form-field-length-counter.js}"></script>
+		<!-- jQuery Mask Plugin -->
+		<script th:src="@{/plugins/jquery-mask/jquery.mask.min.js}"></script>
+		<script th:src="@{/scripts/agendaEntry/agendaEntry-edit.js}"></script>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{template}">
+<head>
+<title>Mandato Administrativo | Usuários da Equipe do Político</title>
+
+<!-- Data Tables -->
+<link rel="stylesheet"
+	th:href="@{/plugins/datatables/media/css/dataTables.bootstrap.min.css}">
+<link rel="stylesheet"
+	th:href="@{/plugins/datatables/extensions/Responsive/css/responsive.bootstrap.min.css}">
+
+</head>
+<body>
+	<th:block layout:fragment="page-title">
+		<h1 class="page-title">Usuários da Equipe do Político</h1>
+	</th:block>
+
+	<th:block layout:fragment="innerContent">
+		<div class="row small-spacing">
+			<div class="col-xs-12">
+				<div class="box-content">
+					<h4 class="box-title">Listagem de Usuários da Equipe do
+						Político</h4>
+					<!-- /.box-title -->
+
+					<!-- message -->
+					<div class="alert alert-dismissible" role="alert"
+						th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+						th:if="${not #strings.isEmpty(message)}">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<span
+							th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A operação foi realizada com sucesso.'}"></span>
+					</div>
+					<!-- ./message -->
+
+					<p>
+						<a th:href="@{/users/new}" class="btn btn-success table-button"
+							style="margin-top: 30px"> <i class="fa fa-plus-circle"></i> <span>Novo
+								Usuário da Equipe do Político</span>
+						</a>
+					</p>
+					<table id="list"
+						class="table-hover table table-striped table-bordered display"
+						style="width: 100%">
+						<thead>
+							<tr>
+								<th>Editar</th>
+								<th>Nome</th>
+								<th>E-mail</th>
+								<th>Excluir</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>Editar</th>
+								<th>Nome</th>
+								<th>E-mail</th>
+								<th>Excluir</th>
+							</tr>
+						</tfoot>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<!-- /.box-content -->
+			</div>
+			<!-- /.col-xs-12 -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="modals">
+		<!-- confirm-deletion -->
+		<div id="confirmDeletion" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Confirmação</h4>
+					</div>
+
+					<div class="modal-body">
+						<p>Você realmente deseja apagar o usuário da equipe do
+							político selecionado?</p>
+					</div>
+
+					<div class="modal-footer">
+						<form th:action="@{/users/delete}">
+							<input type="hidden" name="hash" value="-1" id="hashToDelete" />
+							<button id="btnYes" class="btn btn-danger pull-right"
+								type="submit">
+								<span class="mdi mdi-delete"></span> Sim, desejo
+							</button>
+						</form>
+						<a href="#" data-dismiss="modal" aria-hidden="true"
+							class="btn btn-default pull-left"><span class="mdi mdi-undo"></span>
+							Cancelar</a>
+					</div>
+				</div>
+				<!-- ./Modal content-->
+			</div>
+		</div>
+		<!-- ./confirm-deletion -->
+	</th:block>
+
+	<th:block layout:fragment="js">
+		<!-- Datatable -->
+		<script
+			th:src="@{/plugins/datatables/media/js/jquery.dataTables.min.js}"></script>
+		<script
+			th:src="@{/plugins/datatables/media/js/dataTables.bootstrap.min.js}"></script>
+		<script
+			th:src="@{/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js}"></script>
+		<script
+			th:src="@{/plugins/datatables/extensions/Responsive/js/responsive.bootstrap.min.js}"></script>
+		<script th:src="@{/scripts/user/user-search.js}"></script>
+	</th:block>
+</body>
+</html>

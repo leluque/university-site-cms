@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Todos Eventos</title>
+<link rel="stylesheet"
+	th:href="@{/plugins/fancybox/jquery.fancybox.css}" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">TODOS EVENTOS</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-6" th:each="event : ${eventList}">
+					<div class="grid-event-item">
+						<div class="grid-event-header">
+							<span class="event-place small-text"><i class="fa fa-eye"></i><span
+								th:text="${event.views}">Views</span> visualizações</span> <span
+								class="event-date small-text"><i class="fa fa-calendar-o"></i><span th:text="${event.date}"></span></span>
+						</div>
+						<div class="box-content-inner">
+							<h5 class="event-title">
+								<a th:if="${null == event.externalLink}"
+									th:href="@{/} + ${event.internalPath}" th:text="${event.name}" class="block-with-text-short" style="display: block">Name</a>
+								<a th:if="${null != event.externalLink}"
+									th:href="@{/detalheNoticia(abrirLink=true)} + ${'&hash=' + event.hashString}"
+									target="_blank" th:text="${event.name}" class="block-with-text-short" style="display: block">Name</a>
+							</h5>
+							<p th:text="${event.shortDescription}" class="block-with-text-short">Description</p>
+
+							<a th:if="${null == event.externalLink}"
+								th:href="@{/} + ${event.internalPath}">Saber mais</a> <a
+								th:if="${null != event.externalLink}"
+								th:href="@{/detalheNoticia(abrirLink=true)} + ${'&hash=' + event.hashString}"
+								target="_blank">Saber mais</a>
+
+						</div>
+					</div>
+				</div>
+				<!-- /.grid-event-item -->
+			</div>
+			<!-- /.col-md-6 -->
+
+		</div>
+		<!-- /.row -->
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script th:src="@{/plugins/fancybox/jquery.fancybox.js}"></script>
+		<script th:src="@{/plugins/fancybox/jquery.fancybox.pack.js}"></script>
+	</th:block>
+</body>
+</html>

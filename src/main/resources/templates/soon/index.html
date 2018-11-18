@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> 
+<![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> 
+<![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="pt-br"  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+<title>Fatec Mogi - Faculdade de Tecnologia de Mogi das Cruzes</title>
+<!-- Behavioral Meta Data -->
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<!-- Core Meta Data -->
+<meta content="Leandro Luque" name="author">
+<meta content="Faculdade de Tecnologia de Mogi das Cruzes"
+	name="description">
+<meta content="Em breve" name="keywords">
+<!-- Open Graph Meta Data -->
+
+<link href="favicon.png}" rel="shortcut icon" type="image/png">
+
+<!--[if lt IE 9]>
+            <scriptth:src="@{/soon/http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+<!-- CSS -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,100,900'
+	rel='stylesheet' type='text/css'>
+<!-- Styles -->
+<link th:href="@{/soon/css/loader.css}" rel="stylesheet" type="text/css">
+<link th:href="@{/soon/css/normalize.css}" rel="stylesheet"
+	type="text/css">
+<link th:href="@{/soon/css/font-awesome.min.css}" rel="stylesheet">
+<link th:href="@{/soon/css/style.css}" rel="stylesheet" type="text/css">
+<!--[if lt IE 9]>
+            <link rel="stylesheet" type="text/css" href="css/ie.css" />
+        <![endif]-->
+<!-- Javascript -->
+
+<script th:src="@{/soon/js/jquery.js}"></script>
+</head>
+<body>
+	<div class="preloader">
+		<div class="loading">
+			<h2>Carregando...</h2>
+			<span class="progress"></span>
+		</div>
+	</div>
+
+	<div class="wrapper">
+		<ul class="scene unselectable" data-friction-x="0.1"
+			data-friction-y="0.1" data-scalar-x="25" data-scalar-y="15"
+			id="scene">
+			<li class="layer" data-depth="0.00"></li>
+			<!-- BG -->
+
+			<li class="layer" data-depth="0.10">
+				<div class="background"></div>
+			</li>
+
+			<!-- Hero -->
+
+			<li class="layer" data-depth="0.20">
+				<div class="title">
+					<h2>FATEC MOGI DAS CRUZES</h2>
+					<span class="line"></span>
+				</div>
+			</li>
+
+			<li class="layer" data-depth="0.25">
+				<div class="sphere">
+					<img alt="sphere" th:src="@{/soon/images/sphere.png}">
+				</div>
+			</li>
+
+			<li class="layer" data-depth="0.30">
+				<div class="hero">
+					<h1 id="countdown">O novo site da Fatec Mogi das Cruzes está
+						sendo implantado...</h1>
+
+					<p class="sub-title">O novo site da Fatec Mogi das Cruzes está
+						sendo implantado...</p>
+				</div>
+			</li>
+			<!-- Flakes -->
+
+			<li class="layer" data-depth="0.40">
+				<div class="depth-1 flake1">
+					<img alt="flake" th:src="@{/soon/images/flakes/depth1/flakes1.png}">
+				</div>
+
+				<div class="depth-1 flake2">
+					<img alt="flake" th:src="@{/soon/images/flakes/depth1/flakes2.png}">
+				</div>
+
+				<div class="depth-1 flake3">
+					<img alt="flake" th:src="@{/soon/images/flakes/depth1/flakes3.png}">
+				</div>
+
+				<div class="depth-1 flake4">
+					<img alt="flake" th:src="@{/soon/images/flakes/depth1/flakes4.png}">
+				</div>
+			</li>
+
+			<li class="layer" data-depth="0.50">
+				<div class="depth-2 flake2">
+					<img alt="flake" th:src="@{/soon/images/flakes/depth2/flakes2.png}">
+				</div>
+			</li>
+
+			<li class="layer" data-depth="0.60">
+				<div class="depth-3 flake1">
+					<img alt="flake" th:src="@{/soon/images/flakes/depth3/flakes1.png}">
+				</div>
+
+				<div class="depth-3 flake2">
+					<img alt="flake" th:src="@{/soon/images/flakes/depth3/flakes2.png}">
+				</div>
+
+				<div class="depth-3 flake3">
+					<img alt="flake" th:src="@{/soon/images/flakes/depth3/flakes3.png}">
+				</div>
+
+				<div class="depth-3 flake4">
+					<img alt="flake" th:src="@{/soon/images/flakes/depth3/flakes4.png}">
+				</div>
+			</li>
+
+			<!-- Contact -->
+
+			<li class="layer" data-depth="0.20">
+				<div class="contact">
+					Autor <a href="http://leandroluque.com" target="_blank">Leandro
+						Luque</a> <a class="mail" href="mailto:leandro.luque@fatec.sp.gov.br">leandro.luque@fatec.sp.gov.br</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<!-- Javascript -->
+	<script th:src="@{/soon/js/plugins.js}"></script>
+	<script th:src="@{/soon/js/jquery.countdown.min.js}"></script>
+	<script th:src="@{/soon/js/main.js}"></script>
+
+</body>
+</html>

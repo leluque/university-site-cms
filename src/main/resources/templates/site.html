@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> 
+<![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> 
+<![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="pt-br"  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--<![endif]-->
+<head>
+<title>Fatec - Faculdade de Tecnologia de Mogi das Cruzes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+	content="Faculdade de Tecnologia de Mogi das Cruzes">
+<meta name="author" content="Leandro Luque (leandro.luque@gmail.com)">
+<meta charset="UTF-8">
+
+<link href='https://fonts.googleapis.com/css?family=Quicksand'
+	rel='stylesheet'>
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800'
+	rel='stylesheet' type='text/css'>
+
+<!-- CSS Bootstrap & Custom -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet" media="screen">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet" media="screen">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+	rel="stylesheet" media="screen">
+
+<!-- Favicons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144"
+	href="images/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114"
+	href="images/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72"
+	href="images/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed"
+	href="images/ico/apple-touch-icon-57-precomposed.png">
+<link rel="shortcut icon" href="images/ico/favicon.ico">
+
+<!-- Custom style -->
+<link th:href="@{/styles/site.css}" rel="stylesheet" media="screen">
+
+<!--[if lt IE 8]>
+	<div style=' clear: both; text-align:center; position: relative;'>
+            <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt="" /></a>
+        </div>
+    <![endif]-->
+</head>
+<body>
+	<!-- This one in here is responsive menu for tablet and mobiles -->
+	<div class="responsive-navigation visible-sm visible-xs">
+		<a href="#" class="menu-toggle-btn"> <i class="fa fa-bars"></i>
+		</a>
+		<div class="responsive_menu">
+			<ul class="main_menu">
+				<li><a th:href="@{/}">Principal</a></li>
+				<li><a href="#">A Fatec</a>
+					<ul>
+						<li><a th:href="@{/aFatecMogi}">A Fatec Mogi das Cruzes</a></li>
+						<li><span class="fa fa-calendar"></span><a
+							th:href="@{/calendarioAcademico}"> Calendário Acadêmico</a></li>
+						<li><a th:href="@{/comoChegar}">Como Chegar</a></li>
+						<!-- <li><a th:href="@{/corpoAdministrativo}">Corpo
+								Administrativo</a></li> -->
+						<li><a th:href="@{/congregacao}">Congregação</a></li>
+						<li><a th:href="@{/corpoDocente}">Corpo Docente</a></li>
+						<li><a th:href="@{/direcao}">Direção</a></li>
+						<li><a th:href="@{/contact/new}">Fale Conosco</a></li>
+						<li><a th:href="@{/gruposPesquisa}">Grupos de Pesquisa e
+								Estudos</a></li>
+						<li><a href="http://www.cps.sp.gov.br/fale-conosco/"
+							target="_blank">Ouvidoria</a></li>
+						<li><a th:href="@{/animaTerra}">Revista Anima Terra</a></li>
+						<li><a th:href="@{/secretariaAcademica}">Secretaria
+								Acadêmica</a></li>
+					</ul></li>
+				<li><a href="#">Cursos</a>
+					<ul>
+						<li><a th:href="@{/agro}">Agronegócio</a></li>
+						<li><a th:href="@{/ads}">Análise e Desenvolvimento de
+								Sistemas</a></li>
+						<li><a th:href="@{/logistica}">Logística</a></li>
+						<li><a th:href="@{/rh}">Recursos Humanos</a></li>
+					</ul></li>
+				<li><a href="#">Vestibular e Ingresso</a>
+					<ul>
+						<li><a th:href="@{/pdf/guia-profissoes-tecnologicas.pdf}"
+							target="_blank">Guia de Profissões Tecnológicas</a></li>
+						<li><a th:href="@{/vagasRemanescentes}">Vagas
+								Remanescentes</a></li>
+						<li><a href="http://www.vestibularfatec.com.br/home/"
+							target="_blank">Vestibular</a></li>
+					</ul></li>
+				<li><a href="#">Concursos Públicos</a>
+					<ul>
+						<li><span class="fa fa-star"></span><a
+							th:href="@{/concursos}"> Concursos Públicos</a></li>
+						<li><a th:href="@{/selecoes}">Seleções Públicas</a></li>
+					</ul></li>
+				<li><a href="#">Área do Aluno</a>
+					<ul>
+						<li><a href="http://www.eadfatec.cps.sp.gov.br/"
+							target="_blank">AVA</a></li>
+						<li><a th:href="@{/biblioteca}">Biblioteca</a></li>
+						<li><span class="fa fa-calendar"></span><a
+							th:href="@{/calendarioAcademico}"> Calendário Acadêmico</a></li>
+						<li><a th:href="@{/estagio}">Estágio</a></li>
+						<!-- <li><a href="shortcodes.html}">Iniciação Científica e
+								Tecnológica</a></li> -->
+						<li><a th:href="@{/pdf/horario_monitoria_2018_2.pdf}"
+							target="_blank">Horários das Monitorias</a></li>
+						<li><a th:href="@{/intercambio}">Intercâmbio</a></li>
+						<!-- <li><a href="shortcodes.html}">Matrícula</a></li>
+						<li><a href="shortcodes.html}">Monitoria</a></li>
+						<li><a href="shortcodes.html}">Regulamento e Manuais
+								Acadêmicos</a></li> -->
+						<li><a th:href="@{/passeEscolar}">Passe Escolar</a></li>
+						<li><a th:href="@{/animaTerra}">Revista Anima Terra</a></li>
+						<li><a href="https://siga.cps.sp.gov.br/aluno/login.aspx"
+							target="_blank">SIGA</a></li>
+						<li><a th:href="@{/requests/new}">Solicitar Documentos</a></li>
+						<!-- <li><a href="shortcodes.html}">Trabalho de Graduação</a></li> -->
+					</ul></li>
+				<li><a href="#">Área do Professor</a>
+					<ul>
+						<li><a
+							href="http://www.e-folha.sp.gov.br/desc_dempagto/entrada_atest.asp?cliente=092&prod=atest"
+							target="_blank">Atestado de Rendimentos</a></li>
+						<li><a th:href="@{/biblioteca}">Biblioteca</a></li>
+						<li><span class="fa fa-calendar"></span><a
+							th:href="@{/calendarioAcademico}"> Calendário Acadêmico</a></li>
+						<li><a
+							href="http://www.e-folha.sp.gov.br/desc_dempagto/entrada.asp?cliente=092"
+							target="_blank">Demonstrativo de Pagamentos</a></li>
+						<li><a th:href="@{/passeEscolar}">Passe Escolar</a></li>
+						<li><a href="https://recadastramentoanual.sp.gov.br/"
+							target="_blank">Recadastramento de Servidores</a></li>
+						<li><a th:href="@{/animaTerra}">Revista Anima Terra</a></li>
+						<li><a th:href="@{/secretariaAcademica}">Secretaria
+								Acadêmica</a></li>
+						<li><a href="https://siga.cps.sp.gov.br/fatec/login.aspx"
+							target="_blank">SIGA</a></li>
+					</ul></li>
+
+			</ul>
+			<!-- /.main_menu -->
+			<ul class="social_icons">
+				<li><a href="https://www.facebook.com/FATECMC/" target="_blank"><i
+						class="fa fa-facebook"></i></a></li>
+			</ul>
+			<!-- /.social_icons -->
+		</div>
+		<!-- /.responsive_menu -->
+	</div>
+	<!-- /responsive_navigation -->
+
+	<header class="site-header">
+		<div class="row additional-row">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 additional-row-left">
+						<a href="tel:+551146992799" title="Telefone de contato"><i
+							class="fa fa-phone"></i> +55 11 4699 2799</a> <a
+							href="mailto:contato@fatecmogidascruzes.com.br"
+							title="E-mail de contato"><i class="fa fa-envelope "></i>
+							contato@fatecmogidascruzes.com.br</a>
+					</div>
+					<div class="col-md-6 additional-row-right">
+						<ul class="social-icons links-externos">
+							<li><a href="https://www.facebook.com/FATECMC/"
+								data-toggle="tooltip" title="Facebook" target="_blank"><i
+									class="fa fa-facebook"></i> Facebook</a></li>
+							<li><a href="http://www.cps.sp.gov.br" data-toggle="tooltip"
+								target="_blank" title="Centro Paula Souza">Centro Paula
+									Souza</a></li>
+							<li><a href="https://www.vestibularfatec.com.br"
+								data-toggle="tooltip" target="blank_" title="Vestibular">Vestibular</a></li>
+							<li><img th:src="@{/images/idioma_portugues.png}" /> <!-- <img
+								th:src="@{/images/idioma_ingles.png" /> --></li>
+						</ul>
+						<!-- /.social-icons -->
+						<ul class="social-icons idiomas">
+							<li><img th:src="@{/images/idioma_portugues.png}" /> <!-- <img
+								th:src="@{/images/idioma_ingles.png" /> --></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 header-left"></div>
+				<!-- /.header-left -->
+
+				<div class="col-md-4">
+					<div class="logo">
+						<a th:href="@{/}"
+							title="Logo da Fatec Mogi das Cruzes, composto pelo texto Fatec Mogi das Cruzes"
+							rel="home"> <img th:src="@{/images/logo.svg}"
+							alt="Logo da Fatec Mogi das Cruzes, composto pelo texto Fatec Mogi das Cruzes"
+							height="80px">
+						</a>
+					</div>
+					<!-- /.logo -->
+					<p class="lema">ENSINO SUPERIOR GRATUITO E DE ALTA QUALIDADE</p>
+				</div>
+				<!-- /.col-md-4 -->
+
+				<div class="col-md-4 header-right"></div>
+				<!-- /.header-right -->
+			</div>
+		</div>
+		<!-- /.container -->
+
+		<div class="nav-bar-main" role="navigation">
+			<div class="container">
+				<nav class="main-navigation clearfix visible-md visible-lg"
+					role="navigation">
+					<ul class="main-menu sf-menu">
+						<li class="active"><a th:href="@{/}">Principal</a></li>
+						<li><a href="#">A Fatec</a>
+							<ul class="sub-menu">
+								<li><a th:href="@{/aFatecMogi}">A Fatec Mogi das Cruzes</a></li>
+								<li><span class="fa fa-calendar"></span><a
+									th:href="@{/calendarioAcademico}"> Calendário Acadêmico</a></li>
+								<li><a th:href="@{/comoChegar}">Como Chegar</a></li>
+								<!-- <li><a th:href="@{/corpoAdministrativo}">Corpo
+								Administrativo</a></li> -->
+								<li><a th:href="@{/congregacao}">Congregação</a></li>
+								<li><a th:href="@{/corpoDocente}">Corpo Docente</a></li>
+								<li><a th:href="@{/direcao}">Direção</a></li>
+								<li><a th:href="@{/contact/new}">Fale Conosco</a></li>
+								<li><a th:href="@{/gruposPesquisa}">Grupos de Pesquisa
+										e Estudos</a></li>
+								<li><a href="http://www.cps.sp.gov.br/fale-conosco/"
+									target="_blank">Ouvidoria</a></li>
+								<li><a th:href="@{/animaTerra}">Revista Anima Terra</a></li>
+								<li><a th:href="@{/secretariaAcademica}">Secretaria
+										Acadêmica</a></li>
+							</ul></li>
+						<li><a href="#">Cursos</a>
+							<ul class="sub-menu">
+								<li><a th:href="@{/agro}">Agronegócio</a></li>
+								<li><a th:href="@{/ads}">Análise e Desenvolvimento de
+										Sistemas</a></li>
+								<li><a th:href="@{/logistica}">Logística</a></li>
+								<li><a th:href="@{/rh}">Recursos Humanos</a></li>
+							</ul></li>
+						<li><a href="#">Vestibular e Ingresso</a>
+							<ul class="sub-menu">
+								<li><a th:href="@{/pdf/guia-profissoes-tecnologicas.pdf}"
+									target="_blank">Guia de Profissões Tecnológicas</a></li>
+								<li><a th:href="@{/vagasRemanescentes}">Vagas
+										Remanescentes</a></li>
+								<li><span class="fa fa-star"></span><a
+									href="http://www.vestibularfatec.com.br/home/" target="_blank">
+										Vestibular</a></li>
+							</ul></li>
+						<li><a href="#">Concursos Públicos</a>
+							<ul class="sub-menu">
+								<li><span class="fa fa-star"></span><a
+									th:href="@{/concursos}"> Concursos Públicos</a></li>
+								<li><a th:href="@{/selecoes}">Seleções Públicas</a></li>
+							</ul></li>
+						<li><a href="#">Área do Aluno</a>
+							<ul class="sub-menu">
+								<li><a href="http://www.eadfatec.cps.sp.gov.br/"
+									target="_blank">AVA</a></li>
+								<li><a th:href="@{/biblioteca}">Biblioteca</a></li>
+								<li><span class="fa fa-calendar"></span><a
+									th:href="@{/calendarioAcademico}"> Calendário Acadêmico</a></li>
+								<li><a th:href="@{/estagio}">Estágio</a></li>
+								<li><a th:href="@{/pdf/horario_monitoria_2018_2.pdf}"
+									target="_blank">Horários das Monitorias</a></li>
+								<!-- <li><a href="shortcodes.html}">Iniciação Científica e
+										Tecnológica</a></li>
+										 -->
+								<li><a th:href="@{/intercambio}">Intercâmbio</a></li>
+								<!-- <li><span class="fa fa-id-card"></span><a
+									href="shortcodes.html}"> Matrícula</a></li>
+								<li><a href="shortcodes.html}">Monitoria</a></li>
+								<li><a href="shortcodes.html}">Regulamento e Manuais
+										Acadêmicos</a></li> -->
+								<li><a th:href="@{/passeEscolar}">Passe Escolar</a></li>
+								<li><a th:href="@{/animaTerra}">Revista Anima Terra</a></li>
+								<li><a th:href="@{/secretariaAcademica}">Secretaria
+										Acadêmica</a></li>
+								<li><span class="fa fa-star"></span><a
+									href="https://siga.cps.sp.gov.br/aluno/login.aspx"
+									target="_blank"> SIGA</a></li>
+								<li><a th:href="@{/requests/new}">Solicitar Documentos</a></li>
+								<!-- <li><a href="shortcodes.html}">Trabalho de Graduação</a></li> -->
+							</ul></li>
+						<li><a href="#">Área do Professor</a>
+							<ul class="sub-menu">
+								<li><a
+									href="http://www.e-folha.sp.gov.br/desc_dempagto/entrada_atest.asp?cliente=092&prod=atest"
+									target="_blank">Atestado de Rendimentos</a></li>
+								<li><a th:href="@{/biblioteca}">Biblioteca</a></li>
+								<li><span class="fa fa-calendar"></span><a
+									th:href="@{/calendarioAcademico}"> Calendário Acadêmico</a></li>
+								<li><a
+									href="http://www.e-folha.sp.gov.br/desc_dempagto/entrada.asp?cliente=092"
+									target="_blank">Demonstrativo de Pagamentos</a></li>
+								<li><a th:href="@{/passeEscolar}">Passe Escolar</a></li>
+								<li><a href="https://recadastramentoanual.sp.gov.br/"
+									target="_blank">Recadastramento de Servidores</a></li>
+								<li><a th:href="@{/animaTerra}">Revista Anima Terra</a></li>
+								<li><span class="fa fa-star"></span><a
+									href="https://siga.cps.sp.gov.br/fatec/login.aspx"
+									target="_blank"> SIGA</a></li>
+							</ul></li>
+					</ul>
+					<!-- /.main-menu -->
+				</nav>
+				<!-- /.main-navigation -->
+			</div>
+			<!-- /.container -->
+		</div>
+		<!-- /.nav-bar-main -->
+
+	</header>
+	<!-- /.site-header -->
+
+	<div>
+		<th:block layout:fragment="content" />
+	</div>
+
+	<!-- begin The Footer -->
+	<th:block layout:fragment="footer">
+		<footer class="site-footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="footer-widget">
+							<h4 class="footer-widget-title">Contate-nos</h4>
+							<p>
+								Utilize o formulário de contato ou procure-nos em <br> <br />Rua
+								Carlos Barattino, n. 908 - Vila Nova Mogilar, Mogi das Cruzes-SP<br />
+								(11)-4699-2799
+							</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="footer-widget">
+							<h4 class="footer-widget-title">FAVORITOS</h4>
+							<ul class="list-links">
+								<li><a th:href="@{/calendarioAcademico}">Calendário
+										Acadêmico</a></li>
+								<li><a th:href="@{/estagio}">Estágio</a></li>
+								<li><a href="https://siga.cps.sp.gov.br/aluno/login.aspx"
+									target="_blank">SIGA Aluno</a></li>
+								<li><a href="https://siga.cps.sp.gov.br/fatec/login.aspx"
+									target="_blank">SIGA Professor</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<div class="footer-widget">
+							<ul class="footer-media-icons">
+								<li><a href="https://www.facebook.com/FATECMC/"
+									target="_blank" class="fa fa-facebook"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /.row -->
+
+				<div class="bottom-footer">
+					<div class="row">
+						<div class="col-md-5">
+							<p class="small-text">
+								&copy; Todos os direitos reservados 2018. Desenvolvido por <a
+									href="http://leandroluque.com" target="_blank">Leandro
+									Luque</a>
+							</p>
+						</div>
+						<!-- /.col-md-5 -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.bottom-footer -->
+
+			</div>
+			<!-- /.container -->
+		</footer>
+	</th:block>
+	<!-- /.site-footer -->
+
+	<!-- JavaScripts -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/superfish/1.7.9/js/superfish.min.js"></script>
+	<script th:src="@{/scripts/custom/site.js}"></script>
+	<th:block layout:fragment="scripts" />
+</body>
+</html>

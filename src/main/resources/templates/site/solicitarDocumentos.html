@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Solicitação de Documentos</title>
+<!-- CSS Personalizado -->
+<link rel="stylesheet" th:href="@{/styles/custom.css}" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">SOLICITAÇÃO DE DOCUMENTOS</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="document-page-content" th:if="${not #strings.isEmpty(message) or not #strings.isEmpty(captchaMessage) or null != requestResult}">
+				<div class="row small-spacing">
+					<div class="col-xs-12" style="padding: 1em 3em 1em 3em;">
+						<!-- message -->
+						<div class="alert alert-dismissible alert-danger" role="alert"
+							th:if="${not #strings.isEmpty(message) and 'protocolError' == message and #strings.isEmpty(captchaMessage)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span>Não existem dados para este protocolo. Contate a
+								secretaria acadêmica</span>
+						</div>
+						<!-- ./message -->
+						<!-- message -->
+						<div class="alert alert-dismissible alert-danger" role="alert"
+							th:if="${not #strings.isEmpty(captchaMessage) and 'error' == captchaMessage}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span>Você não selecionou a opção 'Não sou um robô' ou não selecionou corretamente as imagens exibidas pelo validador ReCAPTCHA.</span>
+						</div>
+						<!-- ./message -->
+						<!-- message -->
+						<div class="alert alert-dismissible" role="alert" id="formMessage"
+							th:classappend="${'error' == message ? 'alert-danger' : 'alert-success'}"
+							th:if="${not #strings.isEmpty(message) and 'protocolError' != message and #strings.isEmpty(captchaMessage)}">
+							<button type="button" class="close" data-dismiss="alert"
+								aria-label="Fechar">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<span
+								th:text="${'error' == message ? 'Existem erros no formulário. Corrija-os e tente novamente.' : 'A sua solicitação foi registrada com sucesso. O número de protocolo da sua situação é ' + protocol}"></span>
+						</div>
+						<!-- ./message -->
+						<div id="searchResult" th:if="${null != requestResult}">
+							<h4>Informações sobre a situação da sua solicitação:</h4>
+							<ul>
+								<li>Protocolo: <span th:text="${requestResult.protocol}"></span></li>
+								<li>Requerente: <span th:text="${requestResult.name}"></span></li>
+								<li>Tipo de Documento: <span
+									th:text="${requestResult.documentType.name}"></span></li>
+								<li>Situação: <span
+									th:text="${requestResult.requestSituation.name}"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="document-page-content">
+				<div class="row small-spacing">
+					<div class="col-xs-12">
+						<div class="card-content">
+							<div class="instructions">
+								<h1>Consultar Solicitação</h1>
+								<a class="collapsed" data-toggle="collapse"
+									href="#instructionsCollapse" role="button"
+									aria-expanded="false" aria-controls="instructionsCollapse"><span
+									class="if-collapsed">Clique aqui para EXIBIR as
+										instruções</span> <span class="if-not-collapsed">Clique aqui
+										para ESCONDER as instruções</span> </a>
+								<div class="collapse" id="instructionsCollapse">
+									<div class="card card-body">
+										<strong>INSTRUÇÕES:</strong>
+										<ul>
+											<li>Preencha o protocolo da solicitação e selecione o
+												botão 'Consultar', exibido após o formulário, para
+												visualizar a situação de uma solicitação.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- /.box-title -->
+							<div class="form-site">
+								<br />
+								<form autocomplete="off" th:action="@{/requests/search}"
+									th:object="${requestSearch}" method="get">
+									<div class="row small-spacing">
+										<div class="col-xs-12 form-group"
+											th:classappend="${#fields.hasErrors('protocol')} ? has-error">
+											<label for="protocol">Protocolo da Solicitação*: <a
+												href="#" aria-hidden="true" data-toggle="tooltip"
+												title="Informe o protocolo da solicitação"><i
+													class="fa fa-question-circle"></i></a></label> <span
+												id="protocolRemainingLength" class="remaining-length"></span>
+											<span class="remaining-length">caracter(es)
+												restante(s)</span> <input maxlength="30" tabindex="1" type="number"
+												class="form-control" required="required" id="protocol"
+												th:field="*{protocol}"
+												placeholder="Qual é o protocolo da solicitação?"> <span
+												th:each="error : ${#fields.errors('protocol')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+									</div>
+									<!-- ./row -->
+									<div class="row small-spacing">
+										<div class="g-recaptcha col-sm-5"
+											th:attr="data-sitekey=${@captchaSettings.getSite()}"></div>
+									</div>
+									<br />
+									<button type="submit" tabindex="2"
+										class="btn btn-warning btn-sm waves-effect waves-light pull-right">
+										<span class="mdi mdi-content-save"></span> Consultar
+									</button>
+								</form>
+							</div>
+							<!-- /.card-content -->
+						</div>
+					</div>
+					<!-- /.col-xs-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<div class="document-page-content">
+				<div class="row small-spacing">
+					<div class="col-xs-12">
+						<div class="card-content">
+							<div class="instructions">
+								<h1>Nova Solicitação</h1>
+								<a class="collapsed" data-toggle="collapse"
+									href="#instructionsCollapse1" role="button"
+									aria-expanded="false" aria-controls="instructionsCollapse1"><span
+									class="if-collapsed">Clique aqui para EXIBIR as
+										instruções</span> <span class="if-not-collapsed">Clique aqui
+										para ESCONDER as instruções</span> </a>
+								<div class="collapse" id="instructionsCollapse1">
+									<div class="card card-body">
+										<strong>INSTRUÇÕES:</strong>
+										<ul>
+											<li>Preencha os dados do formulário seguinte e selecione
+												o botão 'Enviar', exibido após o formulário, para solicitar
+												um documento.</li>
+											<li>Os campos marcados com um asterisco <sup
+												class="field-details">*</sup> são obrigatórios e devem ser
+												preenchidos.
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- /.box-title -->
+							<div class="form-site">
+								<br />
+								<form autocomplete="off" th:action="@{/requests/save}"
+									th:object="${request}" method="get">
+									<input type="hidden" id="hashString" th:field="*{hashString}" />
+									<div class="row small-spacing">
+										<div class="col-xs-4 form-group"
+											th:classappend="${#fields.hasErrors('registry')} ? has-error">
+											<label for="registry">RA do Aluno*: <a href="#"
+												aria-hidden="true" data-toggle="tooltip"
+												title="Informe o RA do aluno requerente"><i
+													class="fa fa-question-circle"></i></a></label> <span
+												id="registryRemainingLength" class="remaining-length"></span>
+											<span class="remaining-length">caracter(es)
+												restante(s)</span> <input maxlength="30" tabindex="3" type="text"
+												class="form-control" required="required" id="registry"
+												th:field="*{registry}"
+												placeholder="Qual é o RA do aluno requerente?"> <span
+												th:each="error : ${#fields.errors('registry')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+										<div class="col-xs-8 form-group"
+											th:classappend="${#fields.hasErrors('name')} ? has-error">
+											<label for="name">Nome do Aluno*: <a href="#"
+												aria-hidden="true" data-toggle="tooltip"
+												title="Informe o nome completo do aluno requerente"><i
+													class="fa fa-question-circle"></i></a></label> <span
+												id="nameRemainingLength" class="remaining-length"></span> <span
+												class="remaining-length">caracter(es) restante(s)</span> <input
+												maxlength="100" tabindex="4" type="text"
+												class="form-control" required="required" id="name"
+												th:field="*{name}"
+												placeholder="Qual é o nome do aluno requerente?"> <span
+												th:each="error : ${#fields.errors('name')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+									</div>
+									<!-- ./row -->
+									<div class="row small-spacing">
+										<div class="col-xs-6 form-group"
+											th:classappend="${#fields.hasErrors('email')} ? has-error">
+											<label for="email">E-mail do Aluno*: <a href="#"
+												aria-hidden="true" data-toggle="tooltip"
+												title="Informe o e-mail do aluno requerente"><i
+													class="fa fa-question-circle"></i></a></label> <span
+												id="emailRemainingLength" class="remaining-length"></span> <span
+												class="remaining-length">caracter(es) restante(s)</span> <input
+												maxlength="50" tabindex="5" type="email"
+												class="form-control" required="required" id="email"
+												th:field="*{email}"
+												placeholder="Qual é o e-mail do aluno requerente?">
+											<span th:each="error : ${#fields.errors('email')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+										<div class="col-xs-6 form-group"
+											th:classappend="${#fields.hasErrors('phone')} ? has-error">
+											<label for="phone">Telefone de Contato do Aluno*: <a
+												href="#" aria-hidden="true" data-toggle="tooltip"
+												title="Informe um telefone de contato com o aluno requerente"><i
+													class="fa fa-question-circle"></i></a></label> <span
+												id="phoneRemainingLength" class="remaining-length"></span> <span
+												class="remaining-length">caracter(es) restante(s)</span> <input
+												maxlength="50" tabindex="6" type="text" class="form-control"
+												required="required" id="phone" th:field="*{phone}"
+												placeholder="Qual é o telefone de contato do aluno requerente?">
+											<span th:each="error : ${#fields.errors('phone')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+									</div>
+									<!-- ./row -->
+									<div class="row small-spacing">
+										<div class="col-xs-6 form-group"
+											th:classappend="${#fields.hasErrors('course')} ? has-error">
+											<label for="course">Curso*: <a href="#"
+												aria-hidden="true" data-toggle="tooltip"
+												title="Qual é o curso do aluno? "><i
+													class="fa fa-question-circle"></i></a></label> <select tabindex="7"
+												class="
+										form-control" th:field="*{course}">
+												<option
+													th:each="course : ${T(br.com.fatecmogidascruzes.course.Course).values()}"
+													th:value="${course}" th:text="${course.name}"></option>
+											</select> <span th:each="error : ${#fields.errors('course')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+										<div class="col-xs-6 form-group"
+											th:classappend="${#fields.hasErrors('learnerSituation')} ? has-error">
+											<label for="learnerSituation">Tipo de Requerente*: <a
+												href="#" aria-hidden="true" data-toggle="tooltip"
+												title="Qual é o tipo de requerente? "><i
+													class="fa fa-question-circle"></i></a></label> <select tabindex="8"
+												class="
+										form-control"
+												th:field="*{learnerSituation}">
+												<option
+													th:each="learnerSituation : ${T(br.com.fatecmogidascruzes.request.Request.LearnerSituation).values()}"
+													th:value="${learnerSituation}"
+													th:text="${learnerSituation.name}"></option>
+											</select> <span
+												th:each="error : ${#fields.errors('learnerSituation')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+									</div>
+									<!-- ./row -->
+									<div class="row small-spacing">
+										<div class="col-xs-12 form-group"
+											th:classappend="${#fields.hasErrors('documentType')} ? has-error">
+											<label for="documentType">Tipo de Documento*: <a
+												href="#" aria-hidden="true" data-toggle="tooltip"
+												title="Qual é o tipo de documento? "><i
+													class="fa fa-question-circle"></i></a></label> <select tabindex="9"
+												class="
+										form-control" th:field="*{documentType}">
+												<option
+													th:each="documentType : ${T(br.com.fatecmogidascruzes.request.Request.DocumentType).values()}"
+													th:value="${documentType}" th:text="${documentType.name}"></option>
+											</select> <span th:each="error : ${#fields.errors('documentType')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+									</div>
+									<!-- ./row -->
+									<div class="row small-spacing">
+										<div class="col-xs-12 form-group"
+											th:classappend="${#fields.hasErrors('comments')} ? has-error">
+											<label for="comments">Comentários*: <a href="#"
+												aria-hidden="true" data-toggle="tooltip"
+												title="Informe algum comentário sobre o documento"><i
+													class="fa fa-question-circle"></i></a></label> <span
+												id="commentsRemainingLength" class="remaining-length"></span>
+											<span class="remaining-length">caracter(es)
+												restante(s)</span> <input maxlength="400" tabindex="10" type="text"
+												class="form-control" id="comments" th:field="*{comments}"
+												placeholder="Existe algum comentário sobre o documento?">
+											<span th:each="error : ${#fields.errors('comments')}"
+												class="help-block"> <i
+												class="fa fa-exclamation-circle"></i> <span
+												th:text="${error}"></span>
+											</span>
+										</div>
+										<!-- ./col -->
+									</div>
+									<!-- ./row -->
+									<div class="row small-spacing">
+										<div class="g-recaptcha col-sm-5"
+											th:attr="data-sitekey=${@captchaSettings.getSite()}"></div>
+									</div>
+									<br />
+									<button type="submit" tabindex="11"
+										class="btn btn-warning btn-sm waves-effect waves-light pull-right">
+										<span class="mdi mdi-content-save"></span> Enviar
+									</button>
+								</form>
+							</div>
+							<!-- /.card-content -->
+						</div>
+					</div>
+					<!-- /.col-xs-12 -->
+				</div>
+				<!-- /.row -->
+			</div>
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script th:src="@{/scripts/form-field-length-counter.js}"></script>
+		<!-- jQuery Mask Plugin -->
+		<script th:src="@{/plugins/jquery-mask/jquery.mask.min.js}"></script>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<script th:src="@{/scripts/custom/request.js}"></script>
+	</th:block>
+</body>
+</html>

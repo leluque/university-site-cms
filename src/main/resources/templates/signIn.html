@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html th:with="lang=${#locale.language}" th:lang="${lang}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta name="keywords"
+	content="Fatec Mogi das Cruzes, Plataforma, Administrativa, Faculdade, Qualidade" />
+<meta name="author" content="Leandro Luque" />
+
+<meta name="_context_path" th:content="@{/}" />
+<title>Fatec Mogi das Cruzes | Acesso Administrativo</title>
+
+<!-- Main Styles -->
+<link rel="stylesheet" th:href="@{/styles/style.min.css}" />
+
+<!-- Material Design Icon -->
+<link rel="stylesheet"
+	th:href="@{/fonts/material-design/css/materialdesignicons.css}" />
+
+<!-- mCustomScrollbar -->
+<link rel="stylesheet"
+	th:href="@{/plugins/mCustomScrollbar/jquery.mCustomScrollbar.min.css}" />
+
+<!-- Waves Effect -->
+<link rel="stylesheet" th:href="@{/plugins/waves/waves.min.css}" />
+
+<!-- Sweet Alert -->
+<link rel="stylesheet" th:href="@{/plugins/sweet-alert/sweetalert.css}" />
+
+<!-- Dark Themes -->
+<link rel="stylesheet" th:href="@{/styles/style-dark.min.css}" />
+
+<!-- CSS Personalizado -->
+<link rel="stylesheet" th:href="@{/styles/custom.css}" />
+
+</head>
+
+<body style="background: url(/images/fundo-fatec.jpg)">
+	<div id="single-wrapper">
+		<br />
+		<form th:action="@{/doSignIn}" class="frm-single" autocomplete="off"
+			method="POST">
+			<div class="inside">
+				<div class="title">
+					<img th:src="@{/images/logo_colorido.svg}"
+						alt="Logo da Fatec Mogi das Cruzes, composto pelo texto Fatec Mogi das Cruzes"
+						style="height: 80px" /><br />
+					<hr />
+					<strong>Site da Fatec Mogi das Cruzes</strong>
+				</div>
+				<!-- /.title -->
+				<div class="frm-title">Acesso ao Painel Administrativo</div>
+				<!-- error messages -->
+				<div class="alert alert-danger alert-dismissible" role="alert"
+					th:if="${null != param[error]}">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<i class="fa fa-exclamation-circle"></i> <span>Usuário e/ou
+						senha inválidos!</span>
+				</div>
+				<!-- ./error-messages -->
+				<!-- /.frm-title -->
+				<div class="frm-input">
+					<input type="text" placeholder="Qual é o nome do usuário?"
+						class="frm-inp" name="username" autocomplete="new-password" /><i
+						class="fa fa-user frm-ico"></i>
+				</div>
+				<!-- /.frm-input -->
+				<div class="frm-input">
+					<input type="password" placeholder="Qual é a senha do usuário?"
+						class="frm-inp" name="password" autocomplete="new-password" /><i
+						class="fa fa-lock frm-ico"></i>
+				</div>
+				<!-- /.frm-input -->
+				<div class="clearfix margin-bottom-20">
+					<div class="pull-left">
+						<div class="checkbox primary">
+							<input type="checkbox" id="remember-me"><label
+								for="remember-me">Lembrar-me</label>
+						</div>
+						<!-- /.checkbox -->
+					</div>
+					<!-- /.pull-left -->
+					<div class="pull-right">
+						<a th:href="@{/recoveryPassword}" class="a-link"><i
+							class="fa fa-unlock-alt"></i>Esqueci a senha</a>
+					</div>
+					<!-- /.pull-right -->
+				</div>
+				<!-- /.clearfix -->
+				<div class="row small-spacing">
+					<div class="g-recaptcha col-sm-5"
+						th:attr="data-sitekey=${@captchaSettings.getSite()}"></div>
+				</div>
+				<br />
+				<button type="submit" class="frm-submit">
+					Acessar<i class="fa fa-arrow-circle-right"></i>
+				</button>
+				<!-- /.row -->
+				<div class="frm-footer">2018 © Leandro Luque</div>
+				<!-- /.footer -->
+			</div>
+			<!-- .inside -->
+		</form>
+		<!-- /.frm-single -->
+	</div>
+	<!--/#single-wrapper -->
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script th:src="@{/script/html5shiv.min.js}"></script>
+		<script th:src="@{/script/respond.min.js}"></script>
+	<![endif]-->
+	<!-- 
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script th:src="@{/scripts/jquery.min.js}"></script>
+	<script th:src="@{/scripts/modernizr.min.js}"></script>
+	<script th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
+	<script
+		th:src="@{/plugins/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js}"></script>
+	<script th:src="@{/plugins/nprogress/nprogress.js}"></script>
+	<script th:src="@{/plugins/sweet-alert/sweetalert.min.js}"></script>
+	<script th:src="@{/plugins/waves/waves.min.js}"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script th:src="@{/scripts/main.js}"></script>
+</body>
+</html>

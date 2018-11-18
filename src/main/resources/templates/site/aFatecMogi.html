@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - A Fatec Mogi das Cruzes</title>
+<link rel="stylesheet" th:href="@{/styles/custom/banner_effect.css}" />
+<link rel="stylesheet"
+	th:href="@{/plugins/fancybox/jquery.fancybox.css}" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Principal</a>
+						</h6>
+						<h6>
+							<span class="page-active">A FATEC MOGI DAS CRUZES</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<!-- Here begin Main Content -->
+				<div class="col-md-8">
+					<div class="blog-post-container">
+						<div class="blog-post-image">
+							<div class="banner-effect">
+								<div class="banner-image" id="banner-image-a">
+									<img th:src="@{/images/banner_sobre_a_fatec.jpg}"
+										alt="As pernas de algumas pessoas no transporte público" />
+								</div>
+								<div class="banner-image" id="banner-image-b">
+									<img th:src="@{/images/banner_sobre_a_fatec.jpg}"
+										alt="As pernas de algumas pessoas no transporte público" />
+								</div>
+								<div class="banner-image" id="banner-image-c">
+									<img th:src="@{/images/banner_sobre_a_fatec.jpg}"
+										alt="As pernas de algumas pessoas no transporte público" />
+								</div>
+							</div>
+						</div>
+						<!-- /.blog-post-image -->
+						<div class="blog-post-inner">
+							<h3 class="blog-post-title">A Fatec Mogi das Cruzes</h3>
+							<p>
+								Inaugurada em 2008, a Fatec de Mogi das Cruzes é uma <strong>referência
+									no ensino superior</strong> na região metropolitana de São Paulo.
+							</p>
+							<p>
+								A Fatec é uma instituição de ensino superior voltado à educação
+								tecnológica. A faculdade está vinculada ao <a
+									href="http://www.cps.sp.gov.br" target="_blank">CPS -
+									Centro Estadual de Educação Tecnológica Paula Souza</a> e à <a
+									href="http://www.desenvolvimento.sp.gov.br" target="_blank">Secretaria</a>.
+								de Desenvolvimento Econômico, Ciência, Tecnologia e Inovação
+							</p>
+							<p>
+								Entre os 67 cursos ministrados pelas Fatecs em todo o Estado de
+								São Paulo, Mogi das Cruzes se destaca pelas graduações
+								tecnológicas em <strong><a th:href="@{/agro}">Agronegócio</a></strong>,
+								<strong><a th:href="@{/ads}">Análise e
+										Desenvolvimento de Sistemas</a></strong>, <strong><a
+									th:href="@{/logistica}">Logística</a></strong> e <strong><a
+									th:href="@{/rh}">Recursos Humanos</a></strong>.
+							</p>
+							<p>
+								Os cursos da Fatec Mogi das Cruzes têm <strong>duração
+									de três anos</strong>, favorecendo um profissionalização rápida, mas, ao
+								mesmo tempo, de excelente qualidade. Ao todo, cada curso conta
+								com <strong>2.400 horas</strong>. A estrutura física da Fatec
+								Mogi das Cruzes comporta cerca de 2.000 alunos.
+							</p>
+							<p>A instituição mantém diversos grupos de pesquisas e
+								estudos na área de gestão, legislação e produção, atendendo à
+								demanda técnica regional para estudantes e produtores.</p>
+						</div>
+					</div>
+					<!-- /.blog-post-container -->
+				</div>
+				<!-- /.col-md-8 -->
+
+				<!-- Here begin Sidebar -->
+				<div class="col-md-4">
+
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">Galeria de Imagens</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="gallery-small-thumbs clearfix">
+								<div class="thumb-small-gallery">
+									<a class="fancybox" rel="gallery1"
+										th:href="@{/images/galeria/galeria1.jpg}"
+										title="Alunos na entrada a Fatec Mogi das Cruzes"> <img
+										th:src="@{/images/galeria/galeria_mini1.jpg}" alt="" />
+									</a>
+								</div>
+								<div class="thumb-small-gallery">
+									<a class="fancybox" rel="gallery1"
+										th:href="@{/images/galeria/galeria2.jpg}"
+										title="Alunos em sala de aula da Fatec Mogi das Cruzes"> <img
+										th:src="@{/images/galeria/galeria_mini2.jpg}" alt="" />
+									</a>
+								</div>
+								<div class="thumb-small-gallery">
+									<a class="fancybox" rel="gallery1"
+										th:href="@{/images/galeria/galeria3.jpg}"
+										title="Alunos no laboratório de informática da Fatec Mogi das Cruzes">
+										<img th:src="@{/images/galeria/galeria_mini3.jpg}" alt="" />
+									</a>
+								</div>
+								<div class="thumb-small-gallery">
+									<a class="fancybox" rel="gallery1"
+										th:href="@{/images/galeria/galeria4.jpg}"
+										title="Diretor e coordenadores da Fatec Mogi das Cruzes">
+										<img th:src="@{/images/galeria/galeria_mini4.jpg}" alt="" />
+									</a>
+								</div>
+								<div class="thumb-small-gallery">
+									<a class="fancybox" rel="gallery1"
+										th:href="@{/images/galeria/galeria5.jpg}"
+										title="Alunos no páteo da Fatec Mogi das Cruzes"> <img
+										th:src="@{/images/galeria/galeria_mini5.jpg}" alt="" />
+									</a>
+								</div>
+								<div class="thumb-small-gallery">
+									<a class="fancybox" rel="gallery1"
+										th:href="@{/images/galeria/galeria6.jpg}"
+										title="Diretor e alunos na Fatec Mogi das Cruzes"> <img
+										th:src="@{/images/galeria/galeria_mini6.jpg}" alt="" />
+									</a>
+								</div>
+								<div class="thumb-small-gallery">
+									<a class="fancybox" rel="gallery1"
+										th:href="@{/images/galeria/galeria7.jpg}"
+										title="Alunos do curso de RH da Fatec Mogi das Cruzes"> <img
+										th:src="@{/images/galeria/galeria_mini7.jpg}" alt="" />
+									</a>
+								</div>
+								<div class="thumb-small-gallery">
+									<a class="fancybox" rel="gallery1"
+										th:href="@{/images/galeria/galeria8.jpg}"
+										title="Workshop de Agronegócio da Fatec Mogi das Cruzes">
+										<img th:src="@{/images/galeria/galeria_mini8.jpg}" alt="" />
+									</a>
+								</div>
+							</div>
+							<!-- /.galler-small-thumbs -->
+						</div>
+						<!-- /.widget-inner -->
+					</div>
+					<!-- /.widget-main -->
+
+				</div>
+				<!-- /.col-md-4 -->
+
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script type="text/javascript"
+			th:src="@{/plugins/tweenmax/tweenmax.min.js}"></script>
+		<script type="text/javascript"
+			th:src="@{/scripts/custom/banner_effect.js}"></script>
+
+		<script th:src="@{/plugins/fancybox/jquery.fancybox.js}"></script>
+		<script th:src="@{/plugins/fancybox/jquery.fancybox.pack.js}"></script>
+
+		<script type="text/javascript"
+			th:src="@{/scripts/custom/a_fatec_mogi.js}"></script>
+	</th:block>
+</body>
+</html>

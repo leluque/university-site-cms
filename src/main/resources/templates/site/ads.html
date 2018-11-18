@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Análise e Desenvolvimento de Sistemas</title>
+<link th:href="@{/styles/curso.css}" type="text/stylesheet" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="page-title clearfix">
+				<div class="row">
+					<div class="col-md-12">
+						<h6>
+							<a th:href="@{/}">Cursos</a>
+						</h6>
+						<h6>
+							<span class="page-active">ANÁLISE E DESENVOLVIMENTO DE
+								SISTEMAS</span>
+						</h6>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<!-- Here begin Main Content -->
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="blog-post-container">
+								<div class="blog-post-image">
+									<img th:src="@{/images/banner_ads.jpg}" alt="">
+								</div>
+								<!-- /.blog-post-image -->
+								<div class="blog-post-inner" id="reconhecimentoAvaliacao">
+									<h3 class="blog-post-title">Análise e Desenvolvimento de
+										Sistemas</h3>
+									<article>
+										<div class="page-row box box-border">
+											<ul class="list-unstyled no-margin-bottom">
+												<li><strong>Início do funcionamento:</strong> <em>17
+														de agosto de 2009</em></li>
+												<li><strong>Carga-horária: </strong> <em>2800
+														horas (3 anos)</em></li>
+												<li><strong>Períodos: </strong> <em>Vespertino
+														(tarde)</em> e <em>Noturno</em></li>
+												<li><strong>Vagas: </strong> <em>40 (vespertino) e
+														40 (noite)</em></li>
+												<li><strong>Tipo: </strong> <em>Presencial</em></li>
+											</ul>
+										</div>
+										<!--//page-row-->
+										<div class="page-row">
+											<br />
+											<h5>Reconhecimento e Avaliação</h5>
+											<p>
+												O curso de Análise e Desenvolvimento de Sistemas da Fatec
+												Mogi das Cruzes é reconhecido pelo <a
+													href="http://emec.mec.gov.br/emec/consulta-cadastro/detalhes-curso/d96957f455f6405d14c6542552b0f6eb/MTU1NzY=/9f1aa921d96ca1df24a34474cc171f61/MjEx"
+													target="_blank">Ministério da Educação (MEC)</a> e possui
+												avaliação 4 no ENADE (MUITO BOM, em uma escala de 1 a 5).
+											</p>
+
+											<h5 id="sobre">Sobre o Curso</h5>
+											<p>O tecnólogo em Análise e Desenvolvimento de Sistemas
+												desenvolve, analisa, projeta, implementa e atualiza sistemas
+												de informação. Tem noções de gerenciamento, mas sua
+												especialidade é a criação de sistemas informatizados:
+												programação de computadores e desenvolvimento de software
+												para ampliar a capacidade dos recursos do equipamento. Ele
+												implanta e desenvolve banco de dados. Conhece a estrutura
+												física dos equipamentos e seus periféricos.</p>
+
+											<p>Em atividades práticas, o estudante faz análise e
+												programação de sistemas e administra redes de computadores.
+												Fazem parte da grade curricular matérias como aplicações em
+												comércio eletrônico e internet. Para obtenção do diploma,
+												algumas instituições exigem estágio e um trabalho de
+												conclusão de curso.</p>
+
+											<h5 id="omercado">O Mercado</h5>
+											<p>A Análise e Desenvolvimento de Sistemas é uma
+												profissão em alta no mercado.</p>
+
+											<p>O mercado na área de Tecnologia da Informação (TI)
+												como um todo apresenta uma grande carência de profissionais
+												especializados. Além disso, é um setor que está há anos
+												entre os que mais oferecem vagas de emprego.</p>
+
+											<p>O mercado de trabalho para analistas de sistemas, como
+												são chamados os profissionais desta área, é bastante amplo.
+												Isso porque praticamente qualquer tipo de empresa utiliza
+												sistemas informatizados para funcionar, seja em suas
+												atividades de gestão, venda, pós-venda ou processos de
+												fabricação.</p>
+
+											<p>
+												Um analista de sistemas, de acordo com a Tabela, ganha entre
+												R$ 2.500,00 e R$ 17.000,00, segundo o <a
+													href="http://www.guiadacarreira.com.br/salarios/quanto-ganha-um-analista-de-sistemas/"
+													target="_blank">Guia da Carreira</a>.
+											</p>
+											<hr />
+										</div>
+										<!--//page-row-->
+										<div class="tabbed-info page-row" id="matrizHorarioDocentes">
+											<ul class="nav nav-tabs">
+												<li class="active"><a href="#tab1" data-toggle="tab">Matriz
+														Curricular</a></li>
+												<li><a href="#tab2" data-toggle="tab">Horário</a></li>
+												<li><a href="#tab3" data-toggle="tab">Corpo Docente</a></li>
+											</ul>
+											<div class="tab-content">
+												<div class="tab-pane active" id="tab1">
+													<p>
+														A seguir, são apresentadas as disciplinas da matriz
+														curricular do curso para cada um dos 6 semestres - <a
+															href="#vespertino">vespertino</a> e <a href="#noturno">noturno</a>.
+														Se preferir, uma versão PDF da matriz curricular pode ser
+														encontrada <a th:href="@{/pdf/matriz_curricular_ads.pdf}"
+															target="_blank">aqui.</a>
+													</p>
+													<span id="vespertino">Disciplinas do período
+														vespertino</span>
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered">
+															<thead>
+																<tr>
+																	<th width="33%">1o semestre</th>
+																	<th width="33%">2o semestre</th>
+																	<th width="33%">3o semestre</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>Programação em Microinformática</td>
+																	<td>Engenharia de Software I</td>
+																	<td>Engenharia de Software II</td>
+																</tr>
+																<tr>
+																	<td>Algoritmos e Lógica de Programação</td>
+																	<td>Linguagem de Programação</td>
+																	<td>Estruturas de Dados</td>
+																</tr>
+																<tr>
+																	<td>Sistemas de Informação</td>
+																	<td>Eletiva I</td>
+																	<td>Interação Humano-Computador</td>
+																</tr>
+																<tr>
+																	<td>Arquitetura e Organização de Computadores</td>
+																	<td>Laboratório de Hardware</td>
+																	<td>Eletiva II</td>
+																</tr>
+																<tr>
+																	<td>Administração Geral</td>
+																	<td>Sistemas Operacionais I</td>
+																	<td>Sistemas Operacionais II</td>
+																</tr>
+																<tr>
+																	<td>Matemática Discreta</td>
+																	<td>Estatística Aplicada</td>
+																	<td>Banco de Dados</td>
+																</tr>
+																<tr>
+																	<td>Comunicação e Expressão</td>
+																	<td>Cálculo</td>
+																	<td>Programação Linear e Aplicações</td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td>Contabilidade</td>
+																	<td>Economia e Finanças</td>
+																</tr>
+																<tr>
+																	<td>Inglês I</td>
+																	<td>Inglês II</td>
+																	<td>Inglês III</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<!--//table-responsive-->
+													<div class="table-responsive">
+														<table class="table table-striped table-bordered">
+															<thead>
+																<tr>
+																	<th width="33%">4o semestre</th>
+																	<th width="33%">5o semestre</th>
+																	<th width="33%">6o semestre</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>Engenharia de Software III</td>
+																	<td>Laboratório de Engenharia de Software</td>
+																	<td>Inteligência Artifical ou Aditoria de Sistemas</td>
+																</tr>
+																<tr>
+																	<td>Programação Orientada a Objetos</td>
+																	<td>Tópicos Especiais ou Laboratório de Redes</td>
+																	<td>Gestão e Governança de Tecnologia da
+																		Informação</td>
+																</tr>
+																<tr>
+																	<td>Laboratório de Bancos de Dados ou Sistemas
+																		Distribuídos</td>
+																	<td>Gestão de Equipes</td>
+																	<td>Ética e Responsabilidade Profissional</td>
+																</tr>
+																<tr>
+																	<td>Redes de Computadores</td>
+																	<td>Empreendedorismo</td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td>Gestão de Projetos</td>
+																	<td>Metodologia de Pesquisa Científico-Tecnológica</td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td>Segurança da Informação</td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td>Sociedade e Tecnologia</td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td>Inglês IV</td>
+																	<td>Inglês V</td>
+																	<td>Inglês VI</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													<!--<div class="table-responsive">
+														<table class="table table-striped">
+															<thead>
+																<tr>
+																	<th>5o semestre</th>
+																	<th>6o semestre</th>
+																	<th>7o semestre</th>
+																	<th>8o semestre</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td>Inglês I</td>
+																	<td>Inglês II</td>
+																	<td>Inglês III</td>
+																	<td>Inglês IV</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>-->
+													<!--//table-responsive-->
+												</div>
+												<div class="tab-pane" id="tab2">
+													<p>
+														O horário do curso para o 2o semestre de 2018 está
+														disponível em PDF para o período <a
+															th:href="@{/pdf/horario_ads_tarde_2018_2.pdf}"
+															target="_blank">vespertino</a> e <a
+															th:href="@{/pdf/horario_ads_noite_2018_2.pdf}"
+															target="_blank">noturno</a>.
+													</p>
+												</div>
+												<div class="tab-pane" id="tab3">
+													<p>O corpo docente do curso de Análise e
+														Desenvolvimento de Sistemas é formado por professores
+														mestres, doutores e especialistas de altíssima qualidade.</p>
+													<div id="blog-author" class="clearfix"
+														th:each="employee : ${professors}">
+														<a href="#" class="blog-author-img"> <img
+															th:src="@{/employees/} + ${employee.hashString + '/image'}"
+															alt="Foto do professor">
+														</a>
+														<div class="blog-author-info">
+															<span th:text="${employee.titulation}">Titulation
+															</span>
+															<h4 class="author-name" th:text="${employee.name}">Name
+															</h4>
+															<p th:text="${employee.curriculum}">Curriculum</p>
+															<p>
+																<a th:href="${employee.lattes}" target="_blank">Clique
+																	para visitar o currículo Lattes do professor</a>
+															</p>
+															<p th:if="${null != employee.homepage}">
+																<a th:href="${employee.homepage}" target="_blank">Clique
+																	para visitar o site pessoal do professor</a>
+															</p>
+														</div>
+													</div>
+													<!-- /.blog-author -->
+												</div>
+											</div>
+										</div>
+										<!--//tabbed-info-->
+									</article>
+									<!--//course-item-->
+								</div>
+							</div>
+							<!-- /.blog-post-container -->
+						</div>
+						<!-- /.col-md-12 -->
+					</div>
+					<!-- /.row -->
+				</div>
+				<!-- /.col-md-8 -->
+
+				<!-- Here begin Sidebar -->
+				<div class="col-md-4">
+
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">Acesso Rápido</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="blog-categories">
+								<div class="row">
+									<ul class="col-md-12">
+										<li><a href="#reconhecimentoAvaliacao">Reconhecimento
+												e avaliação</a></li>
+										<li><a href="#sobre">Sobre o curso</a></li>
+										<li><a href="#omercado">O mercado</a></li>
+										<li><a href="#matrizHorarioDocentes">Matriz
+												curricular, horário e corpo docente</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- /.blog-categories -->
+						</div>
+						<!-- /.widget-inner -->
+					</div>
+					<!-- /.widget-main -->
+
+				</div>
+				<!-- /.col-md-4 -->
+
+			</div>
+			<!-- /.row -->
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+	</th:block>
+</body>
+</html>

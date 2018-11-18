@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html th:with="idioma=${#locale.language}" th:lang="${idioma}"
+	class="no-js" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{site}">
+<head>
+<title>Fatec MC - Fatec Mogi das Cruzes</title>
+<link rel="stylesheet"
+	th:href="@{/plugins/fancybox/jquery.fancybox.css}" />
+<!-- Flex Slider -->
+<link rel="stylesheet" th:href="@{/plugins/flex-slider/flexslider.css}">
+<link rel="stylesheet" th:href="@{/styles/custom.css}">
+</head>
+<body>
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div id="promo-slider" class="slider flexslider">
+				<ul class="slides">
+					<li th:each="highlight : ${highlightList}"><a
+						th:if="${null == highlight.externalLink}"
+						th:href="@{/} + ${highlight.internalPath}"><img
+							th:src="@{/news/__${highlight.hashString}__/highlightImage}"
+							th:alt="${highlight.imageAlternativeDescription}"
+							class="banner-image" /> <span class="flex-caption"> <span
+								class="main"
+								th:classappend="${highlight.showOnlyOnMobile ? 'visible-xs' : ''}"
+								th:text="${highlight.name}">Name</span> <br /> <span
+								th:classappend="${highlight.showOnlyOnMobile ? 'visible-xs' : ''}"
+								class="secondary clearfix"
+								th:text="${highlight.shortDescription}">Description</span>
+						</span></a><a class="img-responsive"
+						th:if="${null != highlight.externalLink}"
+						th:href="@{/detalheNoticia(abrirLink=true)} + ${'&hash=' + highlight.hashString}"
+						target="_blank"><img
+							th:src="@{/news/__${highlight.hashString}__/highlightImage}"
+							class="banner-image"
+							th:alt="${highlight.imageAlternativeDescription}" /> <span
+							class="flex-caption"> <span class="main"
+								th:text="${highlight.name}"
+								th:classappend="${highlight.showOnlyOnMobile ? 'visible-xs' : ''}">Name</span>
+								<br /> <span class="secondary clearfix"
+								th:text="${highlight.shortDescription}"
+								th:classappend="${highlight.showOnlyOnMobile ? 'visible-xs' : ''}">Description</span>
+						</span> </a></li>
+				</ul>
+				<!--//slides-->
+				<div class="clearfix"></div>
+			</div>
+			<!--//flexslider-->
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">
+								Últimas Notícias <a th:href="@{/todasNoticias}">Ver Todas</a>
+							</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="row">
+								<div class="col-md-4" th:each="news,iter : ${newsList}" th:unless="${iter.index > 2}">
+									<div class="translucid-widget">
+										<div class="item latest-latest clearfix">
+											<div class="post-thumb">
+												<a class="img-responsive"
+													th:if="${null == news.externalLink}"
+													th:href="@{/} + ${news.internalPath}"><img
+													class="home-news-image"
+													th:src="@{/news/} + ${news.hashString + '/image'}"
+													th:alt="${news.imageAlternativeDescription}" /></a> <a
+													class="img-responsive" th:if="${null != news.externalLink}"
+													th:href="@{/detalheNoticia(abrirLink=true)} + ${'&hash=' + news.hashString}"
+													target="_blank"><img class="home-news-image"
+													th:src="@{/news/} + ${news.hashString + '/image'}"
+													th:alt="${news.imageAlternativeDescription}" /></a>
+											</div>
+											<!-- post thumb -->
+											<div class="item-content">
+												<header>
+													<h4 class="post-title">
+														<a th:if="${null == news.externalLink}"
+															th:href="@{/} + ${news.internalPath}"
+															th:text="${news.name}" class="block-with-text-short" style="display: block">Name</a> <a
+															th:if="${null != news.externalLink}"
+															th:href="@{/detalheNoticia(abrirLink=true)} + ${'&hash=' + news.hashString}"
+															target="_blank" th:text="${news.name}" class="block-with-text-short" style="display: block">Name</a>
+													</h4>
+												</header>
+												<div class="post-content">
+													<!-- metadata -->
+													<p th:text="${news.shortDescription}" class="block-with-text-long">Description</p>
+
+													<div class="kopa-metadata-border">
+														<span><i class="fa fa-eye kopa-views"></i> <span
+															th:text="${news.views}">Views</span> </span> <a
+															th:if="${null == news.externalLink}"
+															th:href="@{/} + ${news.internalPath}"
+															class="kopa-readmore">Saber mais</a> <a
+															th:if="${null != news.externalLink}"
+															th:href="@{/detalheNoticia(abrirLink=true)} + ${'&hash=' + news.hashString}"
+															target="_blank" class="kopa-readmore">Saber mais</a>
+
+													</div>
+												</div>
+											</div>
+											<!-- item content -->
+										</div>
+									</div>
+									<!-- /.widget-inner -->
+								</div>
+								<!-- ./col-md-4 -->
+							</div>
+							<!-- ./row -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<section class="promo box box-dark">
+				<div class="row">
+					<div class="col-md-9">
+						<h1 class="section-heading">Por que estudar na Fatec Mogi das
+							Cruzes?</h1>
+						<p style="margin: 0 0.5em 0 0.5em">A Fatec Mogi das Cruzes é a
+							instituição superior do Alto Tietê cujos cursos têm a melhor
+							avaliação do MEC - Ministério da Educação. Os cursos já
+							avaliados, Agronegócio, Análise e Desenvolvimento de Sistemas e
+							Recursos-Humanos, receberam conceito Ótimo ou Excelente no ENADE.</p>
+					</div>
+					<div class="col-md-3 text-center">
+						<a class="btn btn-cta fancybox fancybox.iframe"
+							href="https://www.youtube.com/embed/GmCmXOyov7M?autoplay=1"><i
+							class="fa fa-arrow-circle-o-right"></i>Saiba Mais</a>
+					</div>
+				</div>
+			</section>
+			<!--//promo-->
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">
+								Últimos Eventos <a th:href="@{/todosEventos}">Ver Todos</a>
+							</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="row">
+								<div class="col-md-4" th:each="event : ${eventList}">
+									<div class="translucid-widget">
+										<div class="item latest-latest clearfix">
+											<div class="post-thumb">
+												<a class="img-responsive"
+													th:if="${null == event.externalLink}"
+													th:href="@{/} + ${event.internalPath}"><img
+													class="home-event-image"
+													th:src="@{/events/} + ${event.hashString + '/image'}"
+													th:alt="${event.imageAlternativeDescription}" /></a> <a
+													class="img-responsive"
+													th:if="${null != event.externalLink}"
+													th:href="@{/detalheNoticia(abrirLink=true)} + ${'&hash=' + event.hashString}"
+													target="_blank"><img class="home-event-image"
+													th:src="@{/events/} + ${event.hashString + '/image'}"
+													th:alt="${event.imageAlternativeDescription}" /></a>
+											</div>
+											<!-- post thumb -->
+											<div class="item-content">
+												<header>
+													<h4 class="post-title">
+														<a th:if="${null == event.externalLink}"
+															th:href="@{/} + ${event.internalPath}"
+															th:text="${event.name}" class="block-with-text-short" style="display: block">Name</a> <a
+															th:if="${null != event.externalLink}"
+															th:href="@{/detalheNoticia(abrirLink=true)} + ${'&hash=' + event.hashString}"
+															target="_blank" th:text="${event.name}" class="block-with-text-short" style="display: block">Name</a>
+													</h4>
+												</header>
+												<div class="post-content">
+													<!-- metadata -->
+													<p th:text="${event.shortDescription}" class="block-with-text-long">Description</p>
+
+													<div class="kopa-metadata-border">
+														<span><i class="fa fa-eye kopa-views"></i> <span
+															th:text="${event.views}">Views</span> </span> <a
+															th:if="${null == event.externalLink}"
+															th:href="@{/} + ${event.internalPath}"
+															class="kopa-readmore">Saber mais</a> <a
+															th:if="${null != event.externalLink}"
+															th:href="@{/detalheNoticia(abrirLink=true)} + ${'&hash=' + event.hashString}"
+															target="_blank" class="kopa-readmore">Saber mais</a>
+
+													</div>
+													<div class="kopa-date-box">
+														<span class="kopa-mon" th:text="${event.month}">Month</span>
+														<span class="kopa-day" th:text="${event.day}">Day</span> <span
+															class="kopa-yea" th:text="${event.year}">Year</span>
+													</div>
+												</div>
+											</div>
+											<!-- item content -->
+										</div>
+									</div>
+									<!-- /.widget-inner -->
+								</div>
+								<!-- ./col-md-4 -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 testimonial-list">
+					<div role="tabpanel" class="testimonials">
+						<h1>Depoimentos</h1>
+						<div class="quote">
+							<i class="fa fa-quote-left fa-4x"></i>
+						</div>
+						<div class="carousel slide" id="fade-quote-carousel"
+							data-ride="carousel" data-interval="20000">
+							<!-- Carousel indicators -->
+							<ol class="carousel-indicators">
+								<li data-target="#fade-quote-carousel"
+									th:attr="data-slide-to=${iteration.index}"
+									th:each="testimonial,iteration : ${testimonialList}"></li>
+							</ol>
+							<!-- Carousel items -->
+							<div class="carousel-inner">
+								<div class="item"
+									th:classappend="${0 == iteration.index ? 'active' : ''}"
+									th:each="testimonial,iteration : ${testimonialList}">
+									<div class="profile-circle"
+										th:style="'background:url(' + @{/testimonials/__${testimonial.hashString}__/image} + ');'">
+									</div>
+									<blockquote>
+										<p>
+											<span th:text="${testimonial.description}">Description</span>
+											<br />
+											<br /> <span th:text="${testimonial.name}">Name</span> (<span
+												th:text="${testimonial.position}">Position</span>)
+										</p>
+									</blockquote>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="widget-main">
+						<div class="widget-main-title">
+							<h4 class="widget-title">Parceiros</h4>
+						</div>
+						<div class="widget-inner">
+							<div class="row">
+								<div class="col-md-3 text-center">
+									<img th:src="@{/images/parceiros/cisco.jpg}" />
+								</div>
+								<div class="col-md-3 text-center">
+									<img th:src="@{/images/parceiros/emc.jpg}" />
+								</div>
+								<div class="col-md-3 text-center">
+									<img th:src="@{/images/parceiros/live-edu.jpg}" />
+								</div>
+								<div class="col-md-3 text-center">
+									<img th:src="@{/images/parceiros/vp.gif}" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</th:block>
+	<th:block layout:fragment="scripts">
+		<script th:src="@{/plugins/fancybox/jquery.fancybox.js}"></script>
+		<script th:src="@{/plugins/fancybox/jquery.fancybox.pack.js}"></script>
+
+		<script type="text/javascript"
+			th:src="@{/plugins/flex-slider/jquery.flexslider.js}"></script>
+		<script type="text/javascript"
+			th:src="@{/plugins/flex-slider/jquery.mousewheel.js}"></script>
+		<script type="text/javascript"
+			th:src="@{/plugins/flex-slider/jquery.easing.js}"></script>
+		<script type="text/javascript" th:src="@{/scripts/custom/index.js}"></script>
+	</th:block>
+</body>
+</html>
