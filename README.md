@@ -1,8 +1,8 @@
 # University Website and LMS (Website e Sistema Administrativo do Site da Fatec)
 
-This project implements a university (Fatec Mogi das Cruzes) website and LMS using Spring Boot.
+This project implements a university (Fatec Mogi das Cruzes) website and LMS using Spring Boot. A running version of this project may be found at: www.fatecmogidascruzes.com.br.
 
-*Este projeto implementa um site universitário (da Fatec Mogi das Cruzes) e um sistema administrativo - gerenciamento de notícias, eventos etc. - usando Spring Boot.*
+*Este projeto implementa um site universitário (da Fatec Mogi das Cruzes) e um sistema administrativo - gerenciamento de notícias, eventos etc. - usando Spring Boot. Uma versão executável deste projeto pode ser encontrada em: www.fatecmogidascruzes.com.br*
 
 ## Getting Started (Iniciando)
 
@@ -29,6 +29,11 @@ Nginx, Apache or equivalent to serve static files (images and PDFs).
 IDE
 ```
 STS - Spring Tool Suite 3 or newer
+```
+
+LOMBOK
+```
+The lombok project must be installed in the IDE: https://projectlombok.org/
 ```
 
 DBMS
