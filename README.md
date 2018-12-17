@@ -1,6 +1,6 @@
-# University Website and LMS (Website e Sistema Administrativo do Site da Fatec)
+# University Website and CMS (Website e Sistema Administrativo do Site da Fatec)
 
-This project implements a university (Fatec Mogi das Cruzes) website and LMS using Spring Boot. A running version of this project may be found at: www.fatecmogidascruzes.com.br.
+This project implements a university (Fatec Mogi das Cruzes) website and CMS using Spring Boot. A running version of this project may be found at: www.fatecmogidascruzes.com.br.
 
 *Este projeto implementa um site universitário (da Fatec Mogi das Cruzes) e um sistema administrativo - gerenciamento de notícias, eventos etc. - usando Spring Boot. Uma versão executável deste projeto pode ser encontrada em: www.fatecmogidascruzes.com.br*
 
