@@ -88,7 +88,7 @@ Ainda, você deve definir as seguintes variáveis de ambiente:
 
 * **Leandro Luque** - *Initial work*
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/leluque/university-site-cms/graphs/contributors) who participated in this project.
 
 ## License
 
