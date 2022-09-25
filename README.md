@@ -1,3 +1,10 @@
+# REFACTORING AND UPDATE NOTICE
+
+This project is old and requires refactoring. It uses a traditional MVC architecture and an old version of Spring.
+
+IT WILL BE GRADUALLY REFACTORED TO A BETTER ARCHITECTURE AND NEWER VERSIONS OF TECHNOLOGY. STILL, CHANGES WILL BE MADE TO DATABASES AND REACTIVE PROGRAMMING WILL BE USED.
+
+
 # University website and CMS - Content Management System
 
 This project implements a university website and CMS. A running version of this project may be found at fatecmogidascruzes.com.br.
