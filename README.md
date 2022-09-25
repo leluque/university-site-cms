@@ -1,9 +1,14 @@
-# REFACTORING AND UPDATE NOTICE
+# REFACTORING AND UPDATING NOTICE
 
 This project is old and requires refactoring. It uses a traditional MVC architecture and an old version of Spring.
 
 IT WILL BE GRADUALLY REFACTORED TO A BETTER ARCHITECTURE AND NEWER VERSIONS OF TECHNOLOGY. STILL, CHANGES WILL BE MADE TO DATABASES AND REACTIVE PROGRAMMING WILL BE USED.
 
+REFACTORING STEPS (NOT NECESSARILY IN THIS ORDER):
+* Use clean architecture;
+* Change database to PostgreSQL or MongoDB;
+* Change frontend to React with Next, Svelte or Thymeleaf with HMX;
+* Use Spring Reactive.
 
 # University website and CMS - Content Management System
 
