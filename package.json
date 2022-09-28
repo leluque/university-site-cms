@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/leluque/university-site-cms/issues"
   },
-  "homepage": "https://github.com/leluque/university-site-cms#readme"
+  "homepage": "https://github.com/leluque/university-site-cms#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^4.2.1"
+  }
 }
