@@ -1,0 +1,19 @@
+{
+  "name": "university-site-cms",
+  "version": "1.0.0",
+  "description": "This project is old and requires refactoring. It uses a traditional MVC architecture and an old version of Spring.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leluque/university-site-cms.git"
+  },
+  "author": "",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/leluque/university-site-cms/issues"
+  },
+  "homepage": "https://github.com/leluque/university-site-cms#readme"
+}
