@@ -5,7 +5,7 @@ This project is old and requires refactoring. It uses a traditional MVC architec
 IT WILL BE GRADUALLY REFACTORED TO A BETTER ARCHITECTURE AND NEWER VERSIONS OF TECHNOLOGY. STILL, CHANGES WILL BE MADE TO DATABASES AND REACTIVE PROGRAMMING WILL BE USED.
 
 REFACTORING STEPS (NOT NECESSARILY IN THIS ORDER):
-* Use clean architecture;
+* Use clean or hexagonal architecture;
 * Change database to PostgreSQL or MongoDB;
 * Change frontend to React with Next, Svelte or Thymeleaf with HMX;
 * Use Spring Reactive.
