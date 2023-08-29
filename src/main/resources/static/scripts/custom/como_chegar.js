@@ -9,7 +9,7 @@ function initialize() {
 function loadScript() {
     var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' + 'callback=initialize&key=AIzaSyDl24kfEnatiGzD_uY8HRnAD2D4aSbP3Q0';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' + 'callback=initialize&key=<key here>';
     document.body.appendChild(script);
 }
 
