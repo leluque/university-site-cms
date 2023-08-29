@@ -79,7 +79,7 @@ Moreover, you'll need to define the following environment variables:
 
 * **Leandro Luque** - *Initial work*
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/leluque/university-site-cms/graphs/contributors) who participated in this project.
 
 ## License
 
